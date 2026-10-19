@@ -72,7 +72,7 @@ test('partial write failure leaves a recoverable full backup',()=>{
 });
 test('canonical source, doctor and negative CLI contracts',()=>{
  const src=JSON.parse(cli('skill','source','--json').stdout);assert.equal(src.source,source);
- const doctor=JSON.parse(cli('doctor','--json').stdout);assert.equal(doctor.ok,true);assert.equal(doctor.generation.runtimeTested,false);
+ const doctor=JSON.parse(cli('doctor','--json').stdout);assert.equal(doctor.ok,true,JSON.stringify(doctor));assert.equal(doctor.generation.runtimeTested,false);
  assert.notEqual(cli('skill','install','--agent','other').status,0);
  assert.notEqual(cli('skill','install','--root').status,0);
  assert.notEqual(cli('update','install').status,0);
@@ -91,4 +91,9 @@ test('offline or wrong registry preserves current package',async()=>{
 });
 test('stable update version ordering and ownership',()=>{
  assert.equal(newer('0.2.0','0.1.0'),true);assert.equal(newer('0.1.0','0.1.0'),false);assert.equal(newer('0.2.0-beta.1','0.1.0'),false);assert.equal(globalPrefix(repo),null);
+});
+
+test('Agent-managed runtime uses the running Node without PATH dependencies',()=>{
+ const run=spawnSync(process.execPath,[path.join(repo,'npm/cli.mjs'),'doctor','--json'],{encoding:'utf8',env:{...process.env,PATH:sandbox}});
+ assert.equal(run.status,0);assert.equal(JSON.parse(run.stdout).ok,true);
 });

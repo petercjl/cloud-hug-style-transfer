@@ -9,7 +9,7 @@ const option=name=>{const i=args.indexOf(name);if(i<0)return undefined;if(!args[
 const out=value=>console.log(JSON.stringify(value,null,2));
 try {
  if(args[0]==='version'||args[0]==='--version') out({ok:true,name:pkg.name,version:pkg.version});
- else if(args[0]==='capabilities') out(JSON.parse(fs.readFileSync(path.join(root,'capabilities.json'),'utf8')));
+ else if(args[0]==='capabilities') out({...JSON.parse(fs.readFileSync(path.join(root,'capabilities.json'),'utf8')),version:pkg.version});
  else if(args[0]==='skill') {
   const action=args[1];
   if(action==='source')out({ok:true,package:pkg.name,version:pkg.version,source});

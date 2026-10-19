@@ -82,24 +82,3 @@ export function installUpdate(check, services={}) {
     }
   } finally { fs.rmdirSync(lock); }
 }
-export async function beforeRun(args, services={}) {
-  if(process.env.CLOUD_HUG_AUTO_UPDATE==='0' || !globalPrefix() || args[0]==='update') return false;
-  const check=await (services.check || checkUpdate)();
-  if(!check.ok) console.error('[cloud-hug-style-transfer] Update check unavailable; using installed version.');
-  if(!check.updateAvailable) return false;
-  if(check.available.split('.')[0]!==pkg.version.split('.')[0]) {
-    console.error('[cloud-hug-style-transfer] A new major version is available; use an explicit update to migrate.');
-    return false;
-  }
-  try {
-    const result=(services.install || installUpdate)(check);
-    console.error(`[cloud-hug-style-transfer] Using latest ${result.version}.`);
-  } catch(e) {
-    if(['UPDATE_BUSY','ROLLBACK_SYNC_REQUIRED','ROLLBACK_REQUIRED'].includes(e.code)) throw e;
-    console.error(`[cloud-hug-style-transfer] ${e.code || 'UPDATE_FAILED'}; using restored installed version.`);
-  }
-  // Delegate once only after update/rollback; never replay a business request.
-  const r=spawnSync(process.execPath,[path.join(root,'npm','cli.mjs'),...args],{stdio:'inherit',env:{...process.env,CLOUD_HUG_AUTO_UPDATE:'0'}});
-  process.exitCode=r.status??1;
-  return true;
-}

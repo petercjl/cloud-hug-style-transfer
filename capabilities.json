@@ -1,0 +1,54 @@
+{
+  "package": "@petercjl/cloud-hug-style-transfer",
+  "kind": "application-skill",
+  "skill": "cloud-hug-style-transfer",
+  "agents": [
+    "codex",
+    "sealseek",
+    "workbuddy"
+  ],
+  "commands": [
+    "version",
+    "capabilities",
+    "doctor",
+    "skill source",
+    "skill status",
+    "skill install",
+    "skill update",
+    "update check",
+    "update install"
+  ],
+  "requirements": {
+    "node": ">=22",
+    "nested_skills": [],
+    "generation": "Host-provided multi-reference image editing and inspection; credentials remain external.",
+    "host_capability_skills": {
+      "codex": [],
+      "sealseek": [
+        "AIGC-生图 when advertised by host as its media entry"
+      ],
+      "workbuddy": [
+        "miora-creative-core",
+        "miora-image-generation"
+      ]
+    }
+  },
+  "authorization": {
+    "installation": "Explicit install/update request; preserve existing targets.",
+    "generation": "Current task scope and host provider policy."
+  },
+  "compatibility": {
+    "codex": {
+      "installation": "implemented",
+      "generation": "implemented-not-runtime-tested"
+    },
+    "sealseek": {
+      "installation": "implemented",
+      "generation": "implemented-not-runtime-tested"
+    },
+    "workbuddy": {
+      "installation": "implemented",
+      "generation": "implemented-not-runtime-tested"
+    }
+  }
+}
