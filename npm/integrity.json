@@ -1,5 +1,4 @@
 {
-  "SKILL.md": "88b2b5584f57299a8dc002ad51914e4577dc39b657e96e643b74b61911676a3f",
   "adapters/codex.json": "c5e52102befd0bb47e114f2534ee3a2fb9a66f7338396202319aea73a3ea924a",
   "adapters/sealseek.json": "d50e4d9f910c664c026ffa9e92ac8901776d19d2f1c8062a046af534a7cdf2ce",
   "adapters/workbuddy.json": "4d0e1a62deb866dc6bd4c6bb7915cce20725d16863258345e93c817e7b8bdbd0",
@@ -64,5 +63,7 @@
   "references/model-generation.json": "21daa2c3bf7d2000c7ddf52ab0b980cb7ee95d6c9d345602dc59ecbc128ec147",
   "references/model.md": "c4da688e22e2ada3f251fe0dc87effcaf5cb6ed6176f9d9c20a9661414bffab5",
   "references/page-patterns.md": "3c126c75e9ccd5fc0b8860efcf2a0e27e9d3ba31e5cdeb407a0a683d8861a978",
-  "references/products.md": "642795ae16803669b169531240723bf72a388cb6351679a2787e67e181dca9cd"
+  "references/photography-method.md": "86ed457fc78112c1a2ad9bf9fdb9bcdf92aed71066bac2b3d4255159e3ee5c1c",
+  "references/products.md": "642795ae16803669b169531240723bf72a388cb6351679a2787e67e181dca9cd",
+  "SKILL.md": "7b3c63cf7a8a48815fbd773c27c14eae60d1fbb7f97ef80ee398e3f7f6a43fc0"
 }
