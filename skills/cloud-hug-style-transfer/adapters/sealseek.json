@@ -1,0 +1,52 @@
+{
+  "schema": "portable-skill-adapter",
+  "schema_version": "1.0.0",
+  "platform": "sealseek",
+  "mappings": [
+    {
+      "capability_id": "media.image.inspect",
+      "status": "implemented",
+      "features": [
+        "local-image",
+        "visual-inspection"
+      ],
+      "implementation": {
+        "type": "agent-native",
+        "discovery": "Inspect the current host tool catalog and schemas; verify reference input and result delivery before invoking.",
+        "invocation": "Use the current host image-viewing tool with absolute local paths; require a vision-capable model and inspect actual pixels, including generated output.",
+        "configuration": "Host-managed account and provider authorization; no credentials bundled."
+      },
+      "normalization": "Success: {ok:true,artifacts:[],metadata:{},task_id:null,cost:null,warnings:[]}; failure: {ok:false,code,message,capability_id}.",
+      "evidence": [
+        "Adapter implementation follows inspected host capability descriptions; generation has not been exercised."
+      ]
+    },
+    {
+      "capability_id": "media.image.edit",
+      "status": "implemented",
+      "features": [
+        "multiple-references",
+        "reference-image-edit",
+        "local-reference-input",
+        "viewable-output"
+      ],
+      "implementation": {
+        "type": "agent-native",
+        "discovery": "Inspect currently advertised sealseek-canvas tool schemas. If the host provides its AIGC-生图 capability Skill, resolve that exact logical name, read its current complete SKILL.md and follow its live input/output contract for this operation. Do not bundle or duplicate that Skill.",
+        "invocation": "Use sealseek-canvas reference-image generation only after inspecting its current reference format. Local file upload must use the host-provided upload operation and returned format; never pass local file paths to URL-only fields. Preserve selected model and reference order. Retrieve and inspect the resulting local images using the host delivery contract.",
+        "configuration": "Current SealSeek session account and advertised native media capability. No external CLI or provider installation is implied.",
+        "failure": "If the current tool, local-reference transport or image delivery is unavailable, return CAPABILITY_UNAVAILABLE or FEATURE_UNSUPPORTED and resume the core at section 5 only after resolution."
+      },
+      "normalization": "Success: {ok:true,artifacts:[],metadata:{},task_id:null,cost:null,warnings:[]}; failure: {ok:false,code,message,capability_id}.",
+      "evidence": [
+        "Adapter implementation follows inspected host capability descriptions; generation has not been exercised."
+      ]
+    }
+  ],
+  "operating_systems": {
+    "macos": "implemented",
+    "windows": "implemented"
+  },
+  "notes": "Installer support and host generation capability are independent. Unresolved native capabilities must be verified on the executing host before generation.",
+  "host_generation_tested": false
+}

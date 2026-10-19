@@ -1,0 +1,77 @@
+{
+  "schema": "portable-skill-capabilities",
+  "schema_version": "1.0.0",
+  "target_platforms": [
+    "codex",
+    "sealseek",
+    "workbuddy"
+  ],
+  "capabilities": [
+    {
+      "id": "media.image.inspect",
+      "purpose": "实际查看源图、品牌参考和生成结果",
+      "required": true,
+      "required_features": [
+        "local-image",
+        "visual-inspection"
+      ],
+      "input_fields": [
+        "images",
+        "instructions"
+      ],
+      "output_fields": [
+        "ok",
+        "artifacts",
+        "metadata",
+        "warnings"
+      ],
+      "side_effects": {
+        "external_mutation": false,
+        "may_cost_money": false,
+        "authorization": "Current user task scope; host confirmation rules and selected provider apply."
+      },
+      "errors": [
+        "CAPABILITY_UNAVAILABLE",
+        "FEATURE_UNSUPPORTED",
+        "AUTH_REQUIRED",
+        "PERMISSION_REQUIRED",
+        "PROVIDER_FAILURE",
+        "OUTPUT_CONTRACT_FAILED"
+      ]
+    },
+    {
+      "id": "media.image.edit",
+      "purpose": "按原图保持身份与商品事实执行风格转换",
+      "required": true,
+      "required_features": [
+        "multiple-references",
+        "reference-image-edit",
+        "local-reference-input",
+        "viewable-output"
+      ],
+      "input_fields": [
+        "images",
+        "instructions"
+      ],
+      "output_fields": [
+        "ok",
+        "artifacts",
+        "metadata",
+        "warnings"
+      ],
+      "side_effects": {
+        "external_mutation": true,
+        "may_cost_money": true,
+        "authorization": "Current user task scope; host confirmation rules and selected provider apply."
+      },
+      "errors": [
+        "CAPABILITY_UNAVAILABLE",
+        "FEATURE_UNSUPPORTED",
+        "AUTH_REQUIRED",
+        "PERMISSION_REQUIRED",
+        "PROVIDER_FAILURE",
+        "OUTPUT_CONTRACT_FAILED"
+      ]
+    }
+  ]
+}

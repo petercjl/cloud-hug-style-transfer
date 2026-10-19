@@ -1,0 +1,32 @@
+{
+  "name": "@petercjl/cloud-hug-style-transfer",
+  "version": "0.1.0",
+  "description": "抱抱云朵社品牌风格转换 Skill，支持 Codex、SealSeek 与 WorkBuddy",
+  "type": "module",
+  "bin": {
+    "cloud-hug-style-transfer": "npm/cli.mjs"
+  },
+  "files": [
+    "npm/",
+    "skills/",
+    "capabilities.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "check": "node --check npm/cli.mjs && node --check npm/skills.mjs && node --check npm/update.mjs",
+    "prepack": "npm run check && npm test"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petercjl/cloud-hug-style-transfer.git"
+  },
+  "license": "UNLICENSED"
+}

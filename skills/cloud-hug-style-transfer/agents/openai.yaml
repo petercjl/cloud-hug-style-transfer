@@ -1,0 +1,13 @@
+interface:
+  display_name: 抱抱云朵社风格转换
+  short_description: 独立转换旧详情页为抱抱云朵社视觉与同一模特，商品随当次资料，内置完整案例与素材
+  default_prompt: 使用 $cloud-hug-style-transfer，将我提供的旧详情页转换为抱抱云朵社品牌视觉与同一模特，保留本次商品、文案参数和页面用途，按当前要求规划或生成。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

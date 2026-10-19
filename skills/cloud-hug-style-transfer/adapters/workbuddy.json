@@ -1,0 +1,52 @@
+{
+  "schema": "portable-skill-adapter",
+  "schema_version": "1.0.0",
+  "platform": "workbuddy",
+  "mappings": [
+    {
+      "capability_id": "media.image.inspect",
+      "status": "implemented",
+      "features": [
+        "local-image",
+        "visual-inspection"
+      ],
+      "implementation": {
+        "type": "agent-native",
+        "discovery": "Inspect the current host tool catalog and schemas; verify reference input and result delivery before invoking.",
+        "invocation": "Use the current host image-viewing tool with absolute local paths; require a vision-capable model and inspect actual pixels, including generated output.",
+        "configuration": "Host-managed account and provider authorization; no credentials bundled."
+      },
+      "normalization": "Success: {ok:true,artifacts:[],metadata:{},task_id:null,cost:null,warnings:[]}; failure: {ok:false,code,message,capability_id}.",
+      "evidence": [
+        "Adapter implementation follows inspected host capability descriptions; generation has not been exercised."
+      ]
+    },
+    {
+      "capability_id": "media.image.edit",
+      "status": "implemented",
+      "features": [
+        "multiple-references",
+        "reference-image-edit",
+        "local-reference-input",
+        "viewable-output"
+      ],
+      "implementation": {
+        "type": "agent-native",
+        "discovery": "Inspect current Miora tool schemas and scenario availability in the WorkBuddy host. Resolve built-in miora-creative-core and miora-image-generation by exact logical names from the host catalog, load their current complete SKILL.md and only task-required references. This is a host capability dependency, not a copied business workflow.",
+        "invocation": "Activate the authorized host multimodal image scenario, observe host batch authorization, use connect_cloud_service and miora_edit_image with actual references in images[]. Follow the current host delivery contract: miora_write_canvas then present_files using copied_assets and miora_open_canvas; individual final images remain separate artifacts. Preserve source frame and explicit user model decisions.",
+        "configuration": "WorkBuddy built-in Miora image scenario and current-user service access. Authentication stays in host tools.",
+        "failure": "If the required scenario, built-in capability Skill, multi-reference editing or delivery operation is absent, return CAPABILITY_UNAVAILABLE. Do not invoke Miora outside its allowed scenario or substitute SVG/HTML for raster output."
+      },
+      "normalization": "Success: {ok:true,artifacts:[],metadata:{},task_id:null,cost:null,warnings:[]}; failure: {ok:false,code,message,capability_id}.",
+      "evidence": [
+        "Adapter implementation follows inspected host capability descriptions; generation has not been exercised."
+      ]
+    }
+  ],
+  "operating_systems": {
+    "macos": "implemented",
+    "windows": "implemented"
+  },
+  "notes": "Installer support and host generation capability are independent. Unresolved native capabilities must be verified on the executing host before generation.",
+  "host_generation_tested": false
+}

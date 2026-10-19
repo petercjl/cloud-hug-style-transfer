@@ -1,0 +1,46 @@
+{
+  "schema": "portable-skill-adapter",
+  "schema_version": "1.0.0",
+  "platform": "codex",
+  "mappings": [
+    {
+      "capability_id": "media.image.inspect",
+      "status": "implemented",
+      "features": [
+        "local-image",
+        "visual-inspection"
+      ],
+      "implementation": {
+        "type": "agent-native",
+        "discovery": "Inspect the current host tool catalog and schemas; verify reference input and result delivery before invoking.",
+        "invocation": "Use native image viewing. Use the built-in image generation tool with referenced_image_paths for local references; inspect files before editing. Follow current host schema. API keys are not the default route.",
+        "configuration": "Host-managed account and provider authorization; no credentials bundled."
+      },
+      "normalization": "Success: {ok:true,artifacts:[],metadata:{},task_id:null,cost:null,warnings:[]}; failure: {ok:false,code,message,capability_id}.",
+      "evidence": []
+    },
+    {
+      "capability_id": "media.image.edit",
+      "status": "implemented",
+      "features": [
+        "multiple-references",
+        "reference-image-edit",
+        "local-reference-input",
+        "viewable-output"
+      ],
+      "implementation": {
+        "type": "agent-native",
+        "discovery": "Inspect the current host tool catalog and schemas; verify reference input and result delivery before invoking.",
+        "invocation": "Use native image viewing. Use the built-in image generation tool with referenced_image_paths for local references; inspect files before editing. Follow current host schema. API keys are not the default route.",
+        "configuration": "Host-managed account and provider authorization; no credentials bundled."
+      },
+      "normalization": "Success: {ok:true,artifacts:[],metadata:{},task_id:null,cost:null,warnings:[]}; failure: {ok:false,code,message,capability_id}.",
+      "evidence": []
+    }
+  ],
+  "operating_systems": {
+    "macos": "implemented",
+    "windows": "implemented"
+  },
+  "notes": "Installer support and host generation capability are independent. Unresolved native capabilities must be verified on the executing host before generation."
+}

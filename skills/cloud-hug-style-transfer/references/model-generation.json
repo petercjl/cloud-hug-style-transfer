@@ -1,0 +1,19 @@
+{
+  "approved_at": "2026-10-19",
+  "purpose": "抱抱云朵社当前唯一模特身份、默认家居服与袜子设定",
+  "status": "user-approved-current-model",
+  "asset_type": "generated-character-sheet",
+  "selected_option": 1,
+  "selected_variant": "奶白色素面棉袜版",
+  "bundled_output": "assets/model/character-sheet-approved-20261019.png",
+  "source_handling": "保留用户选定并上传的 PNG 原文件，未重新生成、裁切或压缩。",
+  "dimensions_px": [
+    1536,
+    1024
+  ],
+  "sha256": "55300aa20053612fe132bf0899ba0d3ffd280a197782aeba72fd097df29f51f3",
+  "authority": "当前已确认设定卡优先于历史 KV、详情页和旧人物参考；当前用户明确的新要求优先。",
+  "default_wardrobe": "奶白长袖家居上衣、开口小 V 领、宽松长裤、奶白素面棉袜；可见脚部与脚踝全部覆盖，袜筒藏在裤脚内。",
+  "historical_asset_scope": "旧辅助卡及专用旧人物参考已从技能包移除。保留的 KV 与完整19页只用于品牌摄影、动作、受力和版式。",
+  "notes": "该图是用户已确认的生成设定卡，不是真实模特实拍。图中站姿与正面视线用于识别，不规定后续广告动作。"
+}
