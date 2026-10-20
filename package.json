@@ -1,6 +1,6 @@
 {
   "name": "@petercjl/cloud-hug-style-transfer",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "抱抱云朵社品牌风格转换 Skill，支持 Codex、SealSeek 与 WorkBuddy",
   "type": "module",
   "bin": {
