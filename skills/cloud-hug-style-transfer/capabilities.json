@@ -79,6 +79,50 @@
         "DEPENDENCY_INCOMPATIBLE"
       ],
       "provider": "@petercjl/sealseek-media-cli"
+    },
+    {
+      "id": "media.canvas.compare",
+      "purpose": "首张生图前新建命名画板，逐张成对插入左原图右成图并验证紧凑逐行布局",
+      "required": true,
+      "required_features": [
+        "new-canvas",
+        "source-upload",
+        "actual-dimensions",
+        "explicit-placement",
+        "idempotent-pair-import",
+        "verified-save"
+      ],
+      "input_fields": [
+        "title",
+        "canvas_id",
+        "images",
+        "row_layout",
+        "authorization"
+      ],
+      "output_fields": [
+        "ok",
+        "artifacts",
+        "metadata",
+        "canvas_id",
+        "canvas_url",
+        "verified",
+        "warnings"
+      ],
+      "side_effects": {
+        "external_mutation": true,
+        "may_cost_money": false,
+        "authorization": "Authorized image task includes its new canvas, source uploads and result archival; generation remains separately authorized."
+      },
+      "errors": [
+        "DEPENDENCY_MISSING",
+        "DEPENDENCY_INCOMPATIBLE",
+        "AUTH_REQUIRED",
+        "CAPABILITY_UNAVAILABLE",
+        "FEATURE_UNSUPPORTED",
+        "SUBMISSION_UNCERTAIN",
+        "IDEMPOTENCY_CONFLICT",
+        "OUTPUT_CONTRACT_FAILED"
+      ]
     }
   ],
   "dependencies": [

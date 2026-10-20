@@ -16,7 +16,8 @@
     "skill install",
     "skill update",
     "update check",
-    "update install"
+    "update install",
+    "canvas row"
   ],
   "requirements": {
     "node": ">=22",
@@ -37,7 +38,7 @@
         "missing": "pause",
         "skill": "sealseek-media",
         "source": "CLI skill source --json",
-        "contract": "media.generate with image/reference-image/dry-run/task-record/local-artifact"
+        "contract": "media.generate with image/reference-image/dry-run/task-record/local-artifact; canvas_contract@1 create/image upload/media inspect/explicit batch/verified readback"
       }
     ]
   },
@@ -58,5 +59,16 @@
       "installation": "implemented",
       "generation": "implemented-not-runtime-tested"
     }
+  },
+  "canvas": {
+    "creation": "new-per-generation-request-before-first-submit",
+    "title": "application-inferred-from-current-images-and-intent",
+    "layout": "source-left-result-right; rows-top-to-bottom",
+    "column_width": 480,
+    "horizontal_gap": 24,
+    "vertical_gap": 32,
+    "archive": "none during generation; explicit pair batch after each success",
+    "planner": "canvas row --input JSON_FILE --json",
+    "recovery": "same canvas/task/row IDs; inspect before replay"
   }
 }

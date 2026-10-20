@@ -39,6 +39,29 @@
       "evidence": [
         "Canonical sealseek-media 0.6.1 CLI/Skill and live capabilities inspected; paid generation and full host flow not tested."
       ]
+    },
+    {
+      "capability_id": "media.canvas.compare",
+      "status": "implemented",
+      "features": [
+        "new-canvas",
+        "source-upload",
+        "actual-dimensions",
+        "explicit-placement",
+        "idempotent-pair-import",
+        "verified-save"
+      ],
+      "implementation": {
+        "type": "cli",
+        "discovery": "Use the verified media invocation from doctor; load canonical sealseek-media Skill and its current canvas creation, upload, inspection and explicit batch contract.",
+        "invocation": "Follow references/canvas-comparison.md for application naming, pairing, row state and layout; use media CLI canvas create, image upload, media inspect, canvas batch and canvas get. Pass an explicit canvas ID and archive none during generation; archive each pair after completion.",
+        "configuration": "Existing media-package private authentication and network. canvas_contract version 1; no new provider integration.",
+        "failure": "Pause on missing canvas contract, failed/uncertain creation, upload or pair write. Preserve IDs and original batch; inspect the same canvas before recovery."
+      },
+      "normalization": "Success includes canvas_id, canvas_url and verified pair positions; failure retains code, task/canvas IDs and recovery state.",
+      "evidence": [
+        "Current media CLI contract inspected; deterministic geometry and batch dry-run tested separately from real canvas writes."
+      ]
     }
   ],
   "operating_systems": {

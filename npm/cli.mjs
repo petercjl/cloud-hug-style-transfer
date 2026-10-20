@@ -5,12 +5,17 @@ import { root, pkg, fail } from './runtime.mjs';
 import { source, targetPath, status, install, inventory } from './skills.mjs';
 import { checkUpdate, installUpdate } from './update.mjs';
 import { mediaDependency } from './media-dependency.mjs';
+import { comparisonRow } from './canvas-layout.mjs';
 const args=process.argv.slice(2);
 const option=name=>{const i=args.indexOf(name);if(i<0)return undefined;if(!args[i+1]||args[i+1].startsWith('--'))throw fail('INVALID_ARGUMENT',`${name} needs a value.`);return args[i+1];};
 const out=value=>console.log(JSON.stringify(value,null,2));
 try {
  if(args[0]==='version'||args[0]==='--version') out({ok:true,name:pkg.name,version:pkg.version});
  else if(args[0]==='capabilities') out({...JSON.parse(fs.readFileSync(path.join(root,'capabilities.json'),'utf8')),version:pkg.version});
+ else if(args[0]==='canvas'&&args[1]==='row') {
+  const input=option('--input');if(!input)throw fail('INVALID_ARGUMENT','canvas row requires --input JSON_FILE.');
+  out(comparisonRow(JSON.parse(fs.readFileSync(input,'utf8'))));
+ }
  else if(args[0]==='skill') {
   const action=args[1];
   if(action==='source')out({ok:true,package:pkg.name,version:pkg.version,source});
@@ -35,6 +40,6 @@ try {
   const check=await checkUpdate();
   if(args[1]==='check'){out(check);if(!check.ok)process.exitCode=1;}
   else {if(!check.ok)throw fail(check.code,'Registry unavailable; installed version retained.');out(check.updateAvailable?installUpdate(check):{ok:true,changed:false,version:pkg.version});}
- } else if(!args.length||['--help','help','-h'].includes(args[0])) console.log('cloud-hug-style-transfer\nversion | capabilities --json | doctor --json [--agent AGENT]\nskill source/status/install/update [--agent codex|sealseek|workbuddy] [--root SKILLS_DIRECTORY]\nupdate check | update install --yes\nNode.js 22+. Updates are explicit; business calls never auto-update.');
+ } else if(!args.length||['--help','help','-h'].includes(args[0])) console.log('cloud-hug-style-transfer\nversion | capabilities --json | doctor --json [--agent AGENT]\ncanvas row --input JSON_FILE --json (read-only comparison layout)\nskill source/status/install/update [--agent codex|sealseek|workbuddy] [--root SKILLS_DIRECTORY]\nupdate check | update install --yes\nNode.js 22+. Updates are explicit; business calls never auto-update.');
  else throw fail('INVALID_COMMAND','Unknown command; use --help.');
 } catch(e){out({ok:false,code:e.code||'COMMAND_FAILED',message:e.message});process.exitCode=1;}

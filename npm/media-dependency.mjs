@@ -40,6 +40,8 @@ export function mediaDependency({ env = process.env, packageRoot } = {}) {
    const contract=JSON.parse(fs.readFileSync(path.join(source,'capabilities.json'),'utf8'));
    const generate=contract.capabilities?.find(c=>c.id==='media.generate');
    if(!['image','reference-image','dry-run','task-record','local-artifact'].every(f=>generate?.required_features?.includes(f))) return missing('DEPENDENCY_INCOMPATIBLE','Media generation contract is incomplete.');
+   const canvas=contract.canvas_contract;
+   if(canvas?.version!==1||!['explicit-placement','frame-batch','media-inspect'].every(f=>canvas.features?.includes(f))||!canvas.operations?.create||!canvas.operations?.upload?.some(c=>c.startsWith('image upload '))||!canvas.generation_options?.archive?.enum?.includes('none')) return missing('DEPENDENCY_INCOMPATIBLE','Media canvas creation, upload, inspection and explicit batch placement are required.');
    return {ok:true,package:name,version:pkg.version,entry,source,invocation:{command:process.execPath,args:[entry]},serviceAccess:'requires-live-preflight',generationTested:false};
   } catch { return missing('DEPENDENCY_INVALID','Media package, CLI or canonical Skill could not be verified.'); }
  }

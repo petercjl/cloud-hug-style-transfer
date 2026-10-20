@@ -37,3 +37,9 @@ test('PATH discovers an npm prefix without relying on Windows cmd execution',()=
  const env={...process.env,PATH:prefix};delete env.CLOUD_HUG_MEDIA_ROOT;
  const d=mediaDependency({env});assert.equal(d.ok,true);assert.equal(d.invocation.command,process.execPath);
 });
+test('image generation alone cannot satisfy the required comparison canvas contract',()=>{
+ const root=mediaFixture(path.join(tmp,'no-canvas'));
+ const file=path.join(root,'skills/sealseek-media/capabilities.json');
+ const contract=JSON.parse(fs.readFileSync(file));delete contract.canvas_contract;fs.writeFileSync(file,JSON.stringify(contract));
+ const result=mediaDependency({packageRoot:root});assert.equal(result.ok,false);assert.equal(result.code,'DEPENDENCY_INCOMPATIBLE');assert.equal(result.action,'pause');
+});
