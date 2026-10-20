@@ -20,22 +20,30 @@
   ],
   "requirements": {
     "node": ">=22",
-    "nested_skills": [],
-    "generation": "Host-provided multi-reference image editing and inspection; credentials remain external.",
+    "nested_skills": [
+      "sealseek-media"
+    ],
+    "generation": "Required @petercjl/sealseek-media-cli >=0.6.1 and its canonical sealseek-media Skill; missing or incompatible dependency pauses all tasks before analysis or planning.",
     "host_capability_skills": {
       "codex": [],
-      "sealseek": [
-        "AIGC-生图 when advertised by host as its media entry"
-      ],
-      "workbuddy": [
-        "miora-creative-core",
-        "miora-image-generation"
-      ]
-    }
+      "sealseek": [],
+      "workbuddy": []
+    },
+    "packages": [
+      {
+        "name": "@petercjl/sealseek-media-cli",
+        "minimum_version": "0.6.1",
+        "required": true,
+        "missing": "pause",
+        "skill": "sealseek-media",
+        "source": "CLI skill source --json",
+        "contract": "media.generate with image/reference-image/dry-run/task-record/local-artifact"
+      }
+    ]
   },
   "authorization": {
     "installation": "Explicit install/update request; preserve existing targets.",
-    "generation": "Current task scope and host provider policy."
+    "generation": "User-authorized generation via sealseek-media-cli only; credits and credentials remain external."
   },
   "compatibility": {
     "codex": {

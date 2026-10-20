@@ -13,7 +13,7 @@
       "implementation": {
         "type": "agent-native",
         "discovery": "Inspect the current host tool catalog and schemas; verify reference input and result delivery before invoking.",
-        "invocation": "Use the current host image-viewing tool with absolute local paths; require a vision-capable model and inspect actual pixels, including generated output.",
+        "invocation": "Use the current host image-viewing tool to inspect actual local source, reference and output pixels; require a vision-capable model.",
         "configuration": "Host-managed account and provider authorization; no credentials bundled."
       },
       "normalization": "Success: {ok:true,artifacts:[],metadata:{},task_id:null,cost:null,warnings:[]}; failure: {ok:false,code,message,capability_id}.",
@@ -31,15 +31,15 @@
         "viewable-output"
       ],
       "implementation": {
-        "type": "agent-native",
-        "discovery": "Inspect currently advertised sealseek-canvas tool schemas. If the host provides its AIGC-生图 capability Skill, resolve that exact logical name, read its current complete SKILL.md and follow its live input/output contract for this operation. Do not bundle or duplicate that Skill.",
-        "invocation": "Use sealseek-canvas reference-image generation only after inspecting its current reference format. Local file upload must use the host-provided upload operation and returned format; never pass local file paths to URL-only fields. Preserve selected model and reference order. Retrieve and inspect the resulting local images using the host delivery contract.",
-        "configuration": "Current SealSeek session account and advertised native media capability. No external CLI or provider installation is implied.",
-        "failure": "If the current tool, local-reference transport or image delivery is unavailable, return CAPABILITY_UNAVAILABLE or FEATURE_UNSUPPORTED and resume the core at section 5 only after resolution."
+        "type": "cli",
+        "discovery": "Run cloud-hug-style-transfer doctor --json; require dependencies.media.ok and use its verified invocation. Resolve sealseek-media via that CLI skill source --json and load the complete current SKILL.md plus its current host adapter.",
+        "invocation": "Follow the current sealseek-media Discover/Prepare/Validate/Submit/Follow/Deliver contract. Pass application-owned prompt and ordered local references, dry-run first, submit authorized generation via --via sealseek --submit, preserve task IDs and verify local output.",
+        "configuration": "Required @petercjl/sealseek-media-cli >=0.6.1; private media-package authentication, network and credits. Optional CLOUD_HUG_MEDIA_ROOT points to its installed package root.",
+        "failure": "Missing or incompatible package/Skill pauses the entire task before section 1; offer the minimal install prompt and resume only after verification. Service/feature failures pause without native-generation fallback."
       },
       "normalization": "Success: {ok:true,artifacts:[],metadata:{},task_id:null,cost:null,warnings:[]}; failure: {ok:false,code,message,capability_id}.",
       "evidence": [
-        "Adapter implementation follows inspected host capability descriptions; generation has not been exercised."
+        "Canonical sealseek-media 0.6.1 CLI/Skill and live capabilities inspected; paid generation and full host flow not tested."
       ]
     }
   ],
@@ -47,6 +47,6 @@
     "macos": "implemented",
     "windows": "implemented"
   },
-  "notes": "Installer support and host generation capability are independent. Unresolved native capabilities must be verified on the executing host before generation.",
+  "notes": "Image generation uses the same required sealseek-media-cli on every host. Native viewing and command execution still require host verification. Missing media dependency pauses all tasks.",
   "host_generation_tested": false
 }

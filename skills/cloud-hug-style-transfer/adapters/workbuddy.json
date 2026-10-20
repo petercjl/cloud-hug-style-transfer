@@ -13,7 +13,7 @@
       "implementation": {
         "type": "agent-native",
         "discovery": "Inspect the current host tool catalog and schemas; verify reference input and result delivery before invoking.",
-        "invocation": "Use the current host image-viewing tool with absolute local paths; require a vision-capable model and inspect actual pixels, including generated output.",
+        "invocation": "Use the current host image-viewing tool to inspect actual local source, reference and output pixels; require a vision-capable model.",
         "configuration": "Host-managed account and provider authorization; no credentials bundled."
       },
       "normalization": "Success: {ok:true,artifacts:[],metadata:{},task_id:null,cost:null,warnings:[]}; failure: {ok:false,code,message,capability_id}.",
@@ -31,15 +31,15 @@
         "viewable-output"
       ],
       "implementation": {
-        "type": "agent-native",
-        "discovery": "Inspect current Miora tool schemas and scenario availability in the WorkBuddy host. Resolve built-in miora-creative-core and miora-image-generation by exact logical names from the host catalog, load their current complete SKILL.md and only task-required references. This is a host capability dependency, not a copied business workflow.",
-        "invocation": "Activate the authorized host multimodal image scenario, observe host batch authorization, use connect_cloud_service and miora_edit_image with actual references in images[]. Follow the current host delivery contract: miora_write_canvas then present_files using copied_assets and miora_open_canvas; individual final images remain separate artifacts. Preserve source frame and explicit user model decisions.",
-        "configuration": "WorkBuddy built-in Miora image scenario and current-user service access. Authentication stays in host tools.",
-        "failure": "If the required scenario, built-in capability Skill, multi-reference editing or delivery operation is absent, return CAPABILITY_UNAVAILABLE. Do not invoke Miora outside its allowed scenario or substitute SVG/HTML for raster output."
+        "type": "cli",
+        "discovery": "Run cloud-hug-style-transfer doctor --json; require dependencies.media.ok and use its verified invocation. Resolve sealseek-media via that CLI skill source --json and load the complete current SKILL.md plus its current host adapter.",
+        "invocation": "Follow the current sealseek-media Discover/Prepare/Validate/Submit/Follow/Deliver contract. Pass application-owned prompt and ordered local references, dry-run first, submit authorized generation via --via sealseek --submit, preserve task IDs and verify local output.",
+        "configuration": "Required @petercjl/sealseek-media-cli >=0.6.1; private media-package authentication, network and credits. Optional CLOUD_HUG_MEDIA_ROOT points to its installed package root.",
+        "failure": "Missing or incompatible package/Skill pauses the entire task before section 1; offer the minimal install prompt and resume only after verification. Service/feature failures pause without native-generation fallback."
       },
       "normalization": "Success: {ok:true,artifacts:[],metadata:{},task_id:null,cost:null,warnings:[]}; failure: {ok:false,code,message,capability_id}.",
       "evidence": [
-        "Adapter implementation follows inspected host capability descriptions; generation has not been exercised."
+        "Canonical sealseek-media 0.6.1 CLI/Skill and live capabilities inspected; paid generation and full host flow not tested."
       ]
     }
   ],
@@ -47,6 +47,6 @@
     "macos": "implemented",
     "windows": "implemented"
   },
-  "notes": "Installer support and host generation capability are independent. Unresolved native capabilities must be verified on the executing host before generation.",
+  "notes": "Image generation uses the same required sealseek-media-cli on every host. Native viewing and command execution still require host verification. Missing media dependency pauses all tasks.",
   "host_generation_tested": false
 }

@@ -36,7 +36,10 @@
         "AUTH_REQUIRED",
         "PERMISSION_REQUIRED",
         "PROVIDER_FAILURE",
-        "OUTPUT_CONTRACT_FAILED"
+        "OUTPUT_CONTRACT_FAILED",
+        "DEPENDENCY_MISSING",
+        "DEPENDENCY_INVALID",
+        "DEPENDENCY_INCOMPATIBLE"
       ]
     },
     {
@@ -70,8 +73,22 @@
         "AUTH_REQUIRED",
         "PERMISSION_REQUIRED",
         "PROVIDER_FAILURE",
-        "OUTPUT_CONTRACT_FAILED"
-      ]
+        "OUTPUT_CONTRACT_FAILED",
+        "DEPENDENCY_MISSING",
+        "DEPENDENCY_INVALID",
+        "DEPENDENCY_INCOMPATIBLE"
+      ],
+      "provider": "@petercjl/sealseek-media-cli"
+    }
+  ],
+  "dependencies": [
+    {
+      "package": "@petercjl/sealseek-media-cli",
+      "minimum_version": "0.6.1",
+      "skill": "sealseek-media",
+      "required": true,
+      "preflight": "cloud-hug-style-transfer doctor --json",
+      "on_missing": "pause-entire-task"
     }
   ]
 }

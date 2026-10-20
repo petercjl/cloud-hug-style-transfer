@@ -4,6 +4,7 @@ import path from 'node:path';
 import { root, pkg, fail } from './runtime.mjs';
 import { source, targetPath, status, install, inventory } from './skills.mjs';
 import { checkUpdate, installUpdate } from './update.mjs';
+import { mediaDependency } from './media-dependency.mjs';
 const args=process.argv.slice(2);
 const option=name=>{const i=args.indexOf(name);if(i<0)return undefined;if(!args[i+1]||args[i+1].startsWith('--'))throw fail('INVALID_ARGUMENT',`${name} needs a value.`);return args[i+1];};
 const out=value=>console.log(JSON.stringify(value,null,2));
@@ -23,7 +24,9 @@ try {
   const files=inventory(source), expected=JSON.parse(fs.readFileSync(path.join(root,'npm','integrity.json'),'utf8'));
   const problems=Object.entries(expected).filter(([name,hash])=>files[name]!==hash).map(([name])=>name);
   const capabilities=JSON.parse(fs.readFileSync(path.join(root,'capabilities.json'),'utf8'));
-  const result={ok:Number(process.versions.node.split('.')[0])>=22&&problems.length===0,package:pkg.name,version:pkg.version,node:process.versions.node,source,files:Object.keys(files).length,integrity:{ok:problems.length===0,problems},installationReady:problems.length===0,hostCapabilityDependencies:capabilities.requirements.host_capability_skills,generation:{state:'requires-host-preflight',runtimeTested:false,requiredFeatures:['image-inspection','multiple-reference-edit','local-reference-input','viewable-output']}};
+  const media=mediaDependency();
+  const result={ok:Number(process.versions.node.split('.')[0])>=22&&problems.length===0&&media.ok,package:pkg.name,version:pkg.version,node:process.versions.node,source,files:Object.keys(files).length,integrity:{ok:problems.length===0,problems},installationReady:problems.length===0,dependencies:{media},hostCapabilityDependencies:capabilities.requirements.host_capability_skills,generation:{provider:'@petercjl/sealseek-media-cli',state:media.ok?'requires-live-preflight':'paused',runtimeTested:false,requiredFeatures:['image-inspection','multiple-reference-edit','local-reference-input','viewable-output']}};
+  if(!media.ok){result.code=media.code;result.action='pause';result.installPrompt=media.installPrompt;}
   if(option('--agent'))result.installation={...status(targetPath(option('--agent'),option('--root'))),record:undefined};
   out(result);if(!result.ok)process.exitCode=1;
  } else if(args[0]==='update') {

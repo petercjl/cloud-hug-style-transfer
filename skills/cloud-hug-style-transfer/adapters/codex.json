@@ -13,7 +13,7 @@
       "implementation": {
         "type": "agent-native",
         "discovery": "Inspect the current host tool catalog and schemas; verify reference input and result delivery before invoking.",
-        "invocation": "Use native image viewing. Use the built-in image generation tool with referenced_image_paths for local references; inspect files before editing. Follow current host schema. API keys are not the default route.",
+        "invocation": "Use the current host image-viewing tool to inspect actual local source, reference and output pixels; require a vision-capable model.",
         "configuration": "Host-managed account and provider authorization; no credentials bundled."
       },
       "normalization": "Success: {ok:true,artifacts:[],metadata:{},task_id:null,cost:null,warnings:[]}; failure: {ok:false,code,message,capability_id}.",
@@ -29,18 +29,22 @@
         "viewable-output"
       ],
       "implementation": {
-        "type": "agent-native",
-        "discovery": "Inspect the current host tool catalog and schemas; verify reference input and result delivery before invoking.",
-        "invocation": "Use native image viewing. Use the built-in image generation tool with referenced_image_paths for local references; inspect files before editing. Follow current host schema. API keys are not the default route.",
-        "configuration": "Host-managed account and provider authorization; no credentials bundled."
+        "type": "cli",
+        "discovery": "Run cloud-hug-style-transfer doctor --json; require dependencies.media.ok and use its verified invocation. Resolve sealseek-media via that CLI skill source --json and load the complete current SKILL.md plus its current host adapter.",
+        "invocation": "Follow the current sealseek-media Discover/Prepare/Validate/Submit/Follow/Deliver contract. Pass application-owned prompt and ordered local references, dry-run first, submit authorized generation via --via sealseek --submit, preserve task IDs and verify local output.",
+        "configuration": "Required @petercjl/sealseek-media-cli >=0.6.1; private media-package authentication, network and credits. Optional CLOUD_HUG_MEDIA_ROOT points to its installed package root.",
+        "failure": "Missing or incompatible package/Skill pauses the entire task before section 1; offer the minimal install prompt and resume only after verification. Service/feature failures pause without native-generation fallback."
       },
       "normalization": "Success: {ok:true,artifacts:[],metadata:{},task_id:null,cost:null,warnings:[]}; failure: {ok:false,code,message,capability_id}.",
-      "evidence": []
+      "evidence": [
+        "Canonical sealseek-media 0.6.1 CLI/Skill and live capabilities inspected; paid generation and full host flow not tested."
+      ]
     }
   ],
   "operating_systems": {
     "macos": "implemented",
     "windows": "implemented"
   },
-  "notes": "Installer support and host generation capability are independent. Unresolved native capabilities must be verified on the executing host before generation."
+  "notes": "Image generation uses the same required sealseek-media-cli on every host. Native viewing and command execution still require host verification. Missing media dependency pauses all tasks.",
+  "host_generation_tested": false
 }
