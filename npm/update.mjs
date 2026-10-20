@@ -20,9 +20,9 @@ export function globalPrefix(location=root, platform=process.platform) {
   if(platform==='win32') return path.dirname(modules);
   return path.basename(path.dirname(modules))==='lib' ? path.dirname(path.dirname(modules)) : null;
 }
-export async function checkUpdate(registry=fetch) {
+export async function checkUpdate(registry=fetch, options={}) {
   try {
-    const r=await registry(`https://registry.npmjs.org/${encodeURIComponent(pkg.name)}/latest`,{signal:AbortSignal.timeout(8000)});
+    const r=await registry(`https://registry.npmjs.org/${encodeURIComponent(pkg.name)}/latest`,{signal:AbortSignal.timeout(options.timeoutMs||8000)});
     if(!r.ok) throw Error('Registry unavailable');
     const data=await r.json();
     if(data.name!==pkg.name || !/^\d+\.\d+\.\d+$/.test(data.version)) throw Error('Invalid stable package');

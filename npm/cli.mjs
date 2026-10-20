@@ -6,11 +6,31 @@ import { source, resolveTarget, status, install, inventory, skillMetadata } from
 import { checkUpdate, installUpdate, globalPrefix } from './update.mjs';
 import { mediaDependency } from './media-dependency.mjs';
 import { comparisonRow } from './canvas-layout.mjs';
+import { spawnSync } from 'node:child_process';
+import { automaticUpdate, updatePolicy } from './automatic-update.mjs';
 import { parse, manifest } from './arguments.mjs';
 const started=performance.now();
 const out=value=>console.log(JSON.stringify(value,null,2));
 try {
  const {command,options:o,contract}=parse(process.argv.slice(2));
+ let automatic;
+ if(command==='doctor'&&!o['--help']&&!o['--no-auto-update']) {
+  automatic=await automaticUpdate({resolution:o['--agent']?resolveTarget(o['--agent'],o['--root']):undefined});
+  if(!automatic.ok){out({ok:false,code:automatic.code,automaticUpdate:automatic});process.exit(1);}
+  if(automatic.packageChanged){
+   const resumed=spawnSync(process.execPath,[path.join(root,'npm/cli.mjs'),...process.argv.slice(2)],{encoding:'utf8',timeout:30000,env:{...process.env,CLOUD_HUG_AUTO_UPDATE:'0'}});
+   let result;try{result=JSON.parse(resumed.stdout);}catch{throw fail('UPDATE_CONTINUATION_FAILED','New CLI returned an invalid result.');}
+   if(result.version!==automatic.receipt.version)throw fail('UPDATE_CONTINUATION_FAILED','Resumed CLI version differs from the verified update.');
+   out({...result,automaticUpdate:automatic});process.exit(resumed.status??1);
+  }
+ }
+ if(command==='update policy'&&!o['--help']){
+  const changes=o['--mode']||o['--interval-hours']?{...(o['--mode']?{mode:o['--mode']}:{}),...(o['--interval-hours']?{intervalHours:Number(o['--interval-hours'])}:{})}:undefined;
+  out(updatePolicy(changes));process.exit(0);
+ }
+ if(command==='update auto'&&!o['--help']){
+  const result=await automaticUpdate({force:o['--force'],resolution:o['--agent']?resolveTarget(o['--agent'],o['--root']):undefined});out(result);process.exit(result.ok?0:1);
+ }
  const identity={package:pkg.name,version:pkg.version,source,entry:{node:process.execPath,cli:path.join(root,'npm/cli.mjs')},owner:globalPrefix()?'global-npm':'source-or-parent'};
  if(command==='help')out({ok:true,...identity,commands:manifest.commandContracts});
  else if(o['--help'])out({ok:true,command,...contract});
@@ -29,7 +49,7 @@ try {
   const result={ok:Number(process.versions.node.split('.')[0])>=22&&!problems.length&&metadata.valid&&media.ok,...identity,node:process.versions.node,files:Object.keys(files).length,integrity:{ok:!problems.length,problems},metadata:{valid:metadata.valid},installationReady:!problems.length&&metadata.valid,dependencies:{media},hostCapabilityDependencies:manifest.requirements.host_capability_skills,generation:{provider:'@petercjl/sealseek-media-cli',state:media.ok?'requires-live-preflight':'paused',runtimeTested:false,requiredFeatures:['image-inspection','multiple-reference-edit','local-reference-input','viewable-output']}};
   if(!media.ok){result.code=media.code;result.action='pause';result.installPrompt=media.installPrompt;}
   if(o['--agent']){result.resolution=resolveTarget(o['--agent'],o['--root']);result.installation={...status(result.resolution.target),record:undefined};if(!result.installation.current){result.ok=false;result.code||='SKILL_RECONCILIATION_REQUIRED';}}
-  out({...result,timingsMs:{total:performance.now()-started}});if(!result.ok)process.exitCode=1;
+  out({...result,automaticUpdate:automatic,timingsMs:{total:performance.now()-started}});if(!result.ok)process.exitCode=1;
  } else if(command.startsWith('update ')) {
   const resolution=o['--agent']?resolveTarget(o['--agent'],o['--root']):undefined;
   const registryStarted=performance.now();const check=await checkUpdate();const registryMs=performance.now()-registryStarted;

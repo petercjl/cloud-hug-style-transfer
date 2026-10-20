@@ -17,7 +17,7 @@ description: 独立把旧详情页、产品摄影、主KV或SKU转换为抱抱�
 
 ### 入口：必需依赖检查
 
-**每次业务任务先检查依赖，通过后才进入第 1 节；规划任务也遵守此入口。** 执行 `cloud-hug-style-transfer doctor --json`，核对 `dependencies.media.ok`。检查支持当前 npm 安装树、PATH 安装及显式配置的 `CLOUD_HUG_MEDIA_ROOT`；返回的 `dependencies.media.invocation` 是经过包身份核验的 CLI 调用入口，使用宿主当前 Node 运行时，可用于 Agent 管理的运行时或套件组件。
+**每次业务任务先检查依赖，通过后才进入第 1 节；规划任务也遵守此入口。** 执行 `cloud-hug-style-transfer doctor --json`；此入口按当前策略自动检测更新，读取 `automaticUpdate`。若其 `reloadSkill` 或 `changed` 为 true，先通过 `skill source --json` 重新加载当前规范 Skill 再继续；CLI 在包替换后会自动以新入口重跑本次检查。核对 `dependencies.media.ok`。检查支持当前 npm 安装树、PATH 安装及显式配置的 `CLOUD_HUG_MEDIA_ROOT`；返回的 `dependencies.media.invocation` 是经过包身份核验的 CLI 调用入口，使用宿主当前 Node 运行时，可用于 Agent 管理的运行时或套件组件。
 
 未检测到 `@petercjl/sealseek-media-cli` 时返回 `DEPENDENCY_MISSING` 并**暂停整个任务**，保留输入和进度，给出最简安装提示词：“请安装 npm 包 @petercjl/sealseek-media-cli。”等待安装并重新检查通过后，从本入口恢复。版本低于 0.6.1、CLI 无法执行、规范 Skill 缺失或合同不兼容同样暂停，按诊断修复后复查。不得以宿主内置生图、其他提供商或继续规划代替依赖通过；本入口不自动安装软件或提交生成。
 

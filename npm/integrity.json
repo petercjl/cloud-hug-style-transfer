@@ -1,5 +1,5 @@
 {
-  "SKILL.md": "98df8d4271e525c687a1f0b3e877345bd42f3ca537515c0f84a9c0d58b17612b",
+  "SKILL.md": "6b1f0babebe65a7d98f433f59c1782fedb7d0cc7ba5c9806e758b05857da9e08",
   "adapters/codex.json": "bea8d59e6e0dafae7439693b33356825023516a6f52be02a64c976d7ce47ce76",
   "adapters/sealseek.json": "04ef053762fd4cfc2309573ec87425afad14b2df85a1ea8ef0aa06d98fee1aee",
   "adapters/workbuddy.json": "cd0a1d8d5b9fcebc5a709b8c7523911f41973adb95f71af2c0f644473a43a6b4",
@@ -62,7 +62,7 @@
   "references/cases.md": "9d0d2d3d210e367411d5a291fc78ef6c9c733afd79c9da76451c580fcbcd4d3e",
   "references/detail-final-20261016.md": "d9311413420db743466bbecfe98c31b9753eeead905472d69839afec9578c557",
   "references/kv-layout-case-20261012.md": "845b287cfc57912aabedc48e558ca661cf86bf136304ea841030205a806ef06f",
-  "references/maintenance.md": "ccaa22cbe537885c7936d76b9091ef681491fd75d3791f6dbcf803d2337cee8e",
+  "references/maintenance.md": "f17e3fa7c74d630db5238fd366b7cd3864ba630a4dbd6e243f21e1337d082f80",
   "references/model-generation.json": "21daa2c3bf7d2000c7ddf52ab0b980cb7ee95d6c9d345602dc59ecbc128ec147",
   "references/model.md": "c4da688e22e2ada3f251fe0dc87effcaf5cb6ed6176f9d9c20a9661414bffab5",
   "references/page-patterns.md": "bdd6756e303c95e432d0239be27ec5af1faf75abf71594917f2e11467255a1b4",

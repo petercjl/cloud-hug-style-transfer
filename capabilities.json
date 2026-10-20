@@ -17,7 +17,9 @@
     "skill update",
     "update check",
     "update install",
-    "canvas row"
+    "canvas row",
+    "update policy",
+    "update auto"
   ],
   "requirements": {
     "node": ">=22",
@@ -120,6 +122,10 @@
         "--root": {
           "type": "string",
           "description": "Skill parent directory; the CLI appends cloud-hug-style-transfer. Requires --agent on doctor and update."
+        },
+        "--no-auto-update": {
+          "type": "boolean",
+          "description": "Perform diagnosis without an automatic update preflight."
         }
       },
       "sideEffects": "none"
@@ -289,6 +295,66 @@
         }
       },
       "sideEffects": "none"
+    },
+    "update policy": {
+      "sideEffects": "local-write",
+      "options": {
+        "--json": {
+          "type": "boolean",
+          "description": "Return structured JSON."
+        },
+        "--help": {
+          "type": "boolean",
+          "description": "Read-only command help."
+        },
+        "--mode": {
+          "type": "string",
+          "enum": [
+            "off",
+            "notify",
+            "auto"
+          ],
+          "description": "Persist detection/installation mode; auto grants standing consent for compatible stable updates."
+        },
+        "--interval-hours": {
+          "type": "string",
+          "description": "Detection interval from 1 to 168 hours; default 24."
+        },
+        "--yes": {
+          "type": "boolean",
+          "description": "Authorize a policy change."
+        }
+      }
+    },
+    "update auto": {
+      "sideEffects": "package-and-skill-update",
+      "options": {
+        "--json": {
+          "type": "boolean",
+          "description": "Return structured JSON."
+        },
+        "--help": {
+          "type": "boolean",
+          "description": "Read-only command help."
+        },
+        "--agent": {
+          "type": "string",
+          "enum": [
+            "codex",
+            "sealseek",
+            "workbuddy"
+          ],
+          "description": "Target host; defaults to codex."
+        },
+        "--root": {
+          "type": "string",
+          "description": "Skill parent directory; the CLI appends cloud-hug-style-transfer. Requires --agent on doctor and update."
+        },
+        "--force": {
+          "type": "boolean",
+          "description": "Bypass the detection cache once; installation still follows policy."
+        }
+      }
     }
   },
   "maintenance": {
@@ -314,5 +380,25 @@
     ],
     "sameVersion": "reconcile managed Skills and metadata; verified no-op when current",
     "metadata": "preserve customization; remove known unsupported api product with backup; unknown invalid schema requires reconciliation"
+  },
+  "automaticUpdates": {
+    "enabledByDefault": true,
+    "defaultMode": "notify",
+    "modes": [
+      "off",
+      "notify",
+      "auto"
+    ],
+    "installation": "explicit-standing-authorization",
+    "trigger": "doctor at business-task entry; update auto",
+    "intervalHours": 24,
+    "timeoutMs": 2000,
+    "offlineRetryMs": 300000,
+    "channel": "latest",
+    "compatibility": "same major; same minor for 0.x; stable versions only",
+    "configuration": "update policy; installation-scoped state outside package",
+    "disable": "update policy --mode off --yes or CLOUD_HUG_AUTO_UPDATE=0",
+    "recovery": "existing update install backup, Skill sync, ownership/edit guards and rollback",
+    "continuation": "restart CLI after package replacement; reload canonical Skill when changed"
   }
 }

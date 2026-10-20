@@ -17,12 +17,13 @@ export function parse(args) {
   if(!spec||flag in options)throw fail('INVALID_ARGUMENT',`Unknown or duplicate option ${flag}; use ${command} --help.`);
   const value=spec.type==='boolean'?true:tokens.shift();
   if(value===undefined || (spec.type==='string'&&value.startsWith('-')))throw fail('INVALID_ARGUMENT',`${flag} needs a value.`);
-  if(spec.enum&&!spec.enum.includes(value))throw fail('INVALID_AGENT',`Choose ${spec.enum.join(', ')}.`);
+  if(spec.enum&&!spec.enum.includes(value))throw fail(flag==='--agent'?'INVALID_AGENT':'INVALID_ARGUMENT',`Choose ${spec.enum.join(', ')}.`);
   options[flag]=value;
  }
  if(!options['--help']) {
   for(const [flag,spec]of Object.entries(contract.options))if(spec.required&&!options[flag])throw fail(flag==='--yes'?'PERMISSION_REQUIRED':'INVALID_ARGUMENT',`${command} requires ${flag}.`);
-  if(['doctor','update check','update install'].includes(command)&&options['--root']&&!options['--agent'])throw fail('INVALID_ARGUMENT','--root requires an explicit --agent for this command.');
+  if(['doctor','update check','update install','update auto'].includes(command)&&options['--root']&&!options['--agent'])throw fail('INVALID_ARGUMENT','--root requires an explicit --agent for this command.');
  }
+ if(command==='update policy'&&(options['--mode']||options['--interval-hours'])&&!options['--yes']&&!options['--help'])throw fail('PERMISSION_REQUIRED','Policy changes require --yes.');
  return {command,options,contract};
 }

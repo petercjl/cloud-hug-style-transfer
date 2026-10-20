@@ -13,6 +13,8 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
+    env:
+      CLOUD_HUG_AUTO_UPDATE: "0"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

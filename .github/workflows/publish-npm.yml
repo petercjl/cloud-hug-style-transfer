@@ -35,6 +35,8 @@ jobs:
     needs: qa
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    env:
+      CLOUD_HUG_AUTO_UPDATE: "0"
     steps:
       - uses: actions/checkout@v6
         with:

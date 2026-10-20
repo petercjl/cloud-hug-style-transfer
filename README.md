@@ -20,6 +20,14 @@
 
 > 请更新 npm 包 @petercjl/cloud-hug-style-transfer。
 
+启用自动更新：
+
+> 请为 cloud-hug-style-transfer 开启兼容稳定版本的自动更新。
+
+关闭自动更新：
+
+> 请关闭 cloud-hug-style-transfer 的自动更新与自动检测。
+
 检查：
 
 > 检查 cloud-hug-style-transfer 的安装与生图能力是否可用。
@@ -28,7 +36,7 @@
 
 > 请诊断并修复 cloud-hug-style-transfer 的这次报错：粘贴报错内容。
 
-安装、更新与检查由 Agent 执行包内 CLI。包的 `skill source --json` 提供规范来源；Agent 随后调用 `skill install --agent <当前宿主>`，支持 `--root` 指定实际技能目录。普通任务不联网检查或自动更新。显式更新使用 stable latest，备份旧包并同步已登记的受管 Skill；npm 已是最新版时仍修复旧 Skill 与兼容元数据，返回安装位置、来源、校验、备份和耗时。包升级失败时恢复旧包；离线保留当前安装。已有独立安装或本地修改将停止覆盖并报告。源码或上层工具管理的包由其拥有者更新。
+安装、更新与检查由 Agent 执行包内 CLI。包的 `skill source --json` 提供规范来源；Agent 随后调用 `skill install --agent <当前宿主>`，支持 `--root` 指定实际技能目录。业务入口自动检测更新，默认每24小时一次、2秒超时，并返回提示。可让 Agent 启用自动安装模式；兼容稳定版会在任务开始前备份、更新并同步受管 Skill，离线或本地修改时保留当前安装。0.x 自动更新限同 minor，1.x 起限同 major；其他版本由 Agent 提示处理。显式更新使用 stable latest，备份旧包并同步已登记的受管 Skill；npm 已是最新版时仍修复旧 Skill 与兼容元数据，返回安装位置、来源、校验、备份和耗时。包升级失败时恢复旧包；离线保留当前安装。已有独立安装或本地修改将停止覆盖并报告。源码或上层工具管理的包由其拥有者更新。
 
 兼容证据分别记录安装机制与生图效果。CI 覆盖 macOS、Windows、Linux 的包管理机制；宿主实际生成需使用各自账户独立验证。品牌与输入素材须具备相应使用权；公开 npm 分发不转让商标与素材的独立再分发权。
 
