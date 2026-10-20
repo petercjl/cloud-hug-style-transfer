@@ -8,7 +8,7 @@ test('packed package installs its runtime dependency and executes canonical Skil
  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'cloud-hug-packed-'));
  try {
   const npm=process.env.npm_execpath;assert.ok(npm&&fs.existsSync(npm),'Run the package suite with npm test to identify the active npm CLI.');
-  const run=args=>{const r=spawnSync(process.execPath,[npm,...args],{cwd:path.resolve(import.meta.dirname,'..'),encoding:'utf8',timeout:90000});assert.equal(r.status,0,r.stderr+r.stdout);return r.stdout;};
+  const run=args=>{const r=spawnSync(process.execPath,[npm,'--dry-run=false',...args],{cwd:path.resolve(import.meta.dirname,'..'),encoding:'utf8',timeout:90000});assert.equal(r.status,0,r.stderr+r.stdout);return r.stdout;};
   const packed=JSON.parse(run(['pack','--ignore-scripts','--pack-destination',dir,'--json']))[0];
   assert.ok(packed.files.some(f=>f.path==='npm/metadata.mjs'));assert.ok(!packed.files.some(f=>/^(test|node_modules|\.git|out)\//.test(f.path)));
   const prefix=path.join(dir,'prefix');run(['install','--prefix',prefix,'--ignore-scripts','--no-audit','--no-fund',path.join(dir,packed.filename)]);
