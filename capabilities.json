@@ -24,7 +24,7 @@
     "nested_skills": [
       "sealseek-media"
     ],
-    "generation": "Required @petercjl/sealseek-media-cli >=0.6.1 and its canonical sealseek-media Skill; missing or incompatible dependency pauses all tasks before analysis or planning.",
+    "generation": "Required for business planning and generation; maintenance is independent of media service dependencies.",
     "host_capability_skills": {
       "codex": [],
       "sealseek": [],
@@ -70,5 +70,249 @@
     "archive": "none during generation; explicit pair batch after each success",
     "planner": "canvas row --input JSON_FILE --json",
     "recovery": "same canvas/task/row IDs; inspect before replay"
+  },
+  "commandContracts": {
+    "version": {
+      "options": {
+        "--json": {
+          "type": "boolean",
+          "description": "Machine-readable JSON (also the default)."
+        },
+        "--help": {
+          "type": "boolean",
+          "description": "Read-only help for this command."
+        }
+      },
+      "sideEffects": "none"
+    },
+    "capabilities": {
+      "options": {
+        "--json": {
+          "type": "boolean",
+          "description": "Machine-readable JSON (also the default)."
+        },
+        "--help": {
+          "type": "boolean",
+          "description": "Read-only help for this command."
+        }
+      },
+      "sideEffects": "none"
+    },
+    "doctor": {
+      "options": {
+        "--json": {
+          "type": "boolean",
+          "description": "Machine-readable JSON (also the default)."
+        },
+        "--help": {
+          "type": "boolean",
+          "description": "Read-only help for this command."
+        },
+        "--agent": {
+          "type": "string",
+          "enum": [
+            "codex",
+            "sealseek",
+            "workbuddy"
+          ],
+          "description": "Target host; defaults to codex."
+        },
+        "--root": {
+          "type": "string",
+          "description": "Skill parent directory; the CLI appends cloud-hug-style-transfer. Requires --agent on doctor and update."
+        }
+      },
+      "sideEffects": "none"
+    },
+    "skill source": {
+      "options": {
+        "--json": {
+          "type": "boolean",
+          "description": "Machine-readable JSON (also the default)."
+        },
+        "--help": {
+          "type": "boolean",
+          "description": "Read-only help for this command."
+        }
+      },
+      "sideEffects": "none"
+    },
+    "skill status": {
+      "options": {
+        "--json": {
+          "type": "boolean",
+          "description": "Machine-readable JSON (also the default)."
+        },
+        "--help": {
+          "type": "boolean",
+          "description": "Read-only help for this command."
+        },
+        "--agent": {
+          "type": "string",
+          "enum": [
+            "codex",
+            "sealseek",
+            "workbuddy"
+          ],
+          "description": "Target host; defaults to codex."
+        },
+        "--root": {
+          "type": "string",
+          "description": "Skill parent directory; the CLI appends cloud-hug-style-transfer. Requires --agent on doctor and update."
+        }
+      },
+      "sideEffects": "none"
+    },
+    "skill install": {
+      "options": {
+        "--json": {
+          "type": "boolean",
+          "description": "Machine-readable JSON (also the default)."
+        },
+        "--help": {
+          "type": "boolean",
+          "description": "Read-only help for this command."
+        },
+        "--agent": {
+          "type": "string",
+          "enum": [
+            "codex",
+            "sealseek",
+            "workbuddy"
+          ],
+          "description": "Target host; defaults to codex."
+        },
+        "--root": {
+          "type": "string",
+          "description": "Skill parent directory; the CLI appends cloud-hug-style-transfer. Requires --agent on doctor and update."
+        }
+      },
+      "sideEffects": "local-write"
+    },
+    "skill update": {
+      "options": {
+        "--json": {
+          "type": "boolean",
+          "description": "Machine-readable JSON (also the default)."
+        },
+        "--help": {
+          "type": "boolean",
+          "description": "Read-only help for this command."
+        },
+        "--agent": {
+          "type": "string",
+          "enum": [
+            "codex",
+            "sealseek",
+            "workbuddy"
+          ],
+          "description": "Target host; defaults to codex."
+        },
+        "--root": {
+          "type": "string",
+          "description": "Skill parent directory; the CLI appends cloud-hug-style-transfer. Requires --agent on doctor and update."
+        }
+      },
+      "sideEffects": "local-write"
+    },
+    "update check": {
+      "options": {
+        "--json": {
+          "type": "boolean",
+          "description": "Machine-readable JSON (also the default)."
+        },
+        "--help": {
+          "type": "boolean",
+          "description": "Read-only help for this command."
+        },
+        "--agent": {
+          "type": "string",
+          "enum": [
+            "codex",
+            "sealseek",
+            "workbuddy"
+          ],
+          "description": "Target host; defaults to codex."
+        },
+        "--root": {
+          "type": "string",
+          "description": "Skill parent directory; the CLI appends cloud-hug-style-transfer. Requires --agent on doctor and update."
+        }
+      },
+      "sideEffects": "none"
+    },
+    "update install": {
+      "options": {
+        "--json": {
+          "type": "boolean",
+          "description": "Machine-readable JSON (also the default)."
+        },
+        "--help": {
+          "type": "boolean",
+          "description": "Read-only help for this command."
+        },
+        "--agent": {
+          "type": "string",
+          "enum": [
+            "codex",
+            "sealseek",
+            "workbuddy"
+          ],
+          "description": "Target host; defaults to codex."
+        },
+        "--root": {
+          "type": "string",
+          "description": "Skill parent directory; the CLI appends cloud-hug-style-transfer. Requires --agent on doctor and update."
+        },
+        "--yes": {
+          "type": "boolean",
+          "required": true,
+          "description": "Authorize package and managed Skill reconciliation."
+        }
+      },
+      "sideEffects": "package-and-skill-update"
+    },
+    "canvas row": {
+      "options": {
+        "--json": {
+          "type": "boolean",
+          "description": "Machine-readable JSON (also the default)."
+        },
+        "--help": {
+          "type": "boolean",
+          "description": "Read-only help for this command."
+        },
+        "--input": {
+          "type": "string",
+          "required": true,
+          "description": "Comparison input JSON file."
+        }
+      },
+      "sideEffects": "none"
+    }
+  },
+  "maintenance": {
+    "targetPrecedence": [
+      "explicit --root",
+      "host skills directory environment",
+      "Agent home/default"
+    ],
+    "codexSkillsEnvironment": "CODEX_SKILLS_DIR",
+    "defaultUpdateScope": "registered and current-host managed targets; explicit --agent selects one target",
+    "receipt": [
+      "package",
+      "version",
+      "source",
+      "entry",
+      "owner",
+      "packageChanged",
+      "skills",
+      "verified",
+      "backup",
+      "warnings",
+      "timingsMs"
+    ],
+    "sameVersion": "reconcile managed Skills and metadata; verified no-op when current",
+    "metadata": "preserve customization; remove known unsupported api product with backup; unknown invalid schema requires reconciliation"
   }
 }

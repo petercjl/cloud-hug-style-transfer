@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { metadataPlan } from './metadata.mjs';
 import { stateRoot } from './update.mjs';
 import { root, pkg, fail } from './runtime.mjs';
 
@@ -23,14 +24,19 @@ export function inventory(dir) {
   walk(dir);
   return result;
 }
-export function targetPath(agent, targetRoot) {
+export function resolveTarget(agent='codex', targetRoot) {
   if (!['codex', 'sealseek', 'workbuddy'].includes(agent)) throw fail('INVALID_AGENT', 'Choose --agent codex, sealseek or workbuddy.');
-  let base = targetRoot;
-  if (!base && agent === 'codex') base = path.join(process.env.CODEX_HOME || path.join(os.homedir(), '.codex'), 'skills');
-  if (!base && agent === 'sealseek') base = process.env.SEALSEEK_SKILLS_DIR || path.join(os.homedir(), '.sealseek', 'workspaces', 'default', 'skills');
-  if (!base && agent === 'workbuddy') base = process.env.WORKBUDDY_SKILLS_DIR || path.join(os.homedir(), '.workbuddy', 'skills');
-  if (!base) throw fail('AGENT_PATH_REQUIRED', 'Provide the actual SealSeek skills directory through --root or SEALSEEK_SKILLS_DIR.');
-  return path.join(path.resolve(base), 'cloud-hug-style-transfer');
+  const envName={codex:'CODEX_SKILLS_DIR',sealseek:'SEALSEEK_SKILLS_DIR',workbuddy:'WORKBUDDY_SKILLS_DIR'}[agent];
+  const homeBase=agent==='codex' ? path.join(process.env.CODEX_HOME || path.join(os.homedir(),'.codex'),'skills') : agent==='sealseek' ? path.join(os.homedir(),'.sealseek','workspaces','default','skills') : path.join(os.homedir(),'.workbuddy','skills');
+  const candidates=[targetRoot&&{source:'--root',root:targetRoot},process.env[envName]&&{source:envName,root:process.env[envName]},{source:agent==='codex'&&process.env.CODEX_HOME?'CODEX_HOME':'agent-default',root:homeBase}].filter(Boolean).map(v=>({...v,root:path.resolve(v.root)}));
+  const selected=candidates[0];
+  return {agent,target:path.join(selected.root,'cloud-hug-style-transfer'),root:selected.root,resolvedFrom:selected.source,candidates,warnings:[...new Set(candidates.filter(c=>c.root!==selected.root).map(c=>`${selected.source} takes precedence over ${c.source}.`))]};
+}
+export const targetPath=(agent,targetRoot)=>resolveTarget(agent,targetRoot).target;
+export function skillMetadata(target) {
+  const file=path.join(target,metadata);
+  if(!exists(file))return {valid:false,changed:false,missing:true,warnings:['Skill UI metadata is missing.']};
+  return metadataPlan(fs.readFileSync(file,'utf8'));
 }
 export function status(target) {
   const st = exists(target);
@@ -43,18 +49,21 @@ export function status(target) {
   const files = inventory(target);
   const edited = Object.entries(record.files).some(([file, hash]) => file !== metadata && files[file] !== hash);
   const expected = inventory(source);
-  const current = !edited && Object.entries(expected).every(([file, hash]) => file === metadata || files[file] === hash);
-  return { installed: true, managed: true, current, edited, target, version: record.version, record };
+  const ui=skillMetadata(target);
+  const current = record.version === pkg.version && ui.valid && !edited && Object.entries(expected).every(([file, hash]) => file === metadata || files[file] === hash);
+  return { installed: true, managed: true, current, edited, target, version: record.version, metadata:{valid:ui.valid,migrationRequired:ui.changed,warnings:ui.warnings}, record };
 }
 export function install(target) {
-  const state = status(target);
+  const started=performance.now();
+  let state = status(target);
   if (state.installed && !state.managed) throw fail('SKILL_UNMANAGED', 'An existing user-owned Skill occupies this target; preserve it and choose a new root or explicitly migrate it.');
   if (state.edited) throw fail('SKILL_EDITED', 'Managed Skill files contain local edits; preserve and reconcile those edits before updating.');
   const registry = path.join(stateRoot(), 'skill-targets');
   fs.mkdirSync(registry, { recursive: true });
   const registration = path.join(registry, crypto.createHash('sha256').update(target).digest('hex') + '.json');
   if (!exists(registration)) fs.writeFileSync(registration, JSON.stringify({ target }), { flag: 'wx', mode: 0o600 });
-  if (state.current && state.version === pkg.version) return { ...state, record: undefined, ok: true, changed: false };
+  const receipt={package:pkg.name,source,owner:'package-managed',verified:true};
+  if (state.current && state.version === pkg.version) return { ...state, record: undefined, ...receipt, ok: true, changed: false, timingsMs:{total:performance.now()-started} };
   const expected = inventory(source);
   for (const file of Object.keys(expected)) {
     if (state.installed && exists(path.join(target, file)) && !(file in state.record.files) && file !== metadata) throw fail('SKILL_UNMANAGED_FILE', 'A new bundled file would overwrite a user-owned file.');
@@ -65,6 +74,11 @@ export function install(target) {
   try { lockfd = fs.openSync(lock, 'wx', 0o600); } catch (e) { if (e.code === 'EEXIST') throw fail('SKILL_BUSY', 'Another Skill installation holds the lock.'); throw e; }
   let backup;
   try {
+    state=status(target);
+    if(state.installed&&!state.managed)throw fail('SKILL_UNMANAGED','Target ownership changed while waiting for the lock.');
+    if(state.edited)throw fail('SKILL_EDITED','Target changed while waiting for the lock.');
+    for(const file of Object.keys(expected))if(state.installed&&exists(path.join(target,file))&&!(file in state.record.files)&&file!==metadata)throw fail('SKILL_UNMANAGED_FILE','Target file ownership changed before the lock.');
+    const ui=state.installed?skillMetadata(target):null;
     if (state.installed) {
       backup = path.join(stateRoot(), 'skill-backups', crypto.randomUUID());
       fs.mkdirSync(path.dirname(backup), { recursive: true });
@@ -72,7 +86,7 @@ export function install(target) {
     } else fs.mkdirSync(target);
     // In-place updates support hosts holding a directory handle open. Backup is recoverable.
     for (const file of Object.keys(expected)) {
-      if (file === metadata && exists(path.join(target, file))) continue;
+      if (file === metadata && exists(path.join(target, file))) { if(ui.changed)fs.writeFileSync(path.join(target,file),ui.text); continue; }
       fs.mkdirSync(path.dirname(path.join(target, file)), { recursive: true });
       fs.copyFileSync(path.join(source, file), path.join(target, file));
     }
@@ -81,9 +95,10 @@ export function install(target) {
     }
     const actual = inventory(target);
     if (Object.entries(expected).some(([file, hash]) => file !== metadata && actual[file] !== hash)) throw fail('SKILL_VERIFY_FAILED', 'Installed Skill hashes differ from the package.');
+    if(!skillMetadata(target).valid)throw fail('SKILL_VERIFY_FAILED','Skill UI metadata validation failed.');
     fs.writeFileSync(path.join(target, marker), JSON.stringify({ package: pkg.name, version: pkg.version, files: expected }, null, 2));
-    return { ok: true, installed: true, managed: true, current: true, changed: true, target, version: pkg.version, backup: backup || null };
+    return { ...receipt, metadata:{valid:true,migrated:ui?.changed||false}, warnings:ui?.warnings||[], timingsMs:{total:performance.now()-started}, ok: true, installed: true, managed: true, current: true, changed: true, target, version: pkg.version, backup: backup || null };
   } catch (e) {
-    throw fail('SKILL_INSTALL_FAILED', `Skill installation failed; ${backup ? 'restore from ' + backup : 'inspect the partial target at ' + target}.`);
+    throw Object.assign(fail('SKILL_INSTALL_FAILED', `Skill installation failed; ${backup ? 'restore from ' + backup : 'inspect the partial target at ' + target}.`),{causeCode:e.code,backup:backup||null,target});
   } finally { fs.closeSync(lockfd); fs.unlinkSync(lock); }
 }

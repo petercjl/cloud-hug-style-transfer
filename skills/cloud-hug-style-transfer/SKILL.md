@@ -11,9 +11,13 @@ description: 独立把旧详情页、产品摄影、主KV或SKU转换为抱抱�
 
 输入是当前源页、商品资料和本次目标；输出是约定数量的独立成图、原图与成图逐行对照的无限画板及简短验收说明，或用户仅要求的规划。本 Skill 负责品牌方法、素材选择、提示词、版式和业务验收；`@petercjl/sealseek-media-cli` 负责生图服务、认证、参考图传输、任务恢复和结果下载；宿主负责命令执行、实际看图和交付。
 
+### 维护入口：安装、更新和诊断
+
+维护请求先执行本入口；业务规划与生图进入下面的必需依赖检查。维护只读取包合同与安装状态，按需加载 [维护说明](references/maintenance.md)，无需加载品牌图片或生图服务。
+
 ### 入口：必需依赖检查
 
-**每次任务先检查依赖，通过后才进入第 1 节；规划任务也遵守此入口。** 执行 `cloud-hug-style-transfer doctor --json`，核对 `dependencies.media.ok`。检查支持当前 npm 安装树、PATH 安装及显式配置的 `CLOUD_HUG_MEDIA_ROOT`；返回的 `dependencies.media.invocation` 是经过包身份核验的 CLI 调用入口，使用宿主当前 Node 运行时，可用于 Agent 管理的运行时或套件组件。
+**每次业务任务先检查依赖，通过后才进入第 1 节；规划任务也遵守此入口。** 执行 `cloud-hug-style-transfer doctor --json`，核对 `dependencies.media.ok`。检查支持当前 npm 安装树、PATH 安装及显式配置的 `CLOUD_HUG_MEDIA_ROOT`；返回的 `dependencies.media.invocation` 是经过包身份核验的 CLI 调用入口，使用宿主当前 Node 运行时，可用于 Agent 管理的运行时或套件组件。
 
 未检测到 `@petercjl/sealseek-media-cli` 时返回 `DEPENDENCY_MISSING` 并**暂停整个任务**，保留输入和进度，给出最简安装提示词：“请安装 npm 包 @petercjl/sealseek-media-cli。”等待安装并重新检查通过后，从本入口恢复。版本低于 0.6.1、CLI 无法执行、规范 Skill 缺失或合同不兼容同样暂停，按诊断修复后复查。不得以宿主内置生图、其他提供商或继续规划代替依赖通过；本入口不自动安装软件或提交生成。
 

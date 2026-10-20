@@ -18,7 +18,7 @@
   },
   "scripts": {
     "test": "node --test test/*.test.mjs",
-    "check": "node --check npm/cli.mjs && node --check npm/skills.mjs && node --check npm/update.mjs",
+    "check": "node --check npm/cli.mjs && node --check npm/skills.mjs && node --check npm/update.mjs && node --check npm/arguments.mjs && node --check npm/metadata.mjs",
     "prepack": "npm run check && npm test"
   },
   "publishConfig": {
@@ -28,5 +28,8 @@
     "type": "git",
     "url": "git+https://github.com/petercjl/cloud-hug-style-transfer.git"
   },
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "dependencies": {
+    "yaml": "^2.9.1"
+  }
 }

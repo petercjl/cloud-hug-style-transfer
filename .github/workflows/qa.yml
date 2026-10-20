@@ -18,6 +18,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - run: npm ci
       - name: Install required media capability without service credentials
         run: npm install --global --ignore-scripts @petercjl/sealseek-media-cli@0.6.1
       - run: node npm/cli.mjs doctor --json
