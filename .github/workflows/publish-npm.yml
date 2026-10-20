@@ -8,6 +8,11 @@ on:
         required: true
         default: patch
         type: string
+      publication_only:
+        description: Recover publication of the current exact version without changing Git tags
+        required: true
+        default: false
+        type: boolean
       tag:
         description: npm dist-tag
         required: true
@@ -49,8 +54,38 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Publish @petercjl/cloud-hug-style-transfer
+        if: ${{ !inputs.publication_only }}
         run: npx --yes --package @petercjl/npm-release-kit@0.1.4 npm-release-kit ci publish --release "$RELEASE" --tag "$TAG"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE: ${{ inputs.release }}
           TAG: ${{ inputs.tag }}
+      - name: Recover current package publication
+        if: ${{ inputs.publication_only }}
+        env:
+          RELEASE: ${{ inputs.release }}
+          TAG: ${{ inputs.tag }}
+        run: |
+          node --input-type=module -e "import fs from 'node:fs';const p=JSON.parse(fs.readFileSync('package.json'));if(p.version!==process.env.RELEASE)throw Error('Recovery requires the current exact version');"
+          if npm view "@petercjl/cloud-hug-style-transfer@$RELEASE" version --prefer-online; then
+            echo "Exact version already exists; verifying registry state."
+          else
+            npm publish --access public --provenance --tag "$TAG" --dry-run=false --loglevel verbose
+          fi
+      - name: Verify public registry version and tag
+        env:
+          TAG: ${{ inputs.tag }}
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const pkg=JSON.parse(fs.readFileSync('package.json'));
+          const url='https://registry.npmjs.org/'+encodeURIComponent(pkg.name);
+          for(let attempt=0;attempt<20;attempt++){
+            const response=await fetch(url+'?verify='+Date.now(),{signal:AbortSignal.timeout(15000),headers:{'Cache-Control':'no-cache'}});
+            const data=await response.json();
+            if(data.versions?.[pkg.version] && data['dist-tags']?.[process.env.TAG]===pkg.version){console.log(JSON.stringify({verified:true,version:pkg.version,tag:process.env.TAG}));process.exit(0);}
+            console.log(JSON.stringify({verified:false,version:pkg.version,available:data['dist-tags']?.[process.env.TAG],attempt}));
+            await new Promise(resolve=>setTimeout(resolve,15000));
+          }
+          throw Error('Published version/tag is not visible in the public npm registry; inspect publication before retrying.');
+          JS
