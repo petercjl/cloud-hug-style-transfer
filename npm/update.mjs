@@ -3,6 +3,7 @@ import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { spawnSync } from 'node:child_process';
+import { packReceipt } from './pack.mjs';
 import { source, resolveTarget, status } from './skills.mjs';
 import { root, pkg, fail } from './runtime.mjs';
 
@@ -73,7 +74,7 @@ export function installUpdate(check, services={}) {
     const preflightMs=performance.now()-started;
     if(packageChanged) {
       const backup=path.join(state,'package-backups',crypto.randomUUID());fs.mkdirSync(backup,{recursive:true});
-      const archive=JSON.parse(run(['pack',root,'--ignore-scripts','--pack-destination',backup,'--json']))[0];
+      const archive=packReceipt(run(['pack',root,'--ignore-scripts','--pack-destination',backup,'--json']));
       if(!archive?.filename||path.basename(archive.filename)!==archive.filename)throw fail('UPDATE_BACKUP_FAILED','Invalid package backup receipt.');
       archivePath=path.join(backup,archive.filename);
       if(!fs.statSync(archivePath).size)throw fail('UPDATE_BACKUP_FAILED','Package backup is empty.');

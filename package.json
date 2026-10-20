@@ -18,7 +18,7 @@
   },
   "scripts": {
     "test": "node --test test/*.test.mjs",
-    "check": "node --check npm/cli.mjs && node --check npm/skills.mjs && node --check npm/update.mjs && node --check npm/arguments.mjs && node --check npm/metadata.mjs",
+    "check": "node --check npm/cli.mjs && node --check npm/skills.mjs && node --check npm/update.mjs && node --check npm/arguments.mjs && node --check npm/metadata.mjs && node --check npm/pack.mjs",
     "prepack": "npm run check && npm test"
   },
   "publishConfig": {
