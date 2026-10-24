@@ -1,7 +1,7 @@
 {
   "name": "@petercjl/cloud-hug-style-transfer",
-  "version": "0.5.0",
-  "description": "抱抱云朵社品牌风格转换 Skill，支持 Codex、SealSeek 与 WorkBuddy",
+  "version": "0.5.1",
+  "description": "抱抱云朵社品牌风格转换 Skill，面向具备所需能力的任意 Agent，提供独立安装与更新。",
   "type": "module",
   "bin": {
     "cloud-hug-style-transfer": "npm/cli.mjs"
@@ -11,15 +11,24 @@
     "skills/",
     "capabilities.json",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "lifecycle",
+    "INSTALL.md",
+    "UPDATE.md",
+    "release-integrity.json"
   ],
   "engines": {
     "node": ">=22"
   },
   "scripts": {
-    "test": "node --test test/*.test.mjs",
+    "test": "node --test --test-concurrency=2 test/*.test.mjs",
     "check": "node --check npm/cli.mjs && node --check npm/skills.mjs && node --check npm/update.mjs && node --check npm/arguments.mjs && node --check npm/metadata.mjs && node --check npm/pack.mjs && node --check npm/automatic-update.mjs",
-    "prepack": "npm run check && npm test"
+    "prepack": "node lifecycle/validate-release.mjs && npm run check && npm test",
+    "validate:release": "node lifecycle/validate-release.mjs",
+    "postinstall": "node lifecycle/notice.mjs",
+    "version": "node lifecycle/version.mjs",
+    "verify:packed": "node scripts/verify-packed.mjs",
+    "verify:historical": "node scripts/verify-historical.mjs"
   },
   "publishConfig": {
     "access": "public"
@@ -31,5 +40,12 @@
   "license": "UNLICENSED",
   "dependencies": {
     "yaml": "^2.9.1"
+  },
+  "skillLifecycle": {
+    "skill": "cloud-hug-style-transfer",
+    "entry": "npm/cli.mjs",
+    "env": "CLOUD_HUG",
+    "legacyMarker": ".cloud-hug-style-transfer-managed.json",
+    "contract": 2
   }
 }

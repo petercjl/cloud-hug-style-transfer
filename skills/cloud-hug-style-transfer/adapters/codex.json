@@ -69,5 +69,6 @@
     "windows": "implemented"
   },
   "notes": "Image generation uses the same required sealseek-media-cli on every host. Native viewing and command execution still require host verification. Missing media dependency pauses all tasks.",
-  "host_generation_tested": false
+  "host_generation_tested": false,
+  "local_execution": "Use this installed Skill’s scripts/run.mjs for owning-package commands; resolve external media through its independently managed canonical contract."
 }

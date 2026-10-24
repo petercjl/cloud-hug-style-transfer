@@ -1,43 +1,31 @@
-# 抱抱云朵社风格转换
+# @petercjl/cloud-hug-style-transfer
 
-将旧详情页、产品摄影、主 KV 或 SKU 转换为抱抱云朵社品牌视觉，保留当次商品事实、文案与用途。包内包含完整 19 页定稿、品牌标识、人物设定与摄影排版方法，约 41 MB 素材。
+把已有商品图片转换为抱抱云朵社的品牌风格，内置品牌、模特和排版素材。
 
-支持 Codex、SealSeek、WorkBuddy。需要 Node.js 22+、宿主命令执行和看图能力。生图统一通过必需的 `@petercjl/sealseek-media-cli`（0.6.1+）及其配套 `sealseek-media` Skill 执行；每次业务任务先检查，缺失或不兼容时暂停整个任务，安装并复查通过后继续。有效 SealSeek 登录、网络及额度由使用者准备，包不附带账号或额度。宿主生图效果仍需分别实测。
+面向具备所需执行能力的任意 Agent；Node.js 22+。当前 Agent 识别自己的 Skill 目录、能力与注册方式。
 
-先安装生图依赖，将提示词发送给 Agent：
+## 安装
 
-> 请安装 npm 包 @petercjl/sealseek-media-cli。
-
-安装：将下列提示词发送给目标 Agent。
+把下面这句话发送给当前 Agent：
 
 > 请安装 npm 包 @petercjl/cloud-hug-style-transfer。
 
-使用：附上待转换图片；关键商品结构不清楚时补充实拍。开始生图前会新建按图片主题与任务自动命名的无限画板。每完成一张就插入一组对照：左边原图、右边成图，后续组向下排列，保留紧凑间距；交付包含画板链接。仅规划时不创建画板。
+安装同时包含工具、完整 Skill 和独立运行依赖。Agent 核验本地入口、文件与版本，再确认宿主能发现 Skill。
 
-> 用抱抱云朵社风格转换处理所附图片。
-
-更新：
+## 更新
 
 > 请更新 npm 包 @petercjl/cloud-hug-style-transfer。
 
-启用自动更新：
+每次更新只处理明确选中的当前 Agent，保留自定义元数据与更新前备份。同版本也会检查和修复 Skill。自动检测默认提示；自动安装需要单独授权。
 
-> 请为 cloud-hug-style-transfer 开启兼容稳定版本的自动更新。
+## 使用
 
-关闭自动更新：
+附上图片并说明本次用途、输出数量和特殊要求。
 
-> 请关闭 cloud-hug-style-transfer 的自动更新与自动检测。
+> 请使用 cloud-hug-style-transfer，按所附图片和本次要求完成处理。
 
-检查：
+账号、服务访问与付费生成按各自授权执行。安装不授予服务权限。
 
-> 检查 cloud-hug-style-transfer 的安装与生图能力是否可用。
+## Agent 执行合同
 
-故障处理：
-
-> 请诊断并修复 cloud-hug-style-transfer 的这次报错：粘贴报错内容。
-
-安装、更新与检查由 Agent 执行包内 CLI。包的 `skill source --json` 提供规范来源；Agent 随后调用 `skill install --agent <当前宿主>`，支持 `--root` 指定实际技能目录。业务入口自动检测更新，默认每24小时一次、2秒超时，并返回提示。可让 Agent 启用自动安装模式；兼容稳定版会在任务开始前备份、更新并同步受管 Skill，离线或本地修改时保留当前安装。0.x 自动更新限同 minor，1.x 起限同 major；其他版本由 Agent 提示处理。显式更新使用 stable latest，备份旧包并同步已登记的受管 Skill；npm 已是最新版时仍修复旧 Skill 与兼容元数据，返回安装位置、来源、校验、备份和耗时。包升级失败时恢复旧包；离线保留当前安装。已有独立安装或本地修改将停止覆盖并报告。源码或上层工具管理的包由其拥有者更新。
-
-兼容证据分别记录安装机制与生图效果。CI 覆盖 macOS、Windows、Linux 的包管理机制；宿主实际生成需使用各自账户独立验证。品牌与输入素材须具备相应使用权；公开 npm 分发不转让商标与素材的独立再分发权。
-
-开发者依赖合同：`doctor --json` 验证媒体包身份、0.6.1+ 版本、CLI 与规范 Skill，缺失返回非零退出码和 `DEPENDENCY_MISSING`，生成状态为 `paused`。优先发现当前 npm 安装树，再发现 PATH 的 npm 安装；自定义 Agent/套件安装可配置 `CLOUD_HUG_MEDIA_ROOT` 为媒体包根目录。使用返回的 `dependencies.media.invocation` 调用 CLI；doctor 不登录、不联网检查服务、不自动安装或提交生成。任务执行仍须加载依赖的当前 Skill 并完成 live 检查与 dry-run。
+[安装合同](INSTALL.md) · [更新与恢复合同](UPDATE.md)。CLI 通过 `skill source --json` 返回规范来源。安装后的 Skill 使用自身 `scripts/run.mjs`，运行代码与依赖位于自身 `.runtime`。宿主适配记录能力差异与实际测试证据，不作为支持白名单。

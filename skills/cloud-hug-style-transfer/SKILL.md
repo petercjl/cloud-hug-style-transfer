@@ -1,9 +1,21 @@
 ---
 name: cloud-hug-style-transfer
 description: 独立把旧详情页、产品摄影、主KV或SKU转换为抱抱云朵社的品牌视觉与同一模特。保留当次商品、有效文案参数及页面用途，产品款式与材料随新资料变化。内置完整19页定稿、LOGO、人物和摄影排版方法；生图必需 @petercjl/sealseek-media-cli 及其配套 sealseek-media Skill，未检测到即暂停；品牌资料无需私人素材库。用于“抱抱云朵社风格转换”、旧页品牌化、同模特延展与图文设计。
+metadata:
+  package: "@petercjl/cloud-hug-style-transfer"
+  version: 0.5.1
 ---
 
 # 抱抱云朵社风格转换
+
+## Package installation and local execution
+
+The owning npm package is the canonical source. Installation instructions are in its INSTALL.md and UPDATE.md before Skill loading. Resolve the current Agent's supported Skill directory and use explicit `--path` with package-managed install/status/update. Named Agent identities describe conventions, not eligibility or directory defaults.
+
+After managed installation, invoke this Skill's `scripts/run.mjs` with the current Node.js runtime for every owning-package CLI command below. The launcher uses the target-owned `.runtime` and bundled dependencies. Resolve this launcher relative to this Skill's actual directory; do not fall back to a shared global package when the installed runtime is missing. External service dependencies are declared separately and resolve their own canonical Skill through their documented CLI contract.
+
+Maintenance completes CLI/runtime and Skill verification, followed by host-native reload and discovery. CLI receipts leave host discovery pending. Automatic checks notify by default; installation requires separate standing authorization and a compatible stable version. Use update operation/resume for partial or unknown outcomes, preserving the original transaction and backup. Only the selected current Agent is synchronized.
+
 
 使用中文展示名 **抱抱云朵社风格转换**。用本目录内的方法和素材独立完成品牌转换，以当前使用者的明确要求为准；生成能力由必需的 `@petercjl/sealseek-media-cli` 及其规范配套 `sealseek-media` Skill 提供，品牌资料不依赖创建者的历史会话或私人文件权限。
 
@@ -16,6 +28,8 @@ description: 独立把旧详情页、产品摄影、主KV或SKU转换为抱抱�
 维护请求先执行本入口；业务规划与生图进入下面的必需依赖检查。维护只读取包合同与安装状态，按需加载 [维护说明](references/maintenance.md)，无需加载品牌图片或生图服务。
 
 ### 入口：必需依赖检查
+
+当前宿主已发现 `sealseek-media` 时，先从该 Skill 的实际目录解析其本地启动入口与规范来源，将其已核验的独立运行包根目录作为 `CLOUD_HUG_MEDIA_ROOT` 传给本应用的诊断与调用。未提供该绑定时，使用依赖检查器声明的发现合同。该绑定只选择当前宿主的依赖安装。
 
 **每次业务任务先检查依赖，通过后才进入第 1 节；规划任务也遵守此入口。** 执行 `cloud-hug-style-transfer doctor --json`；此入口按当前策略自动检测更新，读取 `automaticUpdate`。若其 `reloadSkill` 或 `changed` 为 true，先通过 `skill source --json` 重新加载当前规范 Skill 再继续；CLI 在包替换后会自动以新入口重跑本次检查。核对 `dependencies.media.ok`。检查支持当前 npm 安装树、PATH 安装及显式配置的 `CLOUD_HUG_MEDIA_ROOT`；返回的 `dependencies.media.invocation` 是经过包身份核验的 CLI 调用入口，使用宿主当前 Node 运行时，可用于 Agent 管理的运行时或套件组件。
 

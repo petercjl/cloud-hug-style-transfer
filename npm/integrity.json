@@ -1,8 +1,9 @@
 {
-  "SKILL.md": "6b1f0babebe65a7d98f433f59c1782fedb7d0cc7ba5c9806e758b05857da9e08",
-  "adapters/codex.json": "bea8d59e6e0dafae7439693b33356825023516a6f52be02a64c976d7ce47ce76",
-  "adapters/sealseek.json": "04ef053762fd4cfc2309573ec87425afad14b2df85a1ea8ef0aa06d98fee1aee",
-  "adapters/workbuddy.json": "cd0a1d8d5b9fcebc5a709b8c7523911f41973adb95f71af2c0f644473a43a6b4",
+  "SKILL.md": "501ce6f6dfe3e892c889e572df2ceb992bc68ba6dbfaab608b5e6558f67072c1",
+  "adapters/codex.json": "c8f0a3afc937725d561a9713fda9e32be309cb8394f971450b58731568421b62",
+  "adapters/generic.json": "0f1ec9e7b4a698449500af609644c2ef0737ea4a0eb0ccd56a013935a64df2f3",
+  "adapters/sealseek.json": "58cc420131ec37e793fe57900880f86cb30027e2f8cc4713b1a0568df4b78ab8",
+  "adapters/workbuddy.json": "b6f04afd14ccc95539c209f4bd8cf90be09240ff9ac95bcc5b1bd4f5b8b587ef",
   "agents/openai.yaml": "d8ebec24c4e3034f4b45aa052b9468ab35790ec7fd93febcfde512c746d2d1d1",
   "assets/approved/all-colors-user-finish.webp": "539c77de8ec0dd46a29793befecf813e97ce6ae66f7cbe69486846383b2ae936",
   "assets/approved/brand-kv-user-finish-20261012.png": "cb09198481e779444696864b265c689f467207bf7de9610f7adc2b850f0be7b4",
@@ -55,7 +56,7 @@
   "assets/rejected/brand-kv-c2-20261012.webp": "88ed2de0d950ea4a34519661481877ee0899743a6dfce203a2033c0dab6a73f7",
   "assets/rejected/overhead-rest-b.webp": "16e5e6fabdc665868ac244d556f3a8a93db826a34425fdee042e4f7a8ebf64c3",
   "assets/rejected/prone-pile-a.webp": "d07f38bbb69fc23b30dca4ed27faa3d7ae58e2e81840a1c3d46101911c28a7a2",
-  "capabilities.json": "5d40595bf64402acf700cbaea63065d104547b12e59c275bca59cc9b4658de85",
+  "capabilities.json": "cd1fefac8edde8f00bc62f07d428b552b6a1130c7c67b8a89d5352338a4ee8cb",
   "references/assets.md": "98b1a60d70cbc9ceec3e0d11dadbc0dc96344ac6f15cd5289009dfbfd8d71d6e",
   "references/brand-layout.md": "74f2674b7c9987e15a9d2ca7bb18498378eecc2d869d37e9ca1e71bd228ee883",
   "references/canvas-comparison.md": "df85594c92de3e87daa85ee7cd9cc92df4be9049a5d42c32904542faf329a6c7",
@@ -68,5 +69,6 @@
   "references/page-patterns.md": "bdd6756e303c95e432d0239be27ec5af1faf75abf71594917f2e11467255a1b4",
   "references/photography-method.md": "c0e54598863f3b4a2d87f27d6f18afb75db22ae71ce2aead41f817f35258807e",
   "references/products.md": "642795ae16803669b169531240723bf72a388cb6351679a2787e67e181dca9cd",
-  "references/source-page-three-variants.md": "02a265cf11c3ff3bb7796eb289529ce97f6f64f0350a15a7e3275cec24037720"
+  "references/source-page-three-variants.md": "02a265cf11c3ff3bb7796eb289529ce97f6f64f0350a15a7e3275cec24037720",
+  "scripts/run.mjs": "0b71e6de4ae7babfce792869dc538569cc2db1bd95f8690571c951c2873211b1"
 }
