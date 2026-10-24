@@ -133,7 +133,7 @@
       "on_missing": "pause-entire-task"
     }
   ],
-  "package_version": "0.5.1",
+  "package_version": "0.5.2",
   "installationLifecycle": {
     "agentNeutral": true,
     "skillRequired": true,

@@ -1,6 +1,6 @@
 {
   "name": "@petercjl/cloud-hug-style-transfer",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "抱抱云朵社品牌风格转换 Skill，面向具备所需能力的任意 Agent，提供独立安装与更新。",
   "type": "module",
   "bin": {

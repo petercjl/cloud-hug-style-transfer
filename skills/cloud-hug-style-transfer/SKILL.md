@@ -3,7 +3,7 @@ name: cloud-hug-style-transfer
 description: 独立把旧详情页、产品摄影、主KV或SKU转换为抱抱云朵社的品牌视觉与同一模特。保留当次商品、有效文案参数及页面用途，产品款式与材料随新资料变化。内置完整19页定稿、LOGO、人物和摄影排版方法；生图必需 @petercjl/sealseek-media-cli 及其配套 sealseek-media Skill，未检测到即暂停；品牌资料无需私人素材库。用于“抱抱云朵社风格转换”、旧页品牌化、同模特延展与图文设计。
 metadata:
   package: "@petercjl/cloud-hug-style-transfer"
-  version: 0.5.1
+  version: 0.5.2
 ---
 
 # 抱抱云朵社风格转换
