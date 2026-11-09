@@ -1,9 +1,23 @@
-# 安装与维护合同
+# 版本、来源与维护
 
-1. 通过当前 CLI 的 `capabilities --json` 获取参数合同；用 `skill source --json` 定位规范 Skill。首次安装执行 `skill install --agent 当前宿主 --json`。
-2. 显式更新执行 `update install --yes --json`，在默认范围核对已登记和当前宿主约定位置的受管 Skill；仅更新一个宿主时传 `--agent`。npm 已最新时仍同步旧 Skill 与可迁移元数据。源码或上层工具拥有的包由其拥有者升级；当前版本的 Skill 同步仍可执行。
-3. 需要指定位置时，`--root` 是技能父目录，CLI 自动附加本 Skill 目录名；`doctor` 与 `update` 的 `--root` 同时要求 `--agent`。Codex 优先级为显式 root、`CODEX_SKILLS_DIR`、`CODEX_HOME/skills`、平台默认；其他宿主见实时合同及回执。读取 resolution 核对目标与来源。
-4. 检查回执 `verified`、`packageChanged`、各 `skills` 的 `current/version/target` 和备份。完全当前即 verified no-op。未知参数报错后读取该命令的 `--help --json`；避免猜其他工具的选项。
-5. 本地编辑或非受管目录保留原文件并报告。失败时保留回执中的 backup；先检查包版本与受管状态，再按错误恢复，避免重复升级。元数据只迁移已知不受支持的字段值，自定义展示字段保留。
+当前业务流程来自 `cloud-hug-brand-upgrade` 1.1.0，工作流修订于 2026-10-27，基础提交为 `9a17dcfdc61f59db3e65756a20eaf81f80b0c2b8`（v0.5.2）。按用户要求，这次把新版流程合入现有 `cloud-hug-style-transfer`，继续使用原包管理入口。来源、原始素材和导入 ZIP 校验值见根目录 `PROVENANCE.json`；来源版本不等于 npm 发布版本。
 
-`doctor --json` 同时报告安装完整性与生图依赖；媒体依赖缺失不阻止独立的 `skill` 或 `update` 维护操作。业务入口 `doctor` 默认每24小时自动检测稳定 latest，2秒联网超时；默认模式 notify 返回更新提示。`update policy --mode auto --yes` 保存本安装的持续自动更新授权；off 关闭检测，`CLOUD_HUG_AUTO_UPDATE=0` 可临时关闭。auto 限兼容稳定版本（0.x 同 minor，1.x+ 同 major），复用备份、保护、受管 Skill 同步和恢复；离线退避5分钟，安全冲突延期，恢复状态不确定时停止。`update auto --force --json` 可立即按策略预检。策略和缓存放在包外；源码及上层工具管理的安装由拥有者维护。更新改变 Skill 后重新解析来源并加载当前说明。
+## 安装、更新与恢复
+
+包和规范 Skill 继续由 `@petercjl/cloud-hug-style-transfer` 管理。安装前读取包根目录 `INSTALL.md` 与 `UPDATE.md`；使用当前 CLI 的 `--help --json`、`capabilities --json` 和 `skill source --json` 获取真实参数与规范来源，不猜其他工具的选项。
+
+先解析当前 Agent 实际支持的 Skill 目录，向 `skill install/status/update` 或 `update install` 传明确的 `--path`（Skill 本身的完整目标目录）与当前 `--agent`。只同步选中的当前 Agent。宿主名称表示约定，不是支持白名单，也不能代替真实目标路径。
+
+受管安装后的所属包命令，通过本 Skill 的 `scripts/run.mjs` 和当前 Node.js 调用；启动器使用本目录 `.runtime` 中的代码与依赖。运行时缺失时报告并修复本安装，不退回其他全局副本。媒体包与它的规范 Skill 独立维护，不把媒体账号或凭据写进本包。
+
+维护必须核验 CLI、运行时、Skill 字节与元数据，并由宿主执行原生重载／发现；命令回执中的 hostDiscovery pending 不等于已可见。自定义元数据、本地修改和非受管目录按包合同保护；更新失败或结果不明时，使用原 operation/resume 状态与备份恢复，先核对状态再决定重试。
+
+自动检测默认只提示。自动安装需要独立持续授权且版本兼容；离线保留现有版本。业务诊断若报告 automaticUpdate.changed 或 reloadSkill，重新解析并加载当前规范 Skill 后再继续。源码 checkout 由 Git 维护，不调用 npm 更新替换开发目录。
+
+## 本次工作流与完整性
+
+保留产品卡与必要卖点确认、整套模板规划后的生成范围确认、03–15 页面映射、按形态分组、无字拆图／整页交付及 A/B/C 对照验收。改摄影或工具细节时，不恢复按旧页逐张转换的业务逻辑。原始 51 个素材文件保持不变。
+
+本地规划与画板辅助脚本使用 Node.js 内置模块；`scripts/plan-inventory.mjs` 只计算清单，不推断商品、不代表用户批准、不提交生成。媒体核验与布局模块的来源保留在 PROVENANCE.json。
+
+当前源码校验以包的 `npm/integrity.json` 和 `release-integrity.json` 为准。维护后运行 `node lifecycle/version.mjs` 刷新清单，再运行 `npm run validate:release`、相关测试和打包检查。清单生成不发布 npm 版本；实际发布需单独授权。静态检查不能证明付费生图效果，实际项目仍须看图验收。

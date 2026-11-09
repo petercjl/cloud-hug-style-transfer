@@ -61,7 +61,7 @@
     }
   },
   "canvas": {
-    "creation": "new-per-generation-request-before-first-submit",
+    "creation": "new-per-brand-upgrade-project-before-first-submit",
     "title": "application-inferred-from-current-images-and-intent",
     "layout": "source-left-result-right; rows-top-to-bottom",
     "column_width": 480,
@@ -69,7 +69,8 @@
     "vertical_gap": 32,
     "archive": "none during generation; explicit pair batch after each success",
     "planner": "canvas row --input JSON_FILE --json",
-    "recovery": "same canvas/task/row IDs; inspect before replay"
+    "recovery": "same canvas/task/row IDs; inspect before replay",
+    "reference": "product-card-source-or-new-template-slot"
   },
   "commandContracts": {
     "version": {

@@ -1,0 +1,309 @@
+{
+  "name": "cloud-hug-brand-upgrade",
+  "version": "1.1.0",
+  "workflow_revision": "2026-10-27",
+  "timezone": "Asia/Shanghai",
+  "source": {
+    "repository": "https://github.com/petercjl/cloud-hug-style-transfer",
+    "version": "0.5.2",
+    "commit": "9a17dcfdc61f59db3e65756a20eaf81f80b0c2b8"
+  },
+  "distribution": "Imported customization source record; current runtime and lifecycle remain owned by @petercjl/cloud-hug-style-transfer.",
+  "media_provider": "@petercjl/sealseek-media-cli and its current canonical sealseek-media Skill",
+  "original_assets": [
+    {
+      "path": "assets/approved/all-colors-user-finish.webp",
+      "git_blob_sha": "222658d012b57d22140615beaf3bd2d945ece96f",
+      "size": 1567104
+    },
+    {
+      "path": "assets/approved/brand-kv-user-finish-20261012.png",
+      "git_blob_sha": "d152dbe1589f51d71eab510096fa28adeb031819",
+      "size": 920290
+    },
+    {
+      "path": "assets/approved/detail-final-20261016/01.jpg",
+      "git_blob_sha": "7c7a51726aa91fa59239709ebe5051edbb9f8f41",
+      "size": 1022504
+    },
+    {
+      "path": "assets/approved/detail-final-20261016/02.jpg",
+      "git_blob_sha": "fdce326e224748410a6d29f44ed284ec404cc376",
+      "size": 211889
+    },
+    {
+      "path": "assets/approved/detail-final-20261016/03.jpg",
+      "git_blob_sha": "eeb55e66f4cf9b969c688a1e7db28aee2bc935bc",
+      "size": 517074
+    },
+    {
+      "path": "assets/approved/detail-final-20261016/04.jpg",
+      "git_blob_sha": "660cc98c3100d1571f83fe88094e83e3f989a8c3",
+      "size": 572511
+    },
+    {
+      "path": "assets/approved/detail-final-20261016/05.jpg",
+      "git_blob_sha": "d64029845befab84087ffbb6d835a391bd995e1a",
+      "size": 926158
+    },
+    {
+      "path": "assets/approved/detail-final-20261016/06.jpg",
+      "git_blob_sha": "fdaa34ea71e8e39218a1340e1ce706f34e7737e4",
+      "size": 489619
+    },
+    {
+      "path": "assets/approved/detail-final-20261016/07.jpg",
+      "git_blob_sha": "b77363beaf49707d6756375e59de86a99e2f8d56",
+      "size": 674207
+    },
+    {
+      "path": "assets/approved/detail-final-20261016/08.jpg",
+      "git_blob_sha": "50f2f4bd7d2ba41c91797d82ed414a950909dbb7",
+      "size": 591051
+    },
+    {
+      "path": "assets/approved/detail-final-20261016/09.jpg",
+      "git_blob_sha": "f238516290ff5dee81fcf6b5dd4b21759c84c9f7",
+      "size": 512438
+    },
+    {
+      "path": "assets/approved/detail-final-20261016/10.jpg",
+      "git_blob_sha": "6a76cb7aa7fd3672146b27ea20ae0a06a73fd408",
+      "size": 596565
+    },
+    {
+      "path": "assets/approved/detail-final-20261016/11.jpg",
+      "git_blob_sha": "0ed6d09acf18eb8785fe93097f4c49c245fbe991",
+      "size": 406441
+    },
+    {
+      "path": "assets/approved/detail-final-20261016/12.jpg",
+      "git_blob_sha": "c724b51df7ca812910bef0a92a8d22c297c62de1",
+      "size": 514689
+    },
+    {
+      "path": "assets/approved/detail-final-20261016/13.jpg",
+      "git_blob_sha": "b826ce57f54986345037847a0acaee138f48049d",
+      "size": 372713
+    },
+    {
+      "path": "assets/approved/detail-final-20261016/14.jpg",
+      "git_blob_sha": "88ef35258486add048577ff8b535c89188bc3f4b",
+      "size": 746133
+    },
+    {
+      "path": "assets/approved/detail-final-20261016/15.jpg",
+      "git_blob_sha": "d106448e9e0a18fa7140724500a74e9691fad5c8",
+      "size": 405144
+    },
+    {
+      "path": "assets/approved/detail-final-20261016/16.jpg",
+      "git_blob_sha": "c114420bf1ac3b3a3e762cefd3754663c95d8821",
+      "size": 737443
+    },
+    {
+      "path": "assets/approved/detail-final-20261016/17.jpg",
+      "git_blob_sha": "f3c3da3d0dc570aef501fe4b962e8041b4cb05b7",
+      "size": 270092
+    },
+    {
+      "path": "assets/approved/detail-final-20261016/18.jpg",
+      "git_blob_sha": "2fae0a46409ab396845af83c03f5992685b27929",
+      "size": 252460
+    },
+    {
+      "path": "assets/approved/detail-final-20261016/19.jpg",
+      "git_blob_sha": "117234cb77640ff36320870dd29630ddc718e1db",
+      "size": 401472
+    },
+    {
+      "path": "assets/approved/detail-final-20261016/sources.json",
+      "git_blob_sha": "69cc09a24d2eb5707402536b562322aeb42d5894",
+      "size": 6361
+    },
+    {
+      "path": "assets/approved/dog-detail.webp",
+      "git_blob_sha": "7e4a72aca4e827addad3f7d64c11a6008068b1ec",
+      "size": 481932
+    },
+    {
+      "path": "assets/approved/hippo-detail.webp",
+      "git_blob_sha": "c54c797c16d58cba736ed92cf6b6371dd3c63921",
+      "size": 480356
+    },
+    {
+      "path": "assets/approved/overhead-breathing-user-finish.png",
+      "git_blob_sha": "bd39ce03694996a4b8df38ce1f102fe50e669e03",
+      "size": 2669595
+    },
+    {
+      "path": "assets/approved/quiet-prone-user-finish.webp",
+      "git_blob_sha": "c60ddc17be095a951a63c7952d86717f4820b41c",
+      "size": 1329676
+    },
+    {
+      "path": "assets/approved/rabbit-detail.webp",
+      "git_blob_sha": "b6c55166dc0d2d26610aa1fc9643272965343b5e",
+      "size": 504352
+    },
+    {
+      "path": "assets/brand/layout-reference.jpg",
+      "git_blob_sha": "9b9f6d0188ab60fe68c2e14671bb558b24b27d4a",
+      "size": 550947
+    },
+    {
+      "path": "assets/brand/logo-blue.png",
+      "git_blob_sha": "e26775378793b97096d4d1a6e31e1b577c285f52",
+      "size": 70523
+    },
+    {
+      "path": "assets/brand/main-kv-dog-rest.webp",
+      "git_blob_sha": "989874e1c60c8390c1da179b0b06857b50b6886c",
+      "size": 1171416
+    },
+    {
+      "path": "assets/brand/main-kv-lounge.webp",
+      "git_blob_sha": "50654bf23b402506bdcd78b08988e54883cf8bd0",
+      "size": 1256900
+    },
+    {
+      "path": "assets/brand/main-kv-seated-hug.webp",
+      "git_blob_sha": "bb4eaab62d8ab0a0620d3224145287b8fa82311a",
+      "size": 1203182
+    },
+    {
+      "path": "assets/brand/main-kv-sleep.webp",
+      "git_blob_sha": "f4f39fcc74c329cd54b864afe2ed41933ff9fefb",
+      "size": 1365940
+    },
+    {
+      "path": "assets/icon.svg",
+      "git_blob_sha": "4c3163aa85e15ed80114f93a9a2b140a53012c44",
+      "size": 1210
+    },
+    {
+      "path": "assets/model/character-sheet-approved-20261019.png",
+      "git_blob_sha": "cac6fcea0ba02efee344ca06fe1a8b4f858e62ff",
+      "size": 2018368
+    },
+    {
+      "path": "assets/products/bear.jpg",
+      "git_blob_sha": "4a5d31b2cfc2ad62538d32aa1673f322acd61126",
+      "size": 401094
+    },
+    {
+      "path": "assets/products/dog.jpg",
+      "git_blob_sha": "40dc50c7d13aee8994d416aa7d6d59f55c1aa9c7",
+      "size": 589160
+    },
+    {
+      "path": "assets/products/hippo.jpg",
+      "git_blob_sha": "e918166127b45639bbeab1819a9f8f673ca93cf7",
+      "size": 746254
+    },
+    {
+      "path": "assets/products/rabbit.jpg",
+      "git_blob_sha": "65ce179067134dce719f4f0df5c52232edbb661a",
+      "size": 580238
+    },
+    {
+      "path": "assets/products/six-variants.webp",
+      "git_blob_sha": "c39730573a605e7bbeee430742e925bc1b98f63e",
+      "size": 622382
+    },
+    {
+      "path": "assets/references/kv-layout-source-20261012.webp",
+      "git_blob_sha": "ce4f964883292f00d69165ecc971b2a3b2001ebc",
+      "size": 392232
+    },
+    {
+      "path": "assets/references/kv-old-long-20261012.webp",
+      "git_blob_sha": "f471b70eb1f2e0392ddc50690ad3f763f22e3994",
+      "size": 172922
+    },
+    {
+      "path": "assets/references/kv-photo-source-20261012.webp",
+      "git_blob_sha": "2b93076ca6ec1ab1c4d73f7d9d9b1a13fff6630e",
+      "size": 885968
+    },
+    {
+      "path": "assets/references/overhead-cushion-source.webp",
+      "git_blob_sha": "ad6b67366f6eedcdb29a687330cff280f6e49625",
+      "size": 2225482
+    },
+    {
+      "path": "assets/references/prone-pile-source.webp",
+      "git_blob_sha": "3b65895bf7be831e99b3b800c9531a12f30b45b1",
+      "size": 623696
+    },
+    {
+      "path": "assets/rejected/all-colors-b.webp",
+      "git_blob_sha": "c4b94b98139a55d82169fd6eb4cf963132c6da01",
+      "size": 1665058
+    },
+    {
+      "path": "assets/rejected/brand-kv-a2-20261012.webp",
+      "git_blob_sha": "a36b670be4c353e1ca28d80c3234be48bd2b23e4",
+      "size": 1090658
+    },
+    {
+      "path": "assets/rejected/brand-kv-b2-20261012.webp",
+      "git_blob_sha": "79ab03dbc3973aab8506222d8ee105822ffe6e51",
+      "size": 1213308
+    },
+    {
+      "path": "assets/rejected/brand-kv-c2-20261012.webp",
+      "git_blob_sha": "3390c9a18bfeab70f887cbe0f24f4fb267644571",
+      "size": 1141414
+    },
+    {
+      "path": "assets/rejected/overhead-rest-b.webp",
+      "git_blob_sha": "58e3660e3be1ed0a8d5cc1ae6d99df42ad23e691",
+      "size": 1446052
+    },
+    {
+      "path": "assets/rejected/prone-pile-a.webp",
+      "git_blob_sha": "007b8a3d13d8bdd2269c1a39f7236c7e6b68a6d9",
+      "size": 1498722
+    }
+  ],
+  "adapted_references": [
+    "references/photography-method.md",
+    "references/model.md",
+    "references/cases.md"
+  ],
+  "unchanged_reference": "references/model-generation.json",
+  "copied_modules": [
+    {
+      "source": "npm/media-dependency.mjs",
+      "destination": "scripts/media-dependency.mjs",
+      "git_blob_sha": "59cd607bcdf3da4050cc0f15749f16f3f57fdf3e"
+    },
+    {
+      "source": "npm/canvas-layout.mjs",
+      "destination": "scripts/comparison-layout.mjs",
+      "git_blob_sha": "fc1345ad74cadc73d267c68c6b7f47cddfd765bb"
+    }
+  ],
+  "runtime_note": "Only the upstream fail() helper is retained in scripts/runtime.mjs; package-management bootstrap is not needed by this standalone Skill.",
+  "validation_scope": "Skill-format, local-reference, source-preservation and package-integrity checks; manual workflow review against the user test. Media scripts and assets unchanged. No live host interaction, paid generation or external canvas writes tested in this revision.",
+  "customization_base": {
+    "name": "cloud-hug-brand-upgrade",
+    "version": "1.0.0",
+    "workflow_revision": "2026-10-26"
+  },
+  "revision_scope": [
+    "Use available native question tools for necessary user input.",
+    "Infer the target product range from the full detail-page narrative.",
+    "Submit complementary product references and compare generated cards with source images.",
+    "Compare A/B/C outputs with their approved composition differences."
+  ],
+  "integration": {
+    "skill": "cloud-hug-style-transfer",
+    "package": "@petercjl/cloud-hug-style-transfer",
+    "source_archive": "cloud-hug-brand-upgrade-20261027.zip",
+    "archive_sha256": "0eef44d6da8abcff11886ff240e93dc1784a854ad25c5e3f9ec02cd62a34c1b3",
+    "mode": "replace-existing-business-workflow",
+    "package_version_note": "Source customization version is independent of npm release version."
+  }
+}

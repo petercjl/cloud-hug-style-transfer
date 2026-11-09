@@ -7,7 +7,7 @@
   "capabilities": [
     {
       "id": "media.image.inspect",
-      "purpose": "实际查看源图、品牌参考和生成结果",
+      "purpose": "实际查看旧商品资料、产品设定卡、新版模板与生成结果",
       "required": true,
       "required_features": [
         "local-image",
@@ -42,7 +42,7 @@
     },
     {
       "id": "media.image.edit",
-      "purpose": "按原图保持身份与商品事实执行风格转换",
+      "purpose": "按互补参考生成产品设定卡，并按确认卡和新版模板生成无字摄影素材",
       "required": true,
       "required_features": [
         "multiple-references",
@@ -80,7 +80,7 @@
     },
     {
       "id": "media.canvas.compare",
-      "purpose": "首张生图前新建命名画板，逐张成对插入左原图右成图并验证紧凑逐行布局",
+      "purpose": "产品卡与详情素材共用本轮画板，以来源参考或新版模板／图片位为左侧对照，逐张归档并核验",
       "required": true,
       "required_features": [
         "new-canvas",
