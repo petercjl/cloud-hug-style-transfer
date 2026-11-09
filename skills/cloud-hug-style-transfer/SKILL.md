@@ -3,7 +3,7 @@ name: cloud-hug-style-transfer
 description: 将抱抱云朵社旧详情页的商品升级到内置新版详情页模板。先生成并确认各款色产品设定卡、产品分组和卖点，再规划03–15每屏A/B/C三种构图；支持单屏或整套执行，默认按图片位交付独立无字素材，可按需交付完整无字页面。使用SealSeek生成，内置品牌案例、模特卡与摄影方法。
 metadata:
   package: "@petercjl/cloud-hug-style-transfer"
-  version: 0.5.2
+  version: 0.6.0
   source_skill: "cloud-hug-brand-upgrade"
   source_version: "1.1.0"
   workflow_revision: "2026-10-27"

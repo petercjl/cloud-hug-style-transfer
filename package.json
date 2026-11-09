@@ -1,6 +1,6 @@
 {
   "name": "@petercjl/cloud-hug-style-transfer",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "Template-based Cloud Hug brand upgrade with confirmed product cards, A/B/C planning and text-free PSD imagery.",
   "type": "module",
   "bin": {
