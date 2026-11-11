@@ -1,0 +1,12 @@
+interface:
+  display_name: "2026-11-10抱抱云朵社批量风格转换"
+  short_description: "先按内容整理完整分屏，保留原文版式与主体，转换白色概念棚景，每屏一张"
+  default_prompt: "使用 $cloud-hug-batch-style-transfer，将我提供的旧详情页按完整内容分屏，保留全部原文、版式、产品及人物动作机位，按原品牌资料转换为无墙无窗的白色概念摄影棚，每屏只生成一张。"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+policy:
+  products:
+    - "chatgpt"
+    - "codex"
+    - "atlas"
+  allow_implicit_invocation: true

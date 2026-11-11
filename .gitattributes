@@ -1,1 +1,4 @@
 * text=auto eol=lf
+# Preserve independently checksummed reference assets exactly as supplied.
+skills/cloud-hug-batch-style-transfer/assets/** -text
+skills/cloud-hug-batch-style-transfer/assets/layout-pairs/pairs.json whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

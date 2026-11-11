@@ -2,7 +2,7 @@
   "package": "@petercjl/cloud-hug-style-transfer",
   "version": "0.6.0",
   "files": {
-    "package.json": "cb3286cfd85e05709cfedb63312b1619a68df5d4c171ba724365cf13d34dc4b6",
+    "package.json": "ab0e5d43f9cd8089f90e9e78014b730632e3db3c43ae502e7f8fd24bed308aa8",
     "npm/arguments.mjs": "cc49d94f4f706f21fce0f23d90e33964d999f20dbb5862c20c0fed4640d7e72c",
     "npm/automatic-update.mjs": "081d68bbc1ff7052a9e8aafc88dc67a1942915210039939338df19528672761c",
     "npm/business.mjs": "5416ebb725f0a782513e8bcb34bced162187d599d94f8d6f9ca019f7a3f0cd62",
@@ -97,7 +97,7 @@
     "skills/cloud-hug-style-transfer/scripts/run.mjs": "0b71e6de4ae7babfce792869dc538569cc2db1bd95f8690571c951c2873211b1",
     "skills/cloud-hug-style-transfer/scripts/runtime.mjs": "852caf589da7170ccb8f4329ecf8b0bfe7714f99e6b437b9395b49fa213b0a99",
     "capabilities.json": "4d0585e28159c84b6b134c7d8d42fdc4e96a21a9841da500bfb1c57f9c692ead",
-    "README.md": "be9714e68dcab60d0baafb695a3e87a44587e1e10e4885ebaae78509fad50886",
+    "README.md": "be69f3208ed81fba7520ff4511f5363927b77ea882183285768f399157266538",
     "LICENSE": "1bcfea195910091f440b9b09399b5a88a6112a1b0013c3ae5784e2067d986acf",
     "lifecycle/engine.mjs": "67ee4a2727162930205b2cee172de7df5821a599a84d510ecda253401310a523",
     "lifecycle/notice.mjs": "2fde2937acb6fa170e1e575b2d65b8a1d7db07794a27ed0abb5571a529132271",

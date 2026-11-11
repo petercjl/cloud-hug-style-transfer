@@ -4,6 +4,21 @@
 
 面向具备所需执行能力的任意 Agent；Node.js 22+。当前 Agent 识别自己的 Skill 目录、能力与注册方式。
 
+仓库同时维护两套独立流程：
+
+| Skill | 用途与输出 | 安装来源 |
+| --- | --- | --- |
+| `cloud-hug-style-transfer` | 产品卡确认、新模板整套 A/B/C 规划、无字摄影素材 | 下述 npm 包 |
+| `cloud-hug-batch-style-transfer` | 旧详情页拼接与按内容分屏，保留原文版式、产品和人物关系，转换白色无墙无窗棚景；每屏一张完整图 | 仓库中的独立 Skill 目录 |
+
+## 批量转换 Skill
+
+完整目录见 [skills/cloud-hug-batch-style-transfer](https://github.com/petercjl/cloud-hug-style-transfer/tree/main/skills/cloud-hug-batch-style-transfer)。将该目录整体导入当前 Agent 支持的 Skill 位置，保留脚本、参考与素材的相对结构，再按宿主机制刷新发现。
+
+> 请使用 cloud-hug-batch-style-transfer，将已有详情页按完整内容分屏，保留全部原文、版式、产品和人物关系，转换为无墙无窗的白色概念摄影棚，每屏一张。
+
+预处理需要 Python 3.8+ 与 Pillow 9.1+；媒体及画板辅助需要 Node.js 22+ 和当前受管 `sealseek-media` Skill。批量 Skill 独立维护，不随下面的品牌升级 npm 安装或更新；详情见其 [维护说明](https://github.com/petercjl/cloud-hug-style-transfer/blob/main/skills/cloud-hug-batch-style-transfer/references/maintenance.md)。
+
 ## 安装
 
 把下面这句话发送给当前 Agent：
