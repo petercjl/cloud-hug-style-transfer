@@ -1,0 +1,62 @@
+[
+  {
+    "page_id": "01",
+    "before": "assets/layout-pairs/before/01.jpg",
+    "after": "assets/layout-pairs/after/01.png",
+    "purpose": "Content and layout preservation example only; current input and studio hard constraints take precedence."
+  },
+  {
+    "page_id": "02",
+    "before": "assets/layout-pairs/before/02.jpg",
+    "after": "assets/layout-pairs/after/02.png",
+    "purpose": "Content and layout preservation example only; current input and studio hard constraints take precedence."
+  },
+  {
+    "page_id": "03",
+    "before": "assets/layout-pairs/before/03.jpg",
+    "after": "assets/layout-pairs/after/03.png",
+    "purpose": "Content and layout preservation example only; current input and studio hard constraints take precedence."
+  },
+  {
+    "page_id": "04",
+    "before": "assets/layout-pairs/before/04.jpg",
+    "after": "assets/layout-pairs/after/04.png",
+    "purpose": "Content and layout preservation example only; current input and studio hard constraints take precedence."
+  },
+  {
+    "page_id": "05",
+    "before": "assets/layout-pairs/before/05.jpg",
+    "after": "assets/layout-pairs/after/05.png",
+    "purpose": "Content and layout preservation example only; current input and studio hard constraints take precedence."
+  },
+  {
+    "page_id": "06",
+    "before": "assets/layout-pairs/before/06.jpg",
+    "after": "assets/layout-pairs/after/06.png",
+    "purpose": "Content and layout preservation example only; current input and studio hard constraints take precedence."
+  },
+  {
+    "page_id": "07",
+    "before": "assets/layout-pairs/before/07.jpg",
+    "after": "assets/layout-pairs/after/07.png",
+    "purpose": "Content and layout preservation example only; current input and studio hard constraints take precedence."
+  },
+  {
+    "page_id": "08",
+    "before": "assets/layout-pairs/before/08.jpg",
+    "after": "assets/layout-pairs/after/08.png",
+    "purpose": "Content and layout preservation example only; current input and studio hard constraints take precedence."
+  },
+  {
+    "page_id": "09",
+    "before": "assets/layout-pairs/before/09.jpg",
+    "after": "assets/layout-pairs/after/09.png",
+    "purpose": "Content and layout preservation example only; current input and studio hard constraints take precedence."
+  },
+  {
+    "page_id": "10",
+    "before": "assets/layout-pairs/before/10.jpg",
+    "after": "assets/layout-pairs/after/10.png",
+    "purpose": "Content and layout preservation example only; current input and studio hard constraints take precedence."
+  }
+]

@@ -1,0 +1,198 @@
+{
+  "case": "抱抱云朵社完整连续详情页定稿",
+  "confirmed_on": "2026-10-16",
+  "approval": "品牌设计者确认19张是同一条连续详情页前后两部分，包含客户要求修改的页面，整体视觉均认可。",
+  "scope": "学习品牌视觉、固定模特及页面职责；图片中的商品、参数、材料和服务内容不自动成为其他产品任务事实。",
+  "items": [
+    {
+      "sequence": 1,
+      "path": "assets/approved/detail-final-20261016/01.jpg",
+      "original_filename": "2026-10-12抱抱云朵社详情页_01.jpg",
+      "sha256": "ecb481a422b3eadb0050b8c1080a1781e3fbd50ce4479f92e9f4a8beffd91187",
+      "dimensions_px": [
+        1500,
+        1523
+      ]
+    },
+    {
+      "sequence": 2,
+      "path": "assets/approved/detail-final-20261016/02.jpg",
+      "original_filename": "2026-10-12抱抱云朵社详情页_02.jpg",
+      "sha256": "676fdc94d3f247f370942f0d1cb1497e59f816b4aba77d551529b22a7a4ca49d",
+      "dimensions_px": [
+        1500,
+        1054
+      ]
+    },
+    {
+      "sequence": 3,
+      "path": "assets/approved/detail-final-20261016/03.jpg",
+      "original_filename": "2026-10-12抱抱云朵社详情页_03.jpg",
+      "sha256": "ec5b4f6fb3e86653ff1fff608bce322bc35f8447dfc823038fc3b245570c0461",
+      "dimensions_px": [
+        1500,
+        1946
+      ]
+    },
+    {
+      "sequence": 4,
+      "path": "assets/approved/detail-final-20261016/04.jpg",
+      "original_filename": "2026-10-12抱抱云朵社详情页_04.jpg",
+      "sha256": "0750a06d7d4c21077955e1ba991a5477efc33b0370444fc30ce885c93fe17355",
+      "dimensions_px": [
+        1500,
+        1972
+      ]
+    },
+    {
+      "sequence": 5,
+      "path": "assets/approved/detail-final-20261016/05.jpg",
+      "original_filename": "2026-10-12抱抱云朵社详情页_05.jpg",
+      "sha256": "75223e46c9ddb288498d64cbc4e8f61e00ed01733b3e5783805aa31d15c2ebd7",
+      "dimensions_px": [
+        1500,
+        1125
+      ]
+    },
+    {
+      "sequence": 6,
+      "path": "assets/approved/detail-final-20261016/06.jpg",
+      "original_filename": "2026-10-12抱抱云朵社详情页_06.jpg",
+      "sha256": "410be00a93f5be9e970554b96f950fb5cf6699e3244a2e572233e7e7bfcd8a33",
+      "dimensions_px": [
+        1459,
+        2048
+      ]
+    },
+    {
+      "sequence": 7,
+      "path": "assets/approved/detail-final-20261016/07.jpg",
+      "original_filename": "2026-10-12抱抱云朵社详情页_07.jpg",
+      "sha256": "96c2b12650a6cd326631e86f63e522c50afb84162a5d69d39fb3da67223de68a",
+      "dimensions_px": [
+        1500,
+        2042
+      ]
+    },
+    {
+      "sequence": 8,
+      "path": "assets/approved/detail-final-20261016/08.jpg",
+      "original_filename": "2026-10-12抱抱云朵社详情页_08.jpg",
+      "sha256": "f20f9a264fc81ae2b7c6e1764b8a3167d434224bed269cd96f826dcd2fd13875",
+      "dimensions_px": [
+        1484,
+        2048
+      ]
+    },
+    {
+      "sequence": 9,
+      "path": "assets/approved/detail-final-20261016/09.jpg",
+      "original_filename": "2026-10-12抱抱云朵社详情页_09.jpg",
+      "sha256": "dae56031cc673023ce882f6c9a678d43e31c18e9e7d0ca046248c3ca972cad19",
+      "dimensions_px": [
+        1498,
+        2048
+      ]
+    },
+    {
+      "sequence": 10,
+      "path": "assets/approved/detail-final-20261016/10.jpg",
+      "original_filename": "2026-10-12抱抱云朵社详情页_10.jpg",
+      "sha256": "c5ad7bfaf54fb0bd1d74e1833f6c7c1bc42c15f6449fadda0fe8daff2334121a",
+      "dimensions_px": [
+        1471,
+        2048
+      ]
+    },
+    {
+      "sequence": 11,
+      "path": "assets/approved/detail-final-20261016/11.jpg",
+      "original_filename": "2026-10-12抱抱云朵社详情页2_01.jpg",
+      "sha256": "a0398cca68b2d76907e2c4656c506a4df04c9a38c7f91b160c719bf077ca016a",
+      "dimensions_px": [
+        1500,
+        1411
+      ]
+    },
+    {
+      "sequence": 12,
+      "path": "assets/approved/detail-final-20261016/12.jpg",
+      "original_filename": "2026-10-12抱抱云朵社详情页2_02.jpg",
+      "sha256": "48e561a28548d4fbd712b1341dd76e3c668d376e13306b65a1ef32ac71ad7705",
+      "dimensions_px": [
+        1500,
+        1826
+      ]
+    },
+    {
+      "sequence": 13,
+      "path": "assets/approved/detail-final-20261016/13.jpg",
+      "original_filename": "2026-10-12抱抱云朵社详情页2_03.jpg",
+      "sha256": "0ce9293acd81100f47cb9fc4c0064747ca911cae7c6a390da8c8c771d2df5a07",
+      "dimensions_px": [
+        1500,
+        1651
+      ]
+    },
+    {
+      "sequence": 14,
+      "path": "assets/approved/detail-final-20261016/14.jpg",
+      "original_filename": "2026-10-12抱抱云朵社详情页2_04.jpg",
+      "sha256": "5f2c9dbf350e766c8064a4feaeef430611c02220f10648a099ed34b0b416bdc9",
+      "dimensions_px": [
+        1500,
+        1155
+      ]
+    },
+    {
+      "sequence": 15,
+      "path": "assets/approved/detail-final-20261016/15.jpg",
+      "original_filename": "2026-10-12抱抱云朵社详情页2_05.jpg",
+      "sha256": "78c623e2c5eadfdd34aaaa7503fa6d975e1f1307016efe832b0fd9d2fd04fb8c",
+      "dimensions_px": [
+        1500,
+        1456
+      ]
+    },
+    {
+      "sequence": 16,
+      "path": "assets/approved/detail-final-20261016/16.jpg",
+      "original_filename": "2026-10-12抱抱云朵社详情页2_06.jpg",
+      "sha256": "576fe80c894e221acdd7806a7e5892b4ea3922ca62b828ffecd4109c25549137",
+      "dimensions_px": [
+        1500,
+        1874
+      ]
+    },
+    {
+      "sequence": 17,
+      "path": "assets/approved/detail-final-20261016/17.jpg",
+      "original_filename": "2026-10-12抱抱云朵社详情页2_07.jpg",
+      "sha256": "4cc72bd8cac12be0e8b54659daa3c2f44e8bd8e6953c127ca4adaf669e32e69e",
+      "dimensions_px": [
+        1500,
+        916
+      ]
+    },
+    {
+      "sequence": 18,
+      "path": "assets/approved/detail-final-20261016/18.jpg",
+      "original_filename": "2026-10-12抱抱云朵社详情页2_08.jpg",
+      "sha256": "88300f31dd4f1458c1b2fe927570c303a5e80a9c89abbd839d49e5fc808f3930",
+      "dimensions_px": [
+        1365,
+        2048
+      ]
+    },
+    {
+      "sequence": 19,
+      "path": "assets/approved/detail-final-20261016/19.jpg",
+      "original_filename": "2026-10-12抱抱云朵社详情页2_09.jpg",
+      "sha256": "588a474405e3672e4780252c7c1cc25f558974908628b970026d42575a9d9851",
+      "dimensions_px": [
+        1500,
+        953
+      ]
+    }
+  ]
+}

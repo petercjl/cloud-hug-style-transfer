@@ -12,6 +12,7 @@ test('packed package installs its runtime dependency and executes canonical Skil
   const run=args=>{const r=spawnSync(process.execPath,[npm,'--dry-run=false',...args],{cwd:path.resolve(import.meta.dirname,'..'),encoding:'utf8',timeout:180000});assert.equal(r.status,0,r.stderr+r.stdout);return r.stdout;};
   const packed=packReceipt(run(['pack','--ignore-scripts','--pack-destination',dir,'--json']));
   assert.ok(packed.files.some(f=>f.path==='npm/metadata.mjs'));assert.ok(!packed.files.some(f=>/^(test|node_modules|\.git|out)\//.test(f.path)));
+  assert.ok(!packed.files.some(f=>f.path.startsWith('skills/cloud-hug-batch-style-transfer/')),'The independent batch Skill is distributed from its GitHub directory, not the brand-upgrade npm package.');
   const prefix=path.join(dir,'prefix');run(['install','--prefix',prefix,'--ignore-scripts','--no-audit','--no-fund',path.join(dir,packed.filename)]);
   const entry=path.join(prefix,'node_modules/@petercjl/cloud-hug-style-transfer/npm/cli.mjs');
   const invoke=args=>{const r=spawnSync(process.execPath,[entry,...args],{encoding:'utf8',env:{...process.env,CLOUD_HUG_STATE_DIR:path.join(dir,'state'),CODEX_SKILLS_DIR:path.join(dir,'target')}});assert.equal(r.status,0,r.stderr+r.stdout);return JSON.parse(r.stdout);};
