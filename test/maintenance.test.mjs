@@ -41,11 +41,11 @@ test('read-only status and version reject mutating or unknown flags before writi
 
 test('doctor preserves an explicit legacy root and verifies the selected generic target',async t=>{
  const dir=temp(t),resolution=life.resolveTarget({agent:'future-agent',root:dir});life.install(resolution);const {mediaFixture}=await import('./media-fixture.mjs');const media=mediaFixture(path.join(dir,'media-dependency'));
- const r=run(['doctor','--agent','future-agent','--root',dir,'--json'],{CLOUD_HUG_MEDIA_ROOT:media});assert.equal(r.status,0,r.stdout+r.stderr);const value=JSON.parse(r.stdout);assert.equal(value.installation.current,true);assert.equal(value.resolution.target,resolution.target);
+ const r=run(['doctor','--agent','future-agent','--root',dir,'--json'],{CLOUD_HUG_TOAPIS_SKILL_ROOT:media});assert.equal(r.status,0,r.stdout+r.stderr);const value=JSON.parse(r.stdout);assert.equal(value.installation.current,true);assert.equal(value.resolution.target,resolution.target);
 });
 
 test('doctor honors per-command automatic-update opt-out in an installed runtime',async t=>{
  const dir=temp(t),resolution=target(dir);life.install(resolution);const {mediaFixture}=await import('./media-fixture.mjs');const media=mediaFixture(path.join(dir,'required-media')),hits=path.join(dir,'hits.txt'),preload=path.join(dir,'registry-fixture.mjs');fs.writeFileSync(hits,'',{flag:'wx'});
  fs.writeFileSync(preload,`import fs from 'node:fs';globalThis.fetch=async()=>{fs.appendFileSync(${JSON.stringify(hits)},'check');return new Response(JSON.stringify({name:'@petercjl/cloud-hug-style-transfer',version:'99.0.0'}));};`,{flag:'wx'});
- const {pathToFileURL}=await import('node:url');const r=spawnSync(process.execPath,[path.join(resolution.target,'scripts/run.mjs'),'doctor','--no-auto-update','--json'],{encoding:'utf8',env:{...process.env,CLOUD_HUG_AUTO_UPDATE:'1',CLOUD_HUG_MEDIA_ROOT:media,NODE_OPTIONS:'--import '+JSON.stringify(pathToFileURL(preload).href)},timeout:30000});assert.equal(r.status,0,r.stdout+r.stderr);assert.equal(fs.readFileSync(hits,'utf8'),'');
+ const {pathToFileURL}=await import('node:url');const r=spawnSync(process.execPath,[path.join(resolution.target,'scripts/run.mjs'),'doctor','--no-auto-update','--json'],{encoding:'utf8',env:{...process.env,CLOUD_HUG_AUTO_UPDATE:'1',CLOUD_HUG_TOAPIS_SKILL_ROOT:media,NODE_OPTIONS:'--import '+JSON.stringify(pathToFileURL(preload).href)},timeout:30000});assert.equal(r.status,0,r.stdout+r.stderr);assert.equal(fs.readFileSync(hits,'utf8'),'');
 });

@@ -76,64 +76,20 @@
         "DEPENDENCY_INVALID",
         "DEPENDENCY_INCOMPATIBLE"
       ],
-      "provider": "@petercjl/sealseek-media-cli"
-    },
-    {
-      "id": "media.canvas.compare",
-      "purpose": "产品卡与详情素材共用本轮画板，以来源参考或新版模板／图片位为左侧对照，逐张归档并核验",
-      "required": true,
-      "required_features": [
-        "new-canvas",
-        "source-upload",
-        "actual-dimensions",
-        "explicit-placement",
-        "idempotent-pair-import",
-        "verified-save"
-      ],
-      "input_fields": [
-        "title",
-        "canvas_id",
-        "images",
-        "row_layout",
-        "authorization"
-      ],
-      "output_fields": [
-        "ok",
-        "artifacts",
-        "metadata",
-        "canvas_id",
-        "canvas_url",
-        "verified",
-        "warnings"
-      ],
-      "side_effects": {
-        "external_mutation": true,
-        "may_cost_money": false,
-        "authorization": "Authorized image task includes its new canvas, source uploads and result archival; generation remains separately authorized."
-      },
-      "errors": [
-        "DEPENDENCY_MISSING",
-        "DEPENDENCY_INCOMPATIBLE",
-        "AUTH_REQUIRED",
-        "CAPABILITY_UNAVAILABLE",
-        "FEATURE_UNSUPPORTED",
-        "SUBMISSION_UNCERTAIN",
-        "IDEMPOTENCY_CONFLICT",
-        "OUTPUT_CONTRACT_FAILED"
-      ]
+      "provider": "@petercjl/toapiscli"
     }
   ],
   "dependencies": [
     {
-      "package": "@petercjl/sealseek-media-cli",
-      "minimum_version": "0.6.1",
-      "skill": "sealseek-media",
+      "package": "@petercjl/toapiscli",
+      "minimum_version": "0.1.1",
+      "skill": "toapiscli",
       "required": true,
-      "preflight": "cloud-hug-style-transfer doctor --json",
-      "on_missing": "pause-entire-task"
+      "preflight": "node scripts/check-media.mjs [--skill-root EXACT_TOAPIS_SKILL_DIRECTORY]",
+      "on_missing": "pause-generation"
     }
   ],
-  "package_version": "0.6.0",
+  "package_version": "0.7.0",
   "installationLifecycle": {
     "agentNeutral": true,
     "skillRequired": true,
@@ -713,5 +669,11 @@
       "edited": "boolean retained; use editedFiles for paths"
     },
     "evidenceReuse": "Reuse matching package/version/target/integrity receipts within the operation; repeat only after mutation, conflict or stale channel evidence."
+  },
+  "delivery": {
+    "mode": "images-and-manifest",
+    "online_canvas": false,
+    "html": false,
+    "task_recovery": "original output directory"
   }
 }

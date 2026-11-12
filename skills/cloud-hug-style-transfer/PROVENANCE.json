@@ -9,7 +9,6 @@
     "commit": "9a17dcfdc61f59db3e65756a20eaf81f80b0c2b8"
   },
   "distribution": "Imported customization source record; current runtime and lifecycle remain owned by @petercjl/cloud-hug-style-transfer.",
-  "media_provider": "@petercjl/sealseek-media-cli and its current canonical sealseek-media Skill",
   "original_assets": [
     {
       "path": "assets/approved/all-colors-user-finish.webp",
@@ -286,7 +285,6 @@
     }
   ],
   "runtime_note": "Only the upstream fail() helper is retained in scripts/runtime.mjs; package-management bootstrap is not needed by this standalone Skill.",
-  "validation_scope": "Skill-format, local-reference, source-preservation and package-integrity checks; manual workflow review against the user test. Media scripts and assets unchanged. No live host interaction, paid generation or external canvas writes tested in this revision.",
   "customization_base": {
     "name": "cloud-hug-brand-upgrade",
     "version": "1.0.0",
@@ -305,5 +303,19 @@
     "archive_sha256": "0eef44d6da8abcff11886ff240e93dc1784a854ad25c5e3f9ec02cd62a34c1b3",
     "mode": "replace-existing-business-workflow",
     "package_version_note": "Source customization version is independent of npm release version."
+  },
+  "historical_media_provider": "@petercjl/sealseek-media-cli and its current canonical sealseek-media Skill",
+  "media_provider": "@petercjl/toapiscli >=0.1.1 and its current-host managed Skill/runtime",
+  "historical_validation_scope": "Skill-format, local-reference, source-preservation and package-integrity checks; manual workflow review against the user test. Media scripts and assets unchanged. No live host interaction, paid generation or external canvas writes tested in this revision.",
+  "validation_scope": "See TESTING.md in the repository for the 0.7.0 migration; native host discovery is separate from CLI evidence.",
+  "toapis_migration": {
+    "date": "2026-11-12",
+    "version": "0.7.0",
+    "source_archive": "2026-11-11.zip",
+    "source_prefix": "2026-11-11/k/work/media-migration/package/skills/cloud-hug-style-transfer/",
+    "business_rules": "User-adjusted instructions, quantities and scope; original assets preserved",
+    "media_contract": "toapiscli 0.1.1; managed runtime, repeated local references, recovery by original output directory",
+    "delivery": "images-and-manifest only",
+    "scope": "cloud-hug-style-transfer brand-upgrade Skill and owning package only"
   }
 }

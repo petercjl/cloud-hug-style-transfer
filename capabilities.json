@@ -22,9 +22,9 @@
   "requirements": {
     "node": ">=22",
     "nested_skills": [
-      "sealseek-media"
+      "toapiscli"
     ],
-    "generation": "Required for business planning and generation; maintenance is independent of media service dependencies.",
+    "generation": "Verified current-host toapiscli runtime and service access are required for generation; local planning and maintenance do not submit media tasks.",
     "host_capability_skills": {
       "codex": [],
       "sealseek": [],
@@ -32,19 +32,19 @@
     },
     "packages": [
       {
-        "name": "@petercjl/sealseek-media-cli",
-        "minimum_version": "0.6.1",
+        "name": "@petercjl/toapiscli",
+        "minimum_version": "0.1.1",
         "required": true,
-        "missing": "pause",
-        "skill": "sealseek-media",
-        "source": "CLI skill source --json",
-        "contract": "media.generate with image/reference-image/dry-run/task-record/local-artifact; canvas_contract@1 create/image upload/media inspect/explicit batch/verified readback"
+        "missing": "pause-generation",
+        "skill": "toapiscli",
+        "source": "Current-host sibling Skill or CLOUD_HUG_TOAPIS_SKILL_ROOT; .runtime/dist/cli.mjs",
+        "contract": "image generate with repeated local references; task get/wait by original output directory; local artifacts and billing"
       }
     ]
   },
   "authorization": {
     "installation": "Explicit install/update request; preserve existing targets.",
-    "generation": "User-authorized generation via sealseek-media-cli only; credits and credentials remain external."
+    "generation": "User-authorized generation via the installed toapiscli runtime; reuse its protected credentials. No canvas, implicit paid retries or provider fallback."
   },
   "compatibility": {
     "codex": {
@@ -57,20 +57,8 @@
     },
     "workbuddy": {
       "installation": "implemented",
-      "generation": "implemented-not-runtime-tested"
+      "generation": "cli-smoke-tested-native-host-pending"
     }
-  },
-  "canvas": {
-    "creation": "new-per-brand-upgrade-project-before-first-submit",
-    "title": "application-inferred-from-current-images-and-intent",
-    "layout": "source-left-result-right; rows-top-to-bottom",
-    "column_width": 480,
-    "horizontal_gap": 24,
-    "vertical_gap": 32,
-    "archive": "none during generation; explicit pair batch after each success",
-    "planner": "canvas row --input JSON_FILE --json",
-    "recovery": "same canvas/task/row IDs; inspect before replay",
-    "reference": "product-card-source-or-new-template-slot"
   },
   "commandContracts": {
     "version": {
@@ -671,5 +659,11 @@
       "edited": "boolean retained; use editedFiles for paths"
     },
     "evidenceReuse": "Reuse matching package/version/target/integrity receipts within the operation; repeat only after mutation, conflict or stale channel evidence."
+  },
+  "delivery": {
+    "mode": "images-and-manifest",
+    "reference": "skills/cloud-hug-style-transfer/references/canvas-comparison.md",
+    "taskRecovery": "same output directory; never resubmit uncertain tasks",
+    "legacy_canvas_row": "local geometry helper only; not used by the current workflow"
   }
 }

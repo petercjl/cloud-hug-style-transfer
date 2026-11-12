@@ -1,3 +1,5 @@
+> 业务规则来自用户 2026-11-11 交接包，当前媒体接口为 toapiscli。用户明确的数量、范围、模型和自主执行要求优先于本文默认流程；不例行要求重新确认，不自动追加付费任务。
+
 # 整套规划、三案与交付数量
 
 产品清单、全部卡片与卖点确认后，一次完成整套规划。先读页面映射及各页原图，用模板确定任务；不从旧页内容顺序拼凑新页面。
@@ -71,11 +73,12 @@ node <SKILL_ROOT>/scripts/plan-inventory.mjs --input <PROJECT>/inventory-input.j
 {
   "groups": [{"id": "moon", "variants": ["moon-green", "moon-purple"]}],
   "mode": "assets",
+  "directions": ["A"],
   "selected_pages": ["03", "07_moon", "12"]
 }
 ```
 
-省略 `selected_pages` 即整套；结果含稳定页 ID、图片位、A/B/C 文件键、总页数与输出数量。实际执行仍须同时满足产品确认与用户对方案／范围的授权。
+省略 `selected_pages` 即整套；省略 `directions` 时列举 A/B/C，用户只选一案时务必传入该案。结果含稳定页 ID、图片位、实际方向文件键、总页数与输出数量。清单只用于核对，不代表计费生成授权。
 
 ## 第二次确认与后续修改
 

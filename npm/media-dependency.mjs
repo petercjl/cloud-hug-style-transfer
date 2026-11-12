@@ -1,49 +1,53 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { createRequire } from 'node:module';
 import { spawnSync } from 'node:child_process';
 
-const name = '@petercjl/sealseek-media-cli';
-const prompt = `请安装 npm 包 ${name}。`;
+const name = '@petercjl/toapiscli';
+const supported = value => {
+ if (!/^\d+\.\d+\.\d+$/.test(value || '')) return false;
+ const [major, minor, patch] = value.split('.').map(Number);
+ return major > 0 || minor > 1 || (minor === 1 && patch >= 1);
+};
+const contained = (root, entry) => {
+ const rel = path.relative(root, entry);
+ return rel !== '' && !rel.startsWith('..'+path.sep) && rel !== '..' && !path.isAbsolute(rel);
+};
 
-// Invoke the verified package entry with the active Node runtime, including on
-// Windows where an npm .cmd shim is not a directly executable program.
-export function mediaDependency({ env = process.env, packageRoot } = {}) {
- const missing = (code, message) => ({ok:false,code,package:name,message,installPrompt:prompt,action:'pause'});
- const roots=[];
- if(packageRoot || env.CLOUD_HUG_MEDIA_ROOT) roots.push(packageRoot || env.CLOUD_HUG_MEDIA_ROOT);
- else {
-  try { roots.push(path.dirname(createRequire(import.meta.url).resolve(`${name}/package.json`))); } catch {}
-  for(const dir of (env.PATH || '').split(path.delimiter).filter(Boolean)) {
-   roots.push(path.join(dir,'node_modules',...name.split('/')),path.join(dir,'..','lib','node_modules',...name.split('/')));
-   try {
-    const entry=fs.realpathSync(path.join(dir,'sealseek-media'));
-    roots.push(path.resolve(path.dirname(entry),'..'));
-   } catch {}
-  }
+// Select this host's managed Skill, never an unrelated global/PATH installation.
+// Discovery reads capabilities only, without opening credentials.
+export function mediaDependency({ env = process.env, skillRoot } = {}) {
+ const missing = (code, message) => ({ok:false,code,package:name,message,
+  installPrompt:'请在当前 Agent 安装并配置 @petercjl/toapiscli；非同级目录通过 CLOUD_HUG_TOAPIS_SKILL_ROOT 指向其 Skill 目录。',action:'pause-generation'});
+ const candidate = skillRoot || env.CLOUD_HUG_TOAPIS_SKILL_ROOT;
+ if (!candidate || !fs.existsSync(candidate)) return missing('DEPENDENCY_MISSING','Current-host toapiscli Skill was not found. Resolve its exact directory before generation.');
+ try {
+  const source = fs.realpathSync(candidate);
+  if (!/^name:\s*toapiscli\s*$/m.test(fs.readFileSync(path.join(source,'SKILL.md'),'utf8'))) return missing('DEPENDENCY_INVALID','Expected the toapiscli companion Skill.');
+  const runtime = fs.realpathSync(path.join(source,'.runtime'));
+  if (!contained(source,runtime)) return missing('DEPENDENCY_INVALID','The runtime must belong to this Skill installation.');
+  const pkg = JSON.parse(fs.readFileSync(path.join(runtime,'package.json'),'utf8'));
+  if (pkg.name !== name) return missing('DEPENDENCY_INVALID','Unexpected media package identity.');
+  if (!supported(pkg.version)) return missing('DEPENDENCY_INCOMPATIBLE','Stable toapiscli >=0.1.1 is required.');
+  const entry = fs.realpathSync(path.join(runtime,'dist/cli.mjs'));
+  if (!contained(runtime,entry)) return missing('DEPENDENCY_INVALID','The CLI entry must belong to its runtime.');
+  const result = spawnSync(process.execPath,[entry,'capabilities','--json'],{
+   encoding:'utf8',timeout:15000,maxBuffer:1024*1024,
+   env:{...env,TOAPISCLI_UPDATE_CHECK:'0',TOAPISCLI_AUTO_UPDATE:'0'}
+  });
+  const contract = JSON.parse(result.stdout || 'null');
+  if (result.status !== 0 || contract?.ok !== true || contract.package !== name || contract.version !== pkg.version || !contract.skills?.includes('toapiscli')) return missing('DEPENDENCY_INVALID','Media runtime identity or capability discovery failed.');
+  const commands = contract.commandContracts || {};
+  const required = {
+   'image generate':['--model','--prompt-file','--resolution','--aspect','--reference','--out-directory','--submit','--wait'],
+   'task get':['--directory'], 'task wait':['--directory'],
+   'auth status':['--json'], 'models list':['--json'], 'models docs':['--model'], 'prepare':['--json']
+  };
+  const complete = Object.entries(required).every(([cmd,options]) => options.every(option => commands[cmd]?.options?.[option]));
+  if (!complete || commands['image generate'].options['--reference'].repeatable !== true) return missing('DEPENDENCY_INCOMPATIBLE','Required image-reference or directory-based recovery contract is missing.');
+  return {ok:true,package:name,version:pkg.version,entry,source,
+   invocation:{command:process.execPath,args:[entry]},serviceAccess:'requires-live-preflight',generationTested:false,
+   recovery:'task get/wait --directory ORIGINAL_OUTPUT_DIRECTORY',delivery:'images-and-manifest'};
+ } catch {
+  return missing('DEPENDENCY_INVALID','The installed toapiscli Skill, isolated runtime or CLI could not be verified.');
  }
- for(const candidate of [...new Set(roots)]) {
-  if(!fs.existsSync(path.join(candidate,'package.json'))) continue;
-  try {
-   const root=fs.realpathSync(candidate),pkg=JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8'));
-   if(pkg.name!==name) continue;
-   const parts=pkg.version?.split('.').map(Number);
-   if(!/^\d+\.\d+\.\d+$/.test(pkg.version)||!(parts[0]>0||parts[1]>6||(parts[1]===6&&parts[2]>=1))) return missing('DEPENDENCY_INCOMPATIBLE','sealseek-media-cli >=0.6.1 is required; update the package.');
-   if(typeof pkg.bin?.['sealseek-media']!=='string') return missing('DEPENDENCY_INVALID','Media CLI entry is missing.');
-   const entry=fs.realpathSync(path.resolve(root,pkg.bin['sealseek-media']));
-   if(!entry.startsWith(root+path.sep)) return missing('DEPENDENCY_INVALID','Media CLI entry must belong to its package.');
-   const result=spawnSync(process.execPath,[entry,'skill','source','--json'],{encoding:'utf8',timeout:15000,maxBuffer:1024*1024,env:{...env,SEALSEEK_MEDIA_AUTO_UPDATE:'0'}});
-   const data=JSON.parse(result.stdout||'null');
-   if(result.status!==0||data?.ok!==true||data.name!=='sealseek-media'||data.version!==pkg.version||typeof data.source!=='string') return missing('DEPENDENCY_INVALID','Media CLI canonical Skill discovery failed.');
-   const source=fs.realpathSync(data.source);
-   if(!source.startsWith(root+path.sep)||!/^name: sealseek-media\s*$/m.test(fs.readFileSync(path.join(source,'SKILL.md'),'utf8'))) return missing('DEPENDENCY_INVALID','Media companion Skill identity is invalid.');
-   const contract=JSON.parse(fs.readFileSync(path.join(source,'capabilities.json'),'utf8'));
-   const generate=contract.capabilities?.find(c=>c.id==='media.generate');
-   if(!['image','reference-image','dry-run','task-record','local-artifact'].every(f=>generate?.required_features?.includes(f))) return missing('DEPENDENCY_INCOMPATIBLE','Media generation contract is incomplete.');
-   const canvas=contract.canvas_contract;
-   if(canvas?.version!==1||!['explicit-placement','frame-batch','media-inspect'].every(f=>canvas.features?.includes(f))||!canvas.operations?.create||!canvas.operations?.upload?.some(c=>c.startsWith('image upload '))||!canvas.generation_options?.archive?.enum?.includes('none')) return missing('DEPENDENCY_INCOMPATIBLE','Media canvas creation, upload, inspection and explicit batch placement are required.');
-   return {ok:true,package:name,version:pkg.version,entry,source,invocation:{command:process.execPath,args:[entry]},serviceAccess:'requires-live-preflight',generationTested:false};
-  } catch { return missing('DEPENDENCY_INVALID','Media package, CLI or canonical Skill could not be verified.'); }
- }
- return missing('DEPENDENCY_MISSING','Required sealseek-media-cli package was not detected. Pause the Skill until it is installed and verified.');
 }

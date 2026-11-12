@@ -1,7 +1,7 @@
 import { fail } from './runtime.mjs';
 
 // Application layout only: service calls, uploads and verified writes belong
-// to sealseek-media-cli. The original fits the result's row without cropping.
+// to legacy integrations. Retained as a local geometry helper, unused by ToAPIs delivery.
 export function comparisonRow(input) {
  if(!input || typeof input!=='object' || Array.isArray(input)) throw fail('INVALID_INPUT','Expected a comparison row object.');
  const {run_id,row_index,top=0,source,result}=input;

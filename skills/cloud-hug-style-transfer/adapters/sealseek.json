@@ -32,37 +32,14 @@
       ],
       "implementation": {
         "type": "cli",
-        "discovery": "Run cloud-hug-style-transfer doctor --json; require dependencies.media.ok and use its verified invocation. Resolve sealseek-media via that CLI skill source --json and load the complete current SKILL.md plus its current host adapter.",
-        "invocation": "Follow the current sealseek-media Discover/Prepare/Validate/Submit/Follow/Deliver contract. Pass application-owned prompt and ordered local references, dry-run first, submit authorized generation via --via sealseek --submit, preserve task IDs and verify local output.",
-        "configuration": "Required @petercjl/sealseek-media-cli >=0.6.1; private media-package authentication, network and credits. Optional CLOUD_HUG_MEDIA_ROOT points to its installed package root.",
-        "failure": "Missing or incompatible package/Skill pauses the entire task before section 1; offer the minimal install prompt and resume only after verification. Service/feature failures pause without native-generation fallback."
+        "discovery": "Run scripts/check-media.mjs; use its verified invocation and load the current toapiscli SKILL.md. Default is the sibling Skill in this host; explicit CLOUD_HUG_TOAPIS_SKILL_ROOT selects a nonstandard directory.",
+        "invocation": "Follow references/media-execution.md. Inspect model docs, submit ordered local references with image generate, then recover via task get/wait --directory using the original output directory. Inspect actual downloaded pixels.",
+        "configuration": "Required @petercjl/toapiscli >=0.1.1 in its own managed .runtime; existing protected credentials, network and balance remain external.",
+        "failure": "Missing/incompatible runtime pauses generation. Preserve the request directory on failure/uncertainty; do not silently switch provider or resubmit."
       },
       "normalization": "Success: {ok:true,artifacts:[],metadata:{},task_id:null,cost:null,warnings:[]}; failure: {ok:false,code,message,capability_id}.",
       "evidence": [
-        "Canonical sealseek-media 0.6.1 CLI/Skill and live capabilities inspected; paid generation and full host flow not tested."
-      ]
-    },
-    {
-      "capability_id": "media.canvas.compare",
-      "status": "implemented",
-      "features": [
-        "new-canvas",
-        "source-upload",
-        "actual-dimensions",
-        "explicit-placement",
-        "idempotent-pair-import",
-        "verified-save"
-      ],
-      "implementation": {
-        "type": "cli",
-        "discovery": "Use the verified media invocation from doctor; load canonical sealseek-media Skill and its current canvas creation, upload, inspection and explicit batch contract.",
-        "invocation": "Follow references/canvas-comparison.md for application naming, pairing, row state and layout; use media CLI canvas create, image upload, media inspect, canvas batch and canvas get. Pass an explicit canvas ID and archive none during generation; archive each pair after completion.",
-        "configuration": "Existing media-package private authentication and network. canvas_contract version 1; no new provider integration.",
-        "failure": "Pause on missing canvas contract, failed/uncertain creation, upload or pair write. Preserve IDs and original batch; inspect the same canvas before recovery."
-      },
-      "normalization": "Success includes canvas_id, canvas_url and verified pair positions; failure retains code, task/canvas IDs and recovery state.",
-      "evidence": [
-        "Current media CLI contract inspected; deterministic geometry and batch dry-run tested separately from real canvas writes."
+        "toapiscli 0.1.1 command contracts inspected; CLI testing and native host discovery are separate evidence."
       ]
     }
   ],
@@ -70,7 +47,7 @@
     "macos": "implemented",
     "windows": "implemented"
   },
-  "notes": "Image generation uses the same required sealseek-media-cli on every host. Native viewing and command execution still require host verification. Missing media dependency pauses all tasks.",
+  "notes": "Generation uses the current-host toapiscli managed runtime. Deliver images and manifest only. Host-native viewing and discovery require separate verification.",
   "host_generation_tested": false,
   "local_execution": "Use this installed Skill’s scripts/run.mjs for owning-package commands; resolve external media through its independently managed canonical contract."
 }

@@ -44,6 +44,14 @@ test('page inventory rejects duplicate product ids, excluded pages and unsupport
  ])assert.throws(()=>planInventory(input));
 });
 
+test('explicit single direction does not expand the requested paid-image inventory',()=>{
+ const result=planInventory({groups,selected_pages:['03','12'],directions:['A']});
+ assert.equal(result.output_count,5);
+ assert.ok(result.outputs.every(item=>item.direction==='A'));
+ assert.equal(result.generation_authorized,false);
+ for(const directions of [[],['A','A'],['../escape'],[1]])assert.throws(()=>planInventory({groups,directions}));
+});
+
 test('installed Skill runs its inventory helper and owning runtime outside the checkout',t=>{
  const temp=fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(),'cloud-hug-brand-upgrade-')));
  const previous=process.env.CLOUD_HUG_STATE_DIR;

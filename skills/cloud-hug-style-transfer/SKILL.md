@@ -1,9 +1,9 @@
 ---
 name: cloud-hug-style-transfer
-description: 将抱抱云朵社旧详情页的商品升级到内置新版详情页模板。先生成并确认各款色产品设定卡、产品分组和卖点，再规划03–15每屏A/B/C三种构图；支持单屏或整套执行，默认按图片位交付独立无字素材，可按需交付完整无字页面。使用SealSeek生成，内置品牌案例、模特卡与摄影方法。
+description: 将抱抱云朵社旧详情页的商品升级到内置新版详情页模板。先生成并确认各款色产品设定卡、产品分组和卖点，再规划03–15每屏A/B/C三种构图；支持单屏或整套执行，默认按图片位交付独立无字素材，可按需交付完整无字页面。使用ToAPIs生成，内置品牌案例、模特卡与摄影方法。
 metadata:
   package: "@petercjl/cloud-hug-style-transfer"
-  version: 0.6.0
+  version: 0.7.0
   source_skill: "cloud-hug-brand-upgrade"
   source_version: "1.1.0"
   workflow_revision: "2026-10-27"
@@ -14,7 +14,9 @@ metadata:
 
 把用户的旧商品资料，转化成可放入同事现有 PSD 的新版品牌摄影素材。**旧详情页提供商品资料；用户确认后的产品卡统一商品外观；内置新版模板决定页面任务与构图框架。** 工作起点是新版模板，不能回到逐张改造旧页的流程。
 
-本 Skill 的业务流程来自用户提供的 `cloud-hug-brand-upgrade` 1.1.0（2026-10-27），现合并到 `petercjl/cloud-hug-style-transfer`，替换原风格转换流程。保留 `cloud-hug-style-transfer` 名称、npm 包与受管安装更新入口，中文展示名为“抱抱云朵社品牌升级”。继续使用 `@petercjl/sealseek-media-cli` 生图、跟踪、恢复、下载及画板写入。来源和维护见 [版本与维护](references/maintenance.md)。
+> WorkBuddy / ToAPIs 迁移版，2026-11-12。基于用户 2026-11-11 交接包的业务规则。当前用户明确的数量、范围、模型和自主执行要求优先于参考资料中的默认流程；不例行要求重新确认，不自动追加付费任务。
+
+业务来源为原版 cloud-hug-style-transfer 0.6.0；品牌模板、产品设定卡和摄影方法保留。媒体执行统一使用 `@petercjl/toapiscli` 配套 Skill；复用已导入的凭据，只保存图片、任务记录与对应清单。必要澄清使用 WorkBuddy 当前可用问答能力；工具不可用时简短提问。用户已经授权的范围直接执行，参考中的三案和审稿节点是默认创作方式，不能覆盖用户明确要求。
 
 ## Package installation and local execution
 
@@ -24,17 +26,9 @@ After managed installation, invoke this Skill's `scripts/run.mjs` with the curre
 
 Maintenance completes CLI/runtime and Skill verification, followed by host-native reload and discovery. CLI receipts leave host discovery pending. Automatic checks notify by default; installation requires separate standing authorization and a compatible stable version. Use update operation/resume for partial or unknown outcomes, preserving the original transaction and backup. Only the selected current Agent is synchronized.
 
-## 交互约定：必要问题使用按钮式问答
-
-凡需要用户选择、确认或补充信息，**必须调用当前宿主实际可用的原生问答工具**，不要把问题埋在长段文字或表格末尾。SealWork 中如有 `question` 就使用它；其他宿主使用当前可调用的等价工具，并遵守其参数、模式和输入限制，不假定所有宿主的工具同名。按钮外观由宿主渲染，Markdown 列表不能代替真实按钮。
-
-提问前只展示必要图片和简短结论；问答卡用一个清楚的问题、简短可区分的选项，并利用宿主的自定义回答能力接收更正。适用于必要的商品范围澄清、产品卡与卖点确认、方案与生成范围选择、额外付费返工选择。需上传修订卡时指向对话附件入口，不让只接受文本的问答工具承担上传。较长的识别依据、完整方案和执行记录保存在项目文档，提供入口；影响选择的商品、页数、张数和费用仍需在提问处说清。
-
-先完成 Agent 能从资料得出的判断，再提出必要问题；证据明确时不增加生卡前的例行范围确认。沿用下面两个确认节点，已有答案不重复询问，普通进度用简短文字。选项预选、无回复或工具返回等待状态都不算确认。**只有问答工具确实不可用或调用失败且无法恢复时**，才说明具体限制并退回简短文字问答；不得为调用工具擅自切换工作模式或伪造按钮。
-
 ## 1. 接收资料与生成产品卡
 
-确认用户要进行品牌升级；仅要求理解、复盘、修改 Skill 时只完成该范围。实际升级任务按 [媒体执行](references/media-execution.md) 核验 SealSeek 依赖与当前合同；不改用其他生图渠道或模型。
+确认用户要进行品牌升级；仅要求理解、复盘、修改 Skill 时只完成该范围。实际升级任务按 [媒体执行](references/media-execution.md) 核验当前宿主已安装的 `toapiscli`、服务访问与所选模型参数；默认 `gpt-image-2.6-sunburst`、2K，用户明确选择优先。
 
 实际看完整套旧详情页，按 [产品识别与设定卡](references/products.md) 先识别各页作用，再综合首屏、卖点、场景、细节和明确款色信息，判断本次主推商品范围；店铺总览、关联推荐中的全部商品不能自动纳入。范围有依据后再建立形态分组、每组配色与来源关系。重复角度、光线差异和道具不重复计为款式；不同颜色不自动分成不同形态，也不按出现次数机械取舍。
 
@@ -53,7 +47,7 @@ Maintenance completes CLI/runtime and Skill verification, followed by host-nativ
 - 12 四宫格要表达什么：可先提取旧页卖点，请用户确认、修改或提供新的内容，不能沿用模板的四种睡姿作为所有商品默认值。
 - 本次特殊需求：指定展示重点、已明确的尺寸／输出要求、用户主动指定的模型等。已有答案直接使用，不要求填写长表。
 
-**用户明确确认全部产品卡、分组／配色／数量及必要卖点后，才规划整套详情页。** 有修改先更新对应清单、卡片和记录；已经确认且未变化的部分不重复询问。用户上传修订卡但尚未表示确认时，只核对该卡的状态。模糊的“直接做”不代替对尚未展示的新卡片的确认。
+核对产品卡、分组／配色／数量及必要卖点；关键商品事实有歧义时先澄清。已有确认或明确自主执行授权时继续规划，未核实商品事实保持未知。 有修改先更新对应清单、卡片和记录；已经确认且未变化的部分不重复询问。用户上传修订卡但尚未表示确认时，只核对该卡的状态。用户要求自行决定时可按证据推进，并记录使用的基准。
 
 ## 3. 以新版模板规划整套，每屏 A/B/C
 
@@ -73,7 +67,7 @@ Maintenance completes CLI/runtime and Skill verification, followed by host-nativ
 
 保留模板编号用于 PSD 对应，实际屏序另外记录。07–10 可缩减或扩展为形态分组页，不能因为模板有四只抱枕就强做四页、强塞四款；不能把双色月亮拆成两个形态页。
 
-每屏都给三个可独立使用的完整方向。三案共有本屏的任务、景别、款色范围、版式与品牌基础，差异来自人物与产品组合、同景别观察方向、承托体块、前后景和呼吸空间。**固定 PSD 图片框和留位，变化发生在摄影构图内部。** 不能用远景／特写／纯产品三种不同任务凑同一屏三案，也不能只设计 A、让 B/C 仅改表情或小道具。
+未指定时每屏规划 A/B/C 三个完整方向；用户已指定方案数或直接执行时按实际要求规划。三案共有本屏的任务、景别、款色范围、版式与品牌基础，差异来自人物与产品组合、同景别观察方向、承托体块、前后景和呼吸空间。**固定 PSD 图片框和留位，变化发生在摄影构图内部。** 不能用远景／特写／纯产品三种不同任务凑同一屏三案，也不能只设计 A、让 B/C 仅改表情或小道具。
 
 摄影与审美继续按 [摄影方法](references/photography-method.md)；人物身份、默认奶白长袖长裤与素面袜按 [人物方法](references/model.md)。模板中的旧脸、短裤或裸足不覆盖当前模特卡。产品形态、比例与材质以本轮确认卡为准，不沿用历史长条商品。
 
@@ -84,15 +78,15 @@ Maintenance completes CLI/runtime and Skill verification, followed by host-nativ
 1. 指定单屏／指定若干屏的 A/B/C。
 2. 整套全部页面的 A/B/C。
 
-默认每个图片位生成三张独立素材。三图页一屏共 9 张，四宫格一屏共 12 张；A 方向的各图片位成套协调，B/C 同理。用户要求完整无字页面时，一屏交三张完整页面。切换方式时按实际清单重新计数，不暗中同时生成两种交付。
+明确授权生成三案时，每个图片位生成三张独立素材；不能把未选择的默认提案数当作付费生成数量。三图页一屏共 9 张，四宫格一屏共 12 张；A 方向的各图片位成套协调，B/C 同理。用户要求完整无字页面时，一屏交三张完整页面。切换方式时按实际清单重新计数，不暗中同时生成两种交付。
 
 规划认可但未确定生成范围时，只澄清范围；已明确指定范围、模式与方案时直接执行，不要求额外点击“批准”。仅确认产品卡不授权详情页生图，单屏授权也不扩展成整套。
 
 ## 5. 生成与交付
 
-按 [媒体执行](references/media-execution.md) 保留现有 SealSeek 能力链：发现当前能力 → 参数 dry-run → 在授权范围内提交 → 保存任务 ID → 跟踪／恢复 → 下载 → 实际看图。参考图必须实际传入，不只在提示词里写路径。默认模型由媒体包决定；用户明确指定时保持指定，能力不支持则报告并等待必要选择。
+按 [媒体执行](references/media-execution.md) 执行 ToAPIs 能力链：读取模型文档 → 本地参数核对 → 在授权范围内提交 → 保存任务 ID → 跟踪／恢复 → 下载 → 实际看图。参考图必须实际传入，不只在提示词里写路径。未指定模型时使用经实时文档核验的 `gpt-image-2.6-sunburst`；明确指定时保持指定，能力不支持则报告并等待必要选择。
 
-产品卡与详情素材共用本轮进度和画板，分阶段编号。详情素材按 [画板对照归档](references/canvas-comparison.md) 用对应新版模板／图片位做左侧对照，右侧放成图；不再要求旧页与新页一一对应。保存每张任务、文件、模板、方向和位置关系，恢复原任务，不自动重提不确定的付费生成。
+产品卡与详情素材共用本轮进度和本地对照档案，分阶段编号。详情素材按 [图片与清单归档](references/canvas-comparison.md) 记录对应新版模板／图片位与成图文件；不要求旧页与新页一一对应。保存每张任务、文件、模板、方向和位置关系，恢复原任务，不自动重提不确定的付费生成。
 
 全部交付为无排版文字图片：不生成标题、卖点标签、口号、版面 LOGO、水印或装饰文字；产品本体确认保留的标识不被误删。拆图不附带整页白边和文字栏，完整页保留对应框架与空白。图片比例、裁切与 PSD 衔接见 [版式与图片位](references/brand-layout.md)。
 
@@ -100,7 +94,7 @@ Maintenance completes CLI/runtime and Skill verification, followed by host-nativ
 
 单张验收之外，同屏三案齐后按 [三案对照验收](references/planning.md) 并排查看 A/B/C，逐案核对规划中的关键差异是否出现在成图。若原定不同姿态或构图收敛为近似画面，记录未落实的区别并处理对应输出；不能因 C 有变化就忽略 A/B 近似，也不能只以“已生成三张”判定完成。
 
-交付图片目录、文件与模板对应清单、真实画板链接及关键未完成项。保留原始生成输出，按当前用户约定的交付与缓存位置保存成果副本；未指定时使用本轮项目目录，不依赖作者私人目录。不得将有路径或任务 ID 当作已完成视觉验收。
+交付图片目录、文件与模板对应清单及关键未完成项；不创建在线画板或本地 HTML 页面。保留原始生成输出，按当前用户约定的交付与缓存位置保存成果副本；未指定时使用本轮项目目录，不依赖作者私人目录。不得将有路径或任务 ID 当作已完成视觉验收。
 
 ## 资料按需读取
 
@@ -112,7 +106,7 @@ Maintenance completes CLI/runtime and Skill verification, followed by host-nativ
 | 原图位置与用途 | [assets.md](references/assets.md)、[模板索引](references/detail-final-20261016.md) |
 | 摄影与人物 | [photography-method.md](references/photography-method.md)、[model.md](references/model.md) |
 | PSD 比例、留白、拆图／整页 | [brand-layout.md](references/brand-layout.md) |
-| 工具与画板执行 | [media-execution.md](references/media-execution.md)、[canvas-comparison.md](references/canvas-comparison.md) |
+| 工具与本地归档 | [media-execution.md](references/media-execution.md)、[canvas-comparison.md](references/canvas-comparison.md) |
 | 质量问题定位 | [cases.md](references/cases.md) |
 | 本地版本、来源、依赖维护 | [maintenance.md](references/maintenance.md) |
 
