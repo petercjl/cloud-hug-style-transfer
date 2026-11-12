@@ -2,14 +2,14 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
-// Modified for WorkBuddy migration: honor explicitly requested directions.
+// One complete page per screen by default; multiple directions are explicit opt-in.
 const keyPattern = /^[a-z0-9][a-z0-9_-]{0,79}$/;
 const fail = message => { throw new Error(message); };
 
 // Enumerates files only. It neither infers products nor grants generation approval.
 export function planInventory(input) {
   if (!input || typeof input !== 'object' || Array.isArray(input)) fail('Expected an input object.');
-  const {groups, mode = 'pages', selected_pages, directions = ['A', 'B', 'C']} = input;
+  const {groups, mode = 'pages', selected_pages, directions = ['A']} = input;
   if (!Array.isArray(directions) || !directions.length || new Set(directions).size !== directions.length || directions.some(v => typeof v !== 'string' || !/^[A-Za-z0-9][A-Za-z0-9_-]{0,39}$/.test(v))) fail('directions must be a nonempty list of unique safe names.');
   if (!['assets', 'pages'].includes(mode)) fail('mode must be assets or pages.');
   if (!Array.isArray(groups) || !groups.length) fail('groups must contain at least one confirmed shape group.');
@@ -50,7 +50,7 @@ export function planInventory(input) {
   return {
     ok:true,
     generation_authorized:false,
-    note:'Inventory only; require confirmed products, approved plans and selected generation scope before execution.',
+    note:'Inventory only; this helper neither reads nor changes project authorization. Use the recorded preflight confirmation and generation scope; do not request another approval when already authorized. A is the default file key, not a pending scheme selection.',
     mode,
     shape_groups:groups.length,
     product_cards:seenVariants.size,

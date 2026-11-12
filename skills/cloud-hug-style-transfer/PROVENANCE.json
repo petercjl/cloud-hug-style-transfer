@@ -315,8 +315,13 @@
       "Accept prepared product photographs as well as existing product pages.",
       "After product cards, extract known dimensions and keep independent human-product scale photographs, reusable by applicable product/specification rather than paired to each card.",
       "Carry scale evidence into composition planning, actual reference inputs, prompts and visual review.",
-      "Default to one complete text-free page per selected page/direction; retain explicit opt-in split assets and update inventory counting."
-    ]
+      "Default to one complete text-free page per selected page/direction; retain explicit opt-in split assets and update inventory counting.",
+      "Default to one plan and one complete image per page; multiple directions are explicit opt-in.",
+      "Consolidate product-card, scale, four-grid content and bounded full-set generation confirmation before detailed planning.",
+      "Continue authorized planning, generation batches and review without repeated scheme, pilot-page or continuation menus.",
+      "Keep current confirmation, scope, task and review state in the project manifest; preserve partial scope and paid-retry boundaries."
+    ],
+    "revision": "2026-11-12-single-plan"
   },
   "toapis_migration": {
     "date": "2026-11-12",

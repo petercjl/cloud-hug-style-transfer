@@ -9,30 +9,51 @@ import * as life from '../lifecycle/engine.mjs';
 
 const groups=[{id:'moon',variants:['moon-white','moon-yellow']},{id:'star',variants:['star-blue']}];
 
-test('brand upgrade counts colors as cards and defaults to one complete page per direction',()=>{
+test('brand upgrade counts colors as cards and defaults to one plan and output per page',()=>{
  const result=planInventory({groups});
  assert.equal(result.product_cards,3);
  assert.equal(result.shape_groups,2);
  assert.equal(result.all_page_count,11);
  assert.equal(result.selected_photo_slots,18);
  assert.equal(result.mode,'pages');
- assert.equal(result.output_count,33);
+ assert.equal(result.output_count,11);
  assert.ok(result.outputs.every(o=>o.slot==='page'));
+ assert.ok(result.outputs.every(o=>o.direction==='A'));
  assert.deepEqual(result.pages.filter(p=>p.group_id).map(p=>p.page_id),['07_moon','07_star']);
- assert.equal(new Set(result.outputs.map(o=>o.file_key)).size,33);
+ assert.equal(new Set(result.outputs.map(o=>o.file_key)).size,11);
+ assert.equal(new Set(result.outputs.map(o=>o.page_id)).size,11);
  assert.equal(result.generation_authorized,false);
  assert.ok(result.pages.every(p=>!['01','02','16','17','18','19'].includes(p.template)));
 });
 
-test('selected split slots and complete pages retain separate A/B/C counts',()=>{
+test('selected pages keep one direction unless multiple directions are explicitly requested',()=>{
  const selected_pages=['07_moon','12'];
  const split=planInventory({groups,selected_pages,mode:'assets'});
- assert.equal(split.output_count,21);
- for(const direction of ['A','B','C'])assert.equal(split.outputs.filter(o=>o.direction===direction).length,7);
+ assert.equal(split.output_count,7);
  const complete=planInventory({groups,selected_pages});
- assert.equal(complete.output_count,6);
+ assert.equal(complete.output_count,2);
  assert.ok(complete.outputs.every(o=>o.slot==='page'));
  assert.equal(complete.generation_authorized,false);
+ const directions=['A','B','C'];
+ const multipleSplit=planInventory({groups,selected_pages,mode:'assets',directions});
+ assert.equal(multipleSplit.output_count,21);
+ for(const direction of directions)assert.equal(multipleSplit.outputs.filter(o=>o.direction===direction).length,7);
+ const multipleComplete=planInventory({groups,selected_pages,directions});
+ assert.equal(multipleComplete.output_count,6);
+ assert.ok(multipleComplete.outputs.every(o=>o.slot==='page'));
+});
+
+test('single-shape mushroom set needs ten detail images regardless of color count',()=>{
+ const expected=['03','04','05','06','07_mushroom','11','12','13','14','15'];
+ for(const variants of [['mushroom-caramel'],['mushroom-caramel','mushroom-cream']]){
+  const result=planInventory({groups:[{id:'mushroom',variants}]});
+  assert.equal(result.product_cards,variants.length);
+  assert.equal(result.selected_photo_slots,15);
+  assert.equal(result.output_count,10);
+  assert.deepEqual(result.outputs.map(item=>item.page_id),expected);
+  assert.equal(result.outputs.filter(item=>item.page_id==='12').length,1);
+  assert.equal(result.generation_authorized,false);
+ }
 });
 
 test('page inventory rejects duplicate product ids, excluded pages and unsupported modes',()=>{
@@ -54,8 +75,8 @@ test('explicit single direction does not expand the requested paid-image invento
  for(const directions of [[],['A','A'],['../escape'],[1]])assert.throws(()=>planInventory({groups,directions}));
 });
 
-test('a single four-grid direction keeps four content slots in one output',()=>{
- const result=planInventory({groups,selected_pages:['12'],directions:['A']});
+test('four-grid defaults to one output with four content slots without a scheme selection',()=>{
+ const result=planInventory({groups,selected_pages:['12']});
  assert.equal(result.selected_photo_slots,4);
  assert.equal(result.output_count,1);
  assert.deepEqual(result.pages[0].slots,['top-left','top-right','bottom-left','bottom-right']);
@@ -75,7 +96,7 @@ test('installed Skill runs its inventory helper and owning runtime outside the c
  const env={...process.env,PATH:temp,CLOUD_HUG_AUTO_UPDATE:'0'};
  const run=spawnSync(process.execPath,[path.join(target,'scripts/plan-inventory.mjs'),'--input',input],{cwd:temp,env,encoding:'utf8'});
  assert.equal(run.status,0,run.stderr);
- assert.equal(JSON.parse(run.stdout).output_count,3);
+ assert.equal(JSON.parse(run.stdout).output_count,1);
  const version=spawnSync(process.execPath,[path.join(target,'scripts/run.mjs'),'version','--json'],{cwd:temp,env,encoding:'utf8'});
  assert.equal(version.status,0,version.stderr);
  assert.equal(JSON.parse(version.stdout).version,life.pkg.version);
