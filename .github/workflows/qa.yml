@@ -21,9 +21,9 @@ jobs:
         with:
           node-version: 22
       - run: npm ci
-      - name: Install required media capability without service credentials
-        run: npm install --global --ignore-scripts @petercjl/sealseek-media-cli@0.6.1
-      - run: node npm/cli.mjs doctor --json
+      # ToAPIs discovery and doctor use isolated fixtures in the test suite.
+      # CI does not install a media provider or access service credentials.
+      - run: npm run validate:release
       - run: npm run check
       - run: npm test
       - run: npm pack --dry-run --json

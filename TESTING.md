@@ -42,3 +42,14 @@ Workflow revision: `2026-11-12-single-plan`; package version remains 0.7.0. The 
 - The 15 changed Skill resources were copied to the user-selected editable directory and the existing WorkBuddy local customization, after checking for conflicting edits and verifying backups. Existing WorkBuddy managed metadata, runtime and unrelated local changes were preserved; this does not claim a fresh managed installation or native host reload.
 
 No paid generation or new native WorkBuddy conversation was executed for this revision. The prior test-run artifacts were left intact. This GitHub sync does not publish an npm release; behavioral acceptance in a new WorkBuddy task remains separate from file, inventory and package validation.
+
+## Reference-first prompts and visual review — 2026-11-12
+
+Workflow revision: `2026-11-12-reference-first`; package version remains 0.7.0. This documentation revision makes applicable human-product images the visual scale authority, removes estimated size/body/furniture ratios and redundant size questions, and requires the corresponding approved page to guide both layout and brand photography. Whole-product displays retain scale references even when the output is person-free. Per-slot reviews explicitly cover scale, seamless studio, visible pale-blue support, applicable wood furniture, lighting and task fidelity.
+
+- Seven existing brand-upgrade/inventory tests passed, including single-plan full sets, one complete four-grid output and the installed helper. No executable business logic was changed, and no new tests were added merely to match document wording.
+- Skill frontmatter and UI metadata were validated with the repository's existing YAML parser; the Python quick validator could not run because PyYAML is absent. Local Markdown links, JSON resources and all 51 original asset hashes were checked. Resource integrity manifests were regenerated without a version bump.
+- The five reported failure patterns were reviewed against the amended instructions: guessed body ratios, all-cream support, grey product subframes, residential architecture, and template-count/size copying. These are instruction-level checks, not evidence of newly generated visual results.
+- The user's original generation records and images remain untouched. No paid generation, native host reload, remote push or npm publication is part of this revision's validation.
+
+The subsequent GitHub synchronization removes CI's retired SealSeek installation and its unconfigured live `doctor` invocation. Release integrity is checked explicitly; all 13 focused ToAPIs and maintenance tests passed locally, exercising dependency discovery and `doctor` with isolated fixtures. CI makes no live media calls and requires no service credentials.

@@ -319,9 +319,14 @@
       "Default to one plan and one complete image per page; multiple directions are explicit opt-in.",
       "Consolidate product-card, scale, four-grid content and bounded full-set generation confirmation before detailed planning.",
       "Continue authorized planning, generation batches and review without repeated scheme, pilot-page or continuation menus.",
-      "Keep current confirmation, scope, task and review state in the project manifest; preserve partial scope and paid-retry boundaries."
+      "Keep current confirmation, scope, task and review state in the project manifest; preserve partial scope and paid-retry boundaries.",
+      "Use applicable human-product photographs directly for visual scale; remove estimated dimensions, body/furniture ratios and redundant size questions.",
+      "Submit the corresponding approved page as both layout and brand-photography reference, with ordered roles verified against the actual request.",
+      "Keep seamless white studio, pale-blue support, selected wood furniture and diffuse lighting as applicable prompt and per-slot review requirements.",
+      "Use scale evidence for whole-product displays including person-free overviews; do not inherit the reference person or historical product counts.",
+      "Record concrete per-slot brand and scale observations; unresolved or unverified required checks cannot pass."
     ],
-    "revision": "2026-11-12-single-plan"
+    "revision": "2026-11-12-reference-first"
   },
   "toapis_migration": {
     "date": "2026-11-12",
