@@ -13,8 +13,8 @@
 1. 按媒体 Skill 执行 `prepare --json`；遵守该安装已有更新策略。仅做固定版本验证时可在测试进程设置 `TOAPISCLI_UPDATE_CHECK=0`、`TOAPISCLI_AUTO_UPDATE=0`，不得擅自改写持久策略。
 2. 执行 `auth status --json`、`models list --json`，确认配置与模型权限；这不等于已完成生图。执行 `models docs --model MODEL_ID --json`，核对支持的参考数量、分辨率、比例、费用与当前可用性。
 3. 用户未指定模型时默认 `gpt-image-2.6-sunburst`、2K；已指定模型优先。当前 CLI 支持的模型包含 `doubao-seedream-5-5`、`gemini-nano-banana-2.1`、`gpt-image-2.6-sunburst`，不得凭旧文档使用 2.5 ID。默认模型不可用时报告，不能静默替换。
-4. 实际查看输入。按本轮产品卡、人物卡、模板职责排序参考，并明确每张只控制什么。对有效的互补视角必须实际传入文件，不能只在提示词写路径。不得让历史产品或模板旧脸覆盖当前商品和人物身份。
-5. 在项目目录保存 UTF-8 提示词和清单；记录有序参考、SHA-256、模型、参数、图片位及授权张数。依据 PSD 图片位明确选择受支持的 `--aspect`；不使用 `auto`，不能把任意原始像素值当作受支持比例。不能满足精确尺寸时先说明需要后处理，保留原图。
+4. 实际查看输入。按本轮产品卡、独立尺度照片、人物卡、模板的各自职责组织参考，并明确每张只控制什么。产品卡阶段使用互补外观依据；有人货互动的详情页调用实际传入适用比例照片，按 [尺度规则](product-scale.md) 将规格、已有尺寸与各互动格位的身体参照写入提示词，不能只写路径。整次无人调用不传人物卡或人货照片；混合整页明确各格有无人物。必要依据超出参考上限时先去掉重复氛围参考，仍不足则说明缺口，不静默省略尺度图。不得让历史产品、比例照片中的人物或模板旧脸覆盖当前商品和模特身份。
+5. 在项目目录保存 UTF-8 提示词和清单；记录有序参考、SHA-256、职责、所用尺度依据、模型、参数、页面／图片位及授权张数。默认 `pages` 每个“页面＋已选方案”一个生成任务、交付一张包含全部格位的完整无字页；不能按四宫格展开成四次提交。默认按完整模板页选择受支持的 `--aspect`，仅明确拆图时按 PSD 图片位选择；不使用 `auto`，不能把任意原始像素值当作受支持比例。不能满足精确尺寸时先说明需要后处理，保留原图。
 6. 当前 CLI 没有 `--dry-run`、`--ratio`、`--count` 或 `--archive`。本地参数核对不需要发请求；一条 `image generate --submit` 创建一个付费生成任务。先核对总数量，按授权逐项提交，不能把默认 A/B/C 规划变成未授权的三次生成。
 
 ## 3. 提交与恢复
@@ -22,10 +22,10 @@
 命令示例中的路径须替换为真实绝对路径，每项任务使用新的独立输出目录：
 
 ```text
-node VERIFIED_MEDIA_ENTRY image generate --model gpt-image-2.6-sunburst --prompt-file PROMPT.txt --resolution 2K --aspect 3:2 --reference PRODUCT_CARD.jpg --reference TEMPLATE.jpg --out-directory NEW_TASK_DIRECTORY --submit --wait --timeout 45 --json
+node VERIFIED_MEDIA_ENTRY image generate --model gpt-image-2.6-sunburst --prompt-file PROMPT.txt --resolution 2K --aspect 3:2 --reference PRODUCT_CARD.jpg --reference SCALE_PHOTO.jpg --reference MODEL_CARD.png --reference TEMPLATE.jpg --out-directory NEW_TASK_DIRECTORY --submit --wait --timeout 45 --json
 ```
 
-模型、比例和参考数量以上一步文档与本轮规划为准。提交后保留 CLI 在该目录写出的 `request.json`、任务回执和下载文件。记录真实生成 ID、任务 ID、状态与实际 `billing`；缺失或未结算的费用保持未知，不以模型报价假装实扣金额。
+上例为有人货互动的单次调用，比例、模型和参考数量以上一步文档与本轮规划为准，不把示例 `3:2` 当作所有模板的固定比例；无人页和产品卡不照搬人物与尺度输入。提交后保留 CLI 在该目录写出的 `request.json`、任务回执和下载文件。记录真实生成 ID、任务 ID、状态与实际 `billing`；缺失或未结算的费用保持未知，不以模型报价假装实扣金额。
 
 超时、断线、待完成或结果未知时，先检查原目录，再执行：
 
@@ -38,6 +38,6 @@ node VERIFIED_MEDIA_ENTRY task wait --directory ORIGINAL_TASK_DIRECTORY --timeou
 
 ## 4. 下载与验收
 
-确认实际文件存在、格式和尺寸可读，实际查看产品结构、配色、人物、光色、受力、图片位、无排版文字要求。模型成功仅说明生成链路完成；美术不合格要记录具体偏差。保留原始图片，并按 [图片与对应清单](canvas-comparison.md) 归档。
+确认实际文件存在、格式和尺寸可读，实际查看产品结构、配色、人物、光色、受力、图片位、无排版文字要求；按独立比例依据检查各互动格位与跨页的实物体量，不能因外观正确就判尺度通过。默认核对每屏每个已选方案只有一张完整页、三图／四格内容齐全。模型成功仅说明生成链路完成；美术不合格要记录具体偏差。保留原始图片，并按 [图片与对应清单](canvas-comparison.md) 归档。
 
 不创建在线画板、不上传对照素材、不生成 HTML。宿主能否发现 Skill、宿主能否查看图片、CLI 能否完成真实生图是三项独立证据；只验证其中一项不能宣称全部通过。

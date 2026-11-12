@@ -23,3 +23,11 @@ Scope: the existing `cloud-hug-style-transfer` brand-upgrade Skill and its ownin
 ## Boundaries
 
 WorkBuddy's native in-conversation Skill discovery and a complete user-driven product-card / planning / detail-page session have not been exercised. The installed files and real CLI generation chain are verified separately; `hostDiscovery` remains pending until WorkBuddy loads the Skill. No npm release is performed by this GitHub sync. Online canvas and HTML delivery are intentionally absent.
+
+## Product-scale and complete-page revision — 2026-11-12
+
+This revision accepts prepared product photographs as well as existing product pages. After product cards it preserves independent human-product scale evidence, carries that evidence into planning and actual generation inputs, and adds scale review. The default inventory is now one complete text-free page per selected page/direction, including all three-image or four-grid content slots. Explicit split-assets requests remain supported.
+
+Regression coverage includes the complete-page default, grouped product colors, selected directions, a single four-grid direction producing one output, explicit split assets and the installed inventory helper. Skill-format, local-reference and original-asset preservation checks passed before repository integration. Package integrity manifests are regenerated for the changed resources without a version bump.
+
+The earlier paid media smoke test above predates this scale revision. No new paid generation, native host session or visual proof of scale accuracy is claimed for these changes. GitHub synchronization does not publish an npm release or update another host's installed Skill.

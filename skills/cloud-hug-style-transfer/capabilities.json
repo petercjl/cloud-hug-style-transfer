@@ -7,7 +7,7 @@
   "capabilities": [
     {
       "id": "media.image.inspect",
-      "purpose": "实际查看旧商品资料、产品设定卡、新版模板与生成结果",
+      "purpose": "实际查看商品实拍或旧资料、产品设定卡、独立人货比例照片、新版模板与生成结果",
       "required": true,
       "required_features": [
         "local-image",

@@ -1,7 +1,7 @@
 interface:
   display_name: "抱抱云朵社品牌升级"
-  short_description: "确认产品卡与卖点，按新版模板规划每屏三案，交付可放入PSD的无字摄影素材"
-  default_prompt: "使用 $cloud-hug-style-transfer，将我上传的旧详情页升级到内置新版模板，先生成产品设定卡并核对款式、配色和卖点，再规划整套每屏A/B/C三案，确认生成范围后执行。"
+  short_description: "确认产品外观与独立人货比例，按新版模板规划三案，每案交付一张完整无字页"
+  default_prompt: "使用 $cloud-hug-style-transfer，将我整理好的商品实拍或旧资料升级到内置新版模板，先生成产品卡，再从旧资料或我补充的同框实拍建立独立人货比例依据，核对产品与卖点后规划每屏A/B/C，按选定范围每案生成一张完整无字页面。"
   icon_small: "./assets/icon.svg"
   icon_large: "./assets/icon.svg"
 policy:

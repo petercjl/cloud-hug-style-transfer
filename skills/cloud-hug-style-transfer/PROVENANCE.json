@@ -308,6 +308,16 @@
   "media_provider": "@petercjl/toapiscli >=0.1.1 and its current-host managed Skill/runtime",
   "historical_validation_scope": "Skill-format, local-reference, source-preservation and package-integrity checks; manual workflow review against the user test. Media scripts and assets unchanged. No live host interaction, paid generation or external canvas writes tested in this revision.",
   "validation_scope": "See TESTING.md in the repository for the 0.7.0 migration; native host discovery is separate from CLI evidence.",
+  "local_workflow_revision": {
+    "date": "2026-11-12",
+    "basis": "User-requested update of the editable ToAPIs Skill; package version unchanged.",
+    "scope": [
+      "Accept prepared product photographs as well as existing product pages.",
+      "After product cards, extract known dimensions and keep independent human-product scale photographs, reusable by applicable product/specification rather than paired to each card.",
+      "Carry scale evidence into composition planning, actual reference inputs, prompts and visual review.",
+      "Default to one complete text-free page per selected page/direction; retain explicit opt-in split assets and update inventory counting."
+    ]
+  },
   "toapis_migration": {
     "date": "2026-11-12",
     "version": "0.7.0",

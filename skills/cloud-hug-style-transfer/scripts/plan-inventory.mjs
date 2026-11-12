@@ -9,7 +9,7 @@ const fail = message => { throw new Error(message); };
 // Enumerates files only. It neither infers products nor grants generation approval.
 export function planInventory(input) {
   if (!input || typeof input !== 'object' || Array.isArray(input)) fail('Expected an input object.');
-  const {groups, mode = 'assets', selected_pages, directions = ['A', 'B', 'C']} = input;
+  const {groups, mode = 'pages', selected_pages, directions = ['A', 'B', 'C']} = input;
   if (!Array.isArray(directions) || !directions.length || new Set(directions).size !== directions.length || directions.some(v => typeof v !== 'string' || !/^[A-Za-z0-9][A-Za-z0-9_-]{0,39}$/.test(v))) fail('directions must be a nonempty list of unique safe names.');
   if (!['assets', 'pages'].includes(mode)) fail('mode must be assets or pages.');
   if (!Array.isArray(groups) || !groups.length) fail('groups must contain at least one confirmed shape group.');
