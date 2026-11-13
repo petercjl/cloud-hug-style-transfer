@@ -1,7 +1,7 @@
 interface:
   display_name: "抱抱云朵社品牌升级"
-  short_description: "集中确认产品卡、独立比例与四宫格内容后，自动完成整套，每屏一个方案一张图"
-  default_prompt: "使用 $cloud-hug-style-transfer，将我整理好的商品实拍或旧资料升级到内置新版模板，先准备产品卡与独立人货比例依据，集中确认外观、尺度、四宫格内容及整套范围后，自动规划每屏一个方案并连续生成每屏一张完整无字页面。"
+  short_description: "每屏一个方案一张图，先出前三屏，确认后逐张继续或批量完成"
+  default_prompt: "使用 $cloud-hug-style-transfer，将我整理好的商品实拍或旧资料升级到内置新版模板，先准备产品卡与独立人货比例依据，集中确认外观、尺度、四宫格内容及整套范围后，规划每屏一个方案、一张完整无字页面，默认先生成前三屏，之后由我选择逐张继续或批量完成剩余页面。"
   icon_small: "./assets/icon.svg"
   icon_large: "./assets/icon.svg"
 policy:

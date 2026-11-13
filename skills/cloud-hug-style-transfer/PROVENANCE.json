@@ -309,24 +309,20 @@
   "historical_validation_scope": "Skill-format, local-reference, source-preservation and package-integrity checks; manual workflow review against the user test. Media scripts and assets unchanged. No live host interaction, paid generation or external canvas writes tested in this revision.",
   "validation_scope": "See TESTING.md in the repository for the 0.7.0 migration; native host discovery is separate from CLI evidence.",
   "local_workflow_revision": {
-    "date": "2026-11-12",
-    "basis": "User-requested update of the editable ToAPIs Skill; package version unchanged.",
+    "date": "2026-11-13",
+    "revision": "2026-11-13-staged-review",
+    "basis": "User-approved simplification based on the accepted single-plan workflow; package version unchanged.",
+    "planning_base_commit": "2d31a46",
+    "previous_workflow_revision": "2026-11-12-reference-first",
     "scope": [
-      "Accept prepared product photographs as well as existing product pages.",
-      "After product cards, extract known dimensions and keep independent human-product scale photographs, reusable by applicable product/specification rather than paired to each card.",
-      "Carry scale evidence into composition planning, actual reference inputs, prompts and visual review.",
-      "Default to one complete text-free page per selected page/direction; retain explicit opt-in split assets and update inventory counting.",
-      "Default to one plan and one complete image per page; multiple directions are explicit opt-in.",
-      "Consolidate product-card, scale, four-grid content and bounded full-set generation confirmation before detailed planning.",
-      "Continue authorized planning, generation batches and review without repeated scheme, pilot-page or continuation menus.",
-      "Keep current confirmation, scope, task and review state in the project manifest; preserve partial scope and paid-retry boundaries.",
-      "Use applicable human-product photographs directly for visual scale; remove estimated dimensions, body/furniture ratios and redundant size questions.",
-      "Submit the corresponding approved page as both layout and brand-photography reference, with ordered roles verified against the actual request.",
-      "Keep seamless white studio, pale-blue support, selected wood furniture and diffuse lighting as applicable prompt and per-slot review requirements.",
-      "Use scale evidence for whole-product displays including person-free overviews; do not inherit the reference person or historical product counts.",
-      "Record concrete per-slot brand and scale observations; unresolved or unverified required checks cannot pass."
-    ],
-    "revision": "2026-11-12-reference-first"
+      "Preserve the accepted page order, single-plan planning, complete-page output and original assets.",
+      "Use independent human-product photographs directly for relative scale; keep product-card internal proportions and remove written size estimates.",
+      "Fix seamless wall-free and window-free white studio, pale-blue support, selected wood furniture and soft light as the brand baseline.",
+      "Use existing detail-page examples only as generation-time style references; retain template tasks and PSD slots in planning.",
+      "Generate the first three pages, then wait for modification, stepwise continuation or an explicit remaining-batch choice; preserve stops on resume.",
+      "Default to gpt-image-2.6-sunburst at 2K and check the actual prompt, references, permitted pages and parameters before submission.",
+      "Keep basic visual review and user continuation decisions separate; consolidate repeated instructions."
+    ]
   },
   "toapis_migration": {
     "date": "2026-11-12",

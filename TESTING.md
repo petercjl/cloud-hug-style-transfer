@@ -53,3 +53,13 @@ Workflow revision: `2026-11-12-reference-first`; package version remains 0.7.0. 
 - The user's original generation records and images remain untouched. No paid generation, native host reload, remote push or npm publication is part of this revision's validation.
 
 The subsequent GitHub synchronization removes CI's retired SealSeek installation and its unconfigured live `doctor` invocation. Release integrity is checked explicitly; all 13 focused ToAPIs and maintenance tests passed locally, exercising dependency discovery and `doctor` with isolated fixtures. CI makes no live media calls and requires no service credentials.
+
+## Staged review and simplified references — 2026-11-13
+
+Workflow revision: `2026-11-13-staged-review`; package version remains 0.7.0. Business planning is based on the accepted single-plan revision `2d31a46`. Page roles, product grouping, one complete image per page, the media runtime and all original assets are preserved. Existing examples provide generation-time style only; independent human-product photographs provide visual scale. The default first three pages are 03, 04 and 05; subsequent generation follows an explicit stepwise or remaining-batch decision.
+
+- Seven existing brand-upgrade/inventory tests passed, including grouped colors, single-plan full sets, one complete four-grid output and the installed helper. No executable business logic was changed or new wording-matching tests added.
+- Release integrity and Git whitespace checks passed. The repository's existing YAML parser validated Skill frontmatter and UI metadata; all 79 local Markdown links and eight JSON resources were checked, and the hashes of all 51 original assets were preserved. The Python quick validator remains unavailable because PyYAML is not installed; no dependency was installed for this documentation change.
+- Manual instruction review covered: first-three completion waits; a plain continuation advances one page; modification stays on the current page/batch; an explicit batch choice covers only remaining pages; partial scope does not expand; waiting survives recovery; a three-hand output cannot pass basic review. This is document-level validation, not an autonomous live host trial.
+- The final prompt review is centralized in media execution, generation decisions in planning, and review/current progress in the existing manifest guidance. Markdown instruction text is approximately 13% shorter than the prior revision.
+- No paid generation, native WorkBuddy reload, remote push or npm publication was performed as part of these checks. The user's existing generated images and task records were not changed.

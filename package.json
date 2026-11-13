@@ -1,7 +1,7 @@
 {
   "name": "@petercjl/cloud-hug-style-transfer",
   "version": "0.7.0",
-  "description": "Template-based Cloud Hug brand upgrade with confirmed product and scale references, automatic single-plan pages and text-free PSD imagery.",
+  "description": "Template-based Cloud Hug brand upgrade with single-plan pages, image-based product scale and first-three review followed by stepwise or batch generation.",
   "type": "module",
   "bin": {
     "cloud-hug-style-transfer": "npm/cli.mjs"

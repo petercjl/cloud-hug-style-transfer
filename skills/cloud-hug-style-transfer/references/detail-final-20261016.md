@@ -26,7 +26,7 @@
 | `18.jpg` | 购买须知 | 跳过 |
 | `19.jpg` | 历史情绪收尾 | 跳过 |
 
-文件实际路径均为 `assets/approved/detail-final-20261016/NN.jpg`。每次详情生成实际传入本屏对应图片，让它同时约束版式与品牌摄影：连续棚景、浅蓝承托、精选木件和柔光；不能只借外框而另写一套住宅环境。整页传原页，明确拆图时可用对应格位裁图但保留其品牌线索。这里的旧款数、人物、商品体量、颜色、面料、文案和功能不自动迁移。形态分组及格位规则见 [page-patterns.md](page-patterns.md)，拆图与完整页见 [brand-layout.md](brand-layout.md)。
+文件实际路径均为 `assets/approved/detail-final-20261016/NN.jpg`。这里的旧款数、颜色、长条比例、面料、文案和功能都不自动迁移。形态分组及格位规则见 [page-patterns.md](page-patterns.md)，拆图与完整页见 [brand-layout.md](brand-layout.md)。
 
 模板控制页面职责和摄影框架；本轮确认产品卡控制商品；当前模特卡控制身份、长袖长裤与素面袜。模板里其他衣着或裸足不进入新结果。即使无字，也需保留 PSD 图片框和必要文字叠加空间。
 
