@@ -1,4 +1,6 @@
 {
+  "PROVENANCE.json": "37073623536cc416bd38afcc610585ea45868ae6ec6067003a9708dfdbae7611",
+  "SKILL.md": "054e089291141cac82b454aa5a7594da5b9cc9f5b785383c871ef491666df297",
   "adapters/codex.json": "4f104fa94eb5cb63e70001efc43bc75a6661cf4671b4463c91060a3c6b93f7dc",
   "adapters/generic.json": "dbfc65e16e4b12b5b2c4b5f73db6df2d5cf462bae506b3dcd3c767e17d3e6c8e",
   "adapters/sealseek.json": "f0c9a3c97161f427df82bbb8a412258b7741fd3a644479350bd35ae789e4f13d",
@@ -55,8 +57,7 @@
   "assets/rejected/brand-kv-c2-20261012.webp": "88ed2de0d950ea4a34519661481877ee0899743a6dfce203a2033c0dab6a73f7",
   "assets/rejected/overhead-rest-b.webp": "16e5e6fabdc665868ac244d556f3a8a93db826a34425fdee042e4f7a8ebf64c3",
   "assets/rejected/prone-pile-a.webp": "d07f38bbb69fc23b30dca4ed27faa3d7ae58e2e81840a1c3d46101911c28a7a2",
-  "capabilities.json": "1f027c020bb123530452ffb3666bc3f67a08e2294c2f6dac73b146300ecc38bd",
-  "PROVENANCE.json": "37073623536cc416bd38afcc610585ea45868ae6ec6067003a9708dfdbae7611",
+  "capabilities.json": "cbec1fde392adb6078aa215d6dda9b353d55a20e743f32b89870bbc0e7890fbb",
   "references/assets.md": "62e083b4a7196b023cd8f0063e3b7f434afc4d8c076e157eebf65a7082cd2017",
   "references/brand-layout.md": "1cbed9a63a4239c685ddb5d39300a0f3c05e7fa15bed34256abe6d4dcdb0c6b7",
   "references/canvas-comparison.md": "c508990cce955cceb67d49e61a7557fea7ed85c17c936815e7386ef4f74b7785",
@@ -79,6 +80,5 @@
   "scripts/media-dependency.mjs": "fcb2c6d459e5886023b9f0bd66fe8225295cd2f519e5886f70cc75bb85544bd2",
   "scripts/plan-inventory.mjs": "76147a0b83e79d36f620048961104c5f19713d8ada81cdea3a9351269980d062",
   "scripts/run.mjs": "0b71e6de4ae7babfce792869dc538569cc2db1bd95f8690571c951c2873211b1",
-  "scripts/runtime.mjs": "852caf589da7170ccb8f4329ecf8b0bfe7714f99e6b437b9395b49fa213b0a99",
-  "SKILL.md": "054e089291141cac82b454aa5a7594da5b9cc9f5b785383c871ef491666df297"
+  "scripts/runtime.mjs": "852caf589da7170ccb8f4329ecf8b0bfe7714f99e6b437b9395b49fa213b0a99"
 }

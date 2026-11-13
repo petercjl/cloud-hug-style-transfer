@@ -15,7 +15,7 @@ try {
  const {command,options:o,contract}=parse(process.argv.slice(2));
  const automatic={ok:true,state:'dispatcher-managed'};
  const identity={package:pkg.name,version:pkg.version,source,entry:{node:process.execPath,cli:path.join(root,'npm/cli.mjs')},owner:globalPrefix()?'global-npm':'source-or-parent'};
- if(command==='help')out({ok:true,...identity,commands:manifest.commandContracts});
+ if(command==='help')out({...manifest,ok:true,...identity,commands:manifest.commandContracts});
  else if(o['--help'])out({ok:true,command,...contract});
  else if(command==='version')out({ok:true,name:pkg.name,...identity});
  else if(command==='capabilities')out({...manifest,...identity});

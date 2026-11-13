@@ -22,6 +22,10 @@ try {
  invoke(npm,['install','--prefix',prefix,'--ignore-scripts','--no-audit','--no-fund',tarball]);
  const packageRoot=path.join(prefix,'node_modules',...pkg.name.split('/')),entry=path.join(packageRoot,config.entry);
  assert.equal(body(entry,['version']).version,pkg.version);
+ const manifest=body(entry,['--help','--json']);assert.equal(manifest.discoveryContract.schemaVersion,1);
+ const collection=body(entry,manifest.discoveryContract.skillCollection.enumeration.argv);assert.equal(collection.complete,true);assert.deepEqual(collection.sources.map(x=>x.name),[config.skill]);
+ const named=body(entry,manifest.discoveryContract.skillCollection.namedSource.map(x=>x==='{skill}'?config.skill:x));assert.equal(named.source,collection.sources[0].source);
+ assert.equal(body(entry,['skill','source','--name','unknown-skill','--json'],1).code,'SKILL_NOT_FOUND');
  assert.equal(body(entry,['skill','install','--agent','future-agent','--json'],1).code,'TARGET_PATH_REQUIRED');
  const a=path.join(dir,'agent-a',config.skill),b=path.join(dir,'agent-b',config.skill);
  for(const target of [a,b]){

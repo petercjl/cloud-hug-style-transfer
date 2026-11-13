@@ -205,6 +205,14 @@
         },
         "--help": {
           "type": "boolean"
+        },
+        "--name": {
+          "type": "string",
+          "description": "Exact logical Skill name."
+        },
+        "--all": {
+          "type": "boolean",
+          "description": "Enumerate all canonical Skills."
         }
       },
       "sideEffects": "none"

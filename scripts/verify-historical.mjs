@@ -50,7 +50,8 @@ try {
   const preload=path.join(dir,'candidate-selection.mjs');
   fs.writeFileSync(preload,`const original=globalThis.fetch;globalThis.fetch=(input,init)=>{const url=new URL(typeof input==='string'?input:input.url);if(url.hostname==='registry.npmjs.org'&&decodeURIComponent(url.pathname).startsWith('/'+${JSON.stringify(pkg.name)}))return original(${JSON.stringify(base)}+url.pathname+url.search,init);return original(input,init);};`,{flag:'wx'});
   // Only candidate selection changes; published updater bytes and real npm remain unmodified.
-  const extra={npm_config_prefix:prefix,npm_config_registry:base,NODE_OPTIONS:(process.env.NODE_OPTIONS||'')+' --import '+JSON.stringify(pathToFileURL(preload).href)};
+  const registryConfig=path.join(dir,'candidate.npmrc');fs.writeFileSync(registryConfig,'registry='+base+'\n@petercjl:registry='+base+'\n',{flag:'wx'});
+  const extra={npm_config_prefix:prefix,npm_config_registry:base,npm_config_userconfig:registryConfig,NODE_OPTIONS:(process.env.NODE_OPTIONS||'')+' --import '+JSON.stringify(pathToFileURL(preload).href)};
   delete extra[config.env+'_AUTO_UPDATE'];
   const updateArgs=config.skill==='cloud-hug-style-transfer'?['update','install','--yes','--agent','codex','--root',parent,'--json']:['update','install','--yes','--agent','future-agent','--path',target,'--json'];
   const result=await run(oldEntry,updateArgs,extra);legacyReceipt=JSON.parse(result);

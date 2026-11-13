@@ -369,6 +369,7 @@ export async function automatic(resolution,{probe,now=Date.now()}={}) {
  finally{if(fd!==undefined){fs.closeSync(fd);fs.unlinkSync(locked);}}
 }
 export const installationLifecycle={agentNeutral:true,skillRequired:true,updateRequiresSkillSync:true,required_components:['cli','skill','runtime'],installGuide:'INSTALL.md',updateGuide:'UPDATE.md',explicitTargetRequired:true,targetRequired:true,hostDiscoveryVerification:true,hostRegistrationRequired:true,installationMode:'copy',sharedLinksAllowed:false,isolatedRuntimeRequired:true,physicalCopies:true,isolatedRuntime:true,sharedLinks:false,postBumpIdentityValidation:true,install:'Resolve the current Agent directory; skill install --agent AGENT --path EXACT_SKILL_DIR --json',update:'Resolve selected target before replacement; update install --yes --agent AGENT --path EXACT_SKILL_DIR --json',verification:'Verify local runtime version, managed hashes, then reload the host and confirm Skill discovery.',target_scope:'selected current Agent only'};
+export function discoveryContract(){return {schemaVersion:1,commandsField:'commandContracts',entryPoints:[{argv:['capabilities','--json'],result:'manifest'}],version:{command:'version',argv:['version','--json'],fields:{package:{field:'name',type:'string'},version:{field:'version',type:'string'}}},skillCollection:{namesField:'skills',default:config.skill,selector:{option:'--name',type:'string'},enumeration:{argv:['skill','source','--all','--json'],itemsField:'sources',completeField:'complete'},namedSource:['skill','source','--name','{skill}','--json']}};}
 export function commandContracts(){
  const result={},target={
   '--agent':{type:'string',description:'Valid current Agent name; generic fallback for unnamed hosts.'},
@@ -377,7 +378,7 @@ export function commandContracts(){
   '--home':{type:'string',description:'Legacy explicitly resolved host root; appends skills and Skill name.'},
   '--target-directory':{type:'string',description:'Explicit exact Skill destination alias.'}
  },common={'--json':{type:'boolean'},'--help':{type:'boolean'}},yes={'--yes':{type:'boolean',required:true}};
- for(const action of ['source','status','install','update'])result['skill '+action]={options:{...common,...(action==='source'?{}:target),...(['install','update'].includes(action)?{'--mode':{type:'string',enum:['copy','link'],description:'Legacy link requests migrate to a physical copy.'},'--legacy-source':{type:'string',description:'Explicit owning package root for verified legacy migration.'},'--force':{type:'boolean',description:'Accepted legacy flag; local edit protection remains enforced.'},'--backup-edits':{type:'boolean',description:'Accepted legacy flag; local edits require separate reconciliation.'}}:{})},sideEffects:['install','update'].includes(action)?'local-write':'none'};
+ for(const action of ['source','status','install','update'])result['skill '+action]={options:{...common,...(action==='source'?{'--name':{type:'string',description:'Exact logical Skill name.'},'--all':{type:'boolean',description:'Enumerate all canonical Skills.'}}:target),...(['install','update'].includes(action)?{'--mode':{type:'string',enum:['copy','link'],description:'Legacy link requests migrate to a physical copy.'},'--legacy-source':{type:'string',description:'Explicit owning package root for verified legacy migration.'},'--force':{type:'boolean',description:'Accepted legacy flag; local edit protection remains enforced.'},'--backup-edits':{type:'boolean',description:'Accepted legacy flag; local edits require separate reconciliation.'}}:{})},sideEffects:['install','update'].includes(action)?'local-write':'none'};
  result['update check']={options:common,sideEffects:'none'};
  result['update install']={options:{...common,...target,...yes,'--candidate':{type:'string',description:'Absolute packed candidate archive for authorized installation.'},'--version':{type:'string',description:'Exact stable registry version.'}},sideEffects:'package-and-skill-update'};
  result['update operation']={options:{...common,...target,'--operation':{type:'string'}},sideEffects:'none'};
@@ -386,14 +387,14 @@ export function commandContracts(){
  result['update status']={options:{...common,...target},sideEffects:'none'};
  return result;
 }
-export function parse(args){const words=[],options={},booleans=new Set(['json','yes','help','force','backup-edits']);for(let i=0;i<args.length;i++){const token=args[i];if(!token.startsWith('--')){words.push(token);continue;}const key=token.slice(2);if(key in options)throw fail('INVALID_ARGUMENT','Duplicate option '+token);if(booleans.has(key))options[key]=true;else{if(!args[i+1]||args[i+1].startsWith('--'))throw fail('INVALID_ARGUMENT','Missing value for '+token);options[key]=args[++i];}}return {words,options};}
+export function parse(args){const words=[],options={},booleans=new Set(['json','yes','help','force','backup-edits','all']);for(let i=0;i<args.length;i++){const token=args[i];if(!token.startsWith('--')){words.push(token);continue;}const key=token.slice(2);if(key in options)throw fail('INVALID_ARGUMENT','Duplicate option '+token);if(booleans.has(key))options[key]=true;else{if(!args[i+1]||args[i+1].startsWith('--'))throw fail('INVALID_ARGUMENT','Missing value for '+token);options[key]=args[++i];}}return {words,options};}
 export async function dispatch(args) {
  const managed=['skill','update'].includes(args[0]);if(!managed)return false;
  try {
   const {words,options:o}=parse(args),[command,action,mode]=words;
   const common=['json','help'];
   const targetFlags=['agent','path','root','home','target-directory'];
-  const flags=command==='skill'?(action==='source'?[]:[...targetFlags,...(['install','update'].includes(action)?['mode','force','backup-edits','legacy-source']:[])])
+  const flags=command==='skill'?(action==='source'?['name','all']:[...targetFlags,...(['install','update'].includes(action)?['mode','force','backup-edits','legacy-source']:[])])
    :action==='check'?[]:action==='install'?[...targetFlags,'yes','candidate','version']:action==='operation'?[...targetFlags,'operation']:['resume','rollback'].includes(action)?[...targetFlags,'operation','yes']:action==='status'?targetFlags:action==='policy'?[...targetFlags,'yes','mode']:action==='auto'?[...targetFlags,'yes']:[];
   const allowed=new Set([...common,...flags]);
   for(const k of Object.keys(o))if(!allowed.has(k))throw fail('INVALID_ARGUMENT','Unknown option --'+k);
@@ -403,8 +404,10 @@ export async function dispatch(args) {
   if(o.help){console.log(JSON.stringify({ok:true,command:words.join(' '),...commandContracts()[words.slice(0,2).join(' ')],commands,installationLifecycle},null,2));return true;}
   let result;
   if(command==='skill'&&action==='source'){
-   if(Object.keys(o).some(k=>k!=='json'))throw fail('INVALID_ARGUMENT','skill source accepts only --json.');
+   if(o.all&&o.name)throw fail('INVALID_ARGUMENT','Choose --all or --name.');
+   if(o.name&&o.name!==config.skill)throw fail('SKILL_NOT_FOUND','Unknown logical Skill name.');
    result={ok:true,package:pkg.name,name:config.skill,source,version:pkg.version,installation:{fallback_agent:'generic',custom_path_required:true},installationLifecycle,maintenanceContract,commandContracts:commandContracts()};
+   if(o.all)result={ok:true,complete:true,sources:[result]};
   }else if(command==='update'&&action==='check')result=checkUpdate();
   else if(command==='update'&&['policy','status','auto'].includes(action)){
    const hasTarget=['path','root','home','target-directory'].some(k=>o[k]!==undefined)||process.env[config.env+'_SKILL_PATH'];
