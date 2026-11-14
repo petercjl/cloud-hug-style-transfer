@@ -60,3 +60,10 @@ test('typed maintenance receipts preserve legacy fields and report actual edit p
  const clean=life.status(r);assert.equal(clean.edited,false);assert.deepEqual(clean.editedFiles,[]);assert.equal(clean.verification.verified,true);assert.equal(clean.recovery.action,'host-discovery');
  fs.appendFileSync(path.join(r.target,'SKILL.md'),'\nlocal edit');const edited=life.status(r);assert.equal(edited.edited,true);assert(edited.editedFiles.includes('SKILL.md'));assert.equal(edited.verification.verified,false);assert.equal(edited.recovery.action,'preserve-local-edits');
 });
+
+test('explicit prerelease versions are accepted while invalid selectors and automatic prereleases are rejected',t=>{
+ const dir=temp(t),r=target(dir);life.install(r);
+ for(const version of ['next','latest','^0.8.0','0.8.0-next.01','0.8.0-'])assert.throws(()=>life.update(r,{yes:true,version}),{code:'INVALID_VERSION'});
+ assert.equal(life.compatible('0.8.0-next.1','0.8.0'),false);
+ assert.throws(()=>life.update(r,{yes:true,version:'0.8.0-next.1'}),{code:'DEVELOPMENT_CHECKOUT'});
+});

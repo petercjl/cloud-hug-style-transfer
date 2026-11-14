@@ -16,3 +16,5 @@ Agent execution contract:
 Existing user-owned targets and local edits are preserved. Managed legacy links are backed up and migrated to physical copies. A missing destination stops before package replacement. On partial failure inspect `update operation --path EXACT_SKILL_DIR --json`, then follow UPDATE.md. Service login and paid generation require their own authorization.
 
 Generation dependency: the selected host must separately install and configure `@petercjl/toapiscli` >=0.1.1. This package reuses its protected credentials; it never bundles, reads or reimports the credential file. The installed brand Skill resolves the sibling `toapiscli` Skill by default. For a nonstandard location, explicitly provide `CLOUD_HUG_TOAPIS_SKILL_ROOT` or run `scripts/check-media.mjs --skill-root EXACT_TOAPIS_SKILL_DIRECTORY`. Verify the managed `.runtime` and current CLI capabilities before generation; do not fall back to another host's global installation.
+
+产品资产制作另需 `@petercjl/product-asset-set` >=0.1.3 和当前宿主的配套 Skill，解析并加载其当前完整指令；依赖缺失会暂停该阶段。该包单独安装，不复制其业务代码进 Cloud Hug。

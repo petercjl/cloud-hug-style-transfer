@@ -1,6 +1,8 @@
 # ToAPIs 媒体执行
 
-本 Skill 只通过当前宿主安装的 `@petercjl/toapiscli` 生图。加载其完整 `SKILL.md`，复用用户已经导入的凭据；不读取、复制或打印凭据文件，不把账号配置放进品牌包。以下以已核验的 `toapiscli` 0.1.1 合同为基线，参数仍须以当前 CLI 和模型文档为准。
+本 Skill 的详情页只通过当前宿主安装的 `@petercjl/toapiscli` 生图。加载其完整 `SKILL.md`，复用用户已经导入的凭据；不读取、复制或打印凭据文件，不把账号配置放进品牌包。以下以已核验的 `toapiscli` 0.1.1 合同为基线，参数仍须以当前 CLI 和模型文档为准。
+
+产品资产制作先按 [产品资产交接](product-assets.md) 动态调用 `product-asset-set`，遵循 callee 的当前工具／模型合同；以下 ToAPIs 合同只用于返回后的详情页生成。
 
 ## 1. 找到当前宿主的媒体入口
 
@@ -16,18 +18,18 @@
 
 | 图像输入 | 职责与适用范围 |
 | --- | --- |
-| 确认产品卡 | 产品外观、内部结构与比例、配色和材质 |
-| 独立人货尺度图 | 按 [尺度规则](product-scale.md) 负责相对体量；无人陈列只借体量，不带入人物或背景 |
+| 已确认的独立全貌／结构／材质资产 | 产品外观、内部结构与比例、配色和材质 |
+| 资产组中的 scale 相对尺寸图 | 按 [尺度规则](product-scale.md) 负责相对体量；无人陈列只借体量，不带入人物或背景 |
 | 当前模特卡 | 本次有人物时负责身份与衣着；纯产品页不传 |
 | 现有品牌案例 | 只参考 [品牌风格](photography-method.md)，不规定原人物动作、家具位置和旧商品占位 |
 
-产品卡阶段使用互补商品外观依据，不照搬详情输入。超参考上限时先去掉重复氛围图，不能悄悄省略必要产品或尺度依据。模板编号及格位留在规划中，实际风格参考另记路径；不强制上传对应整页模板。
+产品资产阶段由 `product-asset-set` 执行，不使用下述详情页调用替代。超参考上限时先去掉重复氛围图，不能悄悄省略必要产品或尺度依据。模板编号及格位留在规划中，实际风格参考另记路径；不强制上传对应整页模板。
 
-在项目内保存 UTF-8 提示词、有序参考及哈希、模型参数和目标页。**发送前只对这份实际提示词和本次请求做一次以下核对**，不以规划表或已经读过 Skill 代替：
+先按 [资产选图](product-assets.md) 对每个所用资产组执行 `assets select`，保存校验结果与最终参考顺序；再在项目内保存 UTF-8 提示词、有序参考及哈希、模型参数和目标页。**发送前只对这份实际提示词和本次请求做一次以下核对**，不以规划表或已经读过 Skill 代替：
 
 | 核对项 | 通过条件 |
 | --- | --- |
-| 尺度与图号 | 实际传入适用尺度图，图号职责一致；大小只指向图像，没有新估厘米、身体／家具比例或产品到达的身体端点；内部形态仍服从产品卡 |
+| 尺度与图号 | 每次详情生成实际传入适用的 scale 资产（包括无人与局部页），图号职责一致；大小只指向图像，没有新估厘米、身体／家具比例或产品到达的身体端点；内部形态仍服从已确认全貌／结构资产 |
 | 风格与本屏任务 | 提示词包含摄影方法的固定品牌基准，未被住宅／全米白描述覆盖；各格任务与本轮方案一致，案例仅作风格参考 |
 | 当前可生成范围 | 按 [生成节奏](planning.md) 与清单中的模式、当前页／批和用户决定执行；等待确认时不发送后续请求 |
 | 参数与张数 | 默认模型和 2K 明确写入调用；每屏一个整页任务，三图／四格不拆开付费提交；画幅按本屏要求 |
@@ -43,10 +45,10 @@
 命令示例中的路径须替换为真实绝对路径，每项任务使用新的独立输出目录：
 
 ```text
-node VERIFIED_MEDIA_ENTRY image generate --model gpt-image-2.6-sunburst --prompt-file PROMPT.txt --resolution 2K --aspect 3:2 --reference PRODUCT_CARD.jpg --reference SCALE_PHOTO.jpg --reference MODEL_CARD.png --reference STYLE_REFERENCE.jpg --out-directory NEW_TASK_DIRECTORY --submit --wait --timeout 45 --json
+node VERIFIED_MEDIA_ENTRY image generate --model gpt-image-2.6-sunburst --prompt-file PROMPT.txt --resolution 2K --aspect 3:2 --reference OVERALL_ASSET.png --reference SCALE_ASSET.png --reference MODEL_CARD.png --reference STYLE_REFERENCE.jpg --out-directory NEW_TASK_DIRECTORY --submit --wait --timeout 45 --json
 ```
 
-上例为有人货互动的单次调用，比例、模型和参考数量以上一步文档与本轮规划为准，不把示例 `3:2` 当作所有模板的固定比例；无人页不传模特卡但整体陈列仍传适用尺度图并明确无人，产品卡不照搬人物、尺度或场景输入。提交后保留 CLI 在该目录写出的 `request.json`、任务回执和下载文件。记录真实生成 ID、任务 ID、状态与实际 `billing`；缺失或未结算的费用保持未知，不以模型报价假装实扣金额。
+上例为有人货互动的单次调用，比例、模型和参考数量以上一步文档与本轮规划为准，不把示例 `3:2` 当作所有模板的固定比例；无人页不传模特卡但整体陈列仍传适用尺度图并明确无人，产品资产制作由 callee 自身合同承接。提交后保留 CLI 在该目录写出的 `request.json`、任务回执和下载文件。记录真实生成 ID、任务 ID、状态与实际 `billing`；缺失或未结算的费用保持未知，不以模型报价假装实扣金额。
 
 超时、断线、待完成或结果未知时，先检查原目录，再执行：
 

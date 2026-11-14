@@ -75,6 +75,47 @@
       },
       "sideEffects": "none"
     },
+    "assets inspect": {
+      "options": {
+        "--json": {
+          "type": "boolean"
+        },
+        "--help": {
+          "type": "boolean"
+        },
+        "--guide": {
+          "type": "string",
+          "required": true
+        },
+        "--asset-skill-root": {
+          "type": "string"
+        }
+      },
+      "sideEffects": "none"
+    },
+    "assets select": {
+      "options": {
+        "--json": {
+          "type": "boolean"
+        },
+        "--help": {
+          "type": "boolean"
+        },
+        "--guide": {
+          "type": "string",
+          "required": true
+        },
+        "--asset-skill-root": {
+          "type": "string"
+        },
+        "--ids": {
+          "type": "string",
+          "required": true,
+          "description": "Distinct asset ids in reference order; scale plus appearance/detail required."
+        }
+      },
+      "sideEffects": "none"
+    },
     "skill source": {
       "options": {
         "--json": {
@@ -276,7 +317,7 @@
         },
         "--version": {
           "type": "string",
-          "description": "Exact stable registry version."
+          "description": "Exact registry version; prereleases require an explicit selection."
         }
       },
       "sideEffects": "package-and-skill-update"
@@ -469,6 +510,7 @@
   "requirements": {
     "node": ">=22",
     "nested_skills": [
+      "product-asset-set",
       "toapiscli"
     ],
     "generation": "Verified current-host toapiscli runtime and service access are required for generation; local planning and maintenance do not submit media tasks.",
@@ -486,6 +528,14 @@
         "skill": "toapiscli",
         "source": "Current-host sibling Skill or CLOUD_HUG_TOAPIS_SKILL_ROOT; .runtime/dist/cli.mjs",
         "contract": "image generate with repeated local references; task get/wait by original output directory; local artifacts and billing"
+      },
+      {
+        "name": "@petercjl/product-asset-set",
+        "minimum_version": "0.1.3",
+        "required": true,
+        "skill": "product-asset-set",
+        "contract": "current Skill plus asset check --guide; independent overall/scale/texture PNG and asset-format v1/v2",
+        "missing": "pause-asset-stage"
       }
     ]
   },
@@ -573,6 +623,47 @@
           "type": "string",
           "required": true,
           "description": "Comparison input JSON file."
+        }
+      },
+      "sideEffects": "none"
+    },
+    "assets inspect": {
+      "options": {
+        "--json": {
+          "type": "boolean"
+        },
+        "--help": {
+          "type": "boolean"
+        },
+        "--guide": {
+          "type": "string",
+          "required": true
+        },
+        "--asset-skill-root": {
+          "type": "string"
+        }
+      },
+      "sideEffects": "none"
+    },
+    "assets select": {
+      "options": {
+        "--json": {
+          "type": "boolean"
+        },
+        "--help": {
+          "type": "boolean"
+        },
+        "--guide": {
+          "type": "string",
+          "required": true
+        },
+        "--asset-skill-root": {
+          "type": "string"
+        },
+        "--ids": {
+          "type": "string",
+          "required": true,
+          "description": "Distinct asset ids in reference order; scale plus appearance/detail required."
         }
       },
       "sideEffects": "none"
@@ -778,7 +869,7 @@
         },
         "--version": {
           "type": "string",
-          "description": "Exact stable registry version."
+          "description": "Exact registry version; prereleases require an explicit selection."
         }
       },
       "sideEffects": "package-and-skill-update"
@@ -1192,5 +1283,22 @@
     "canvas row",
     "update policy",
     "update auto"
-  ]
+  ],
+  "productAssets": {
+    "skill": "product-asset-set",
+    "package": "@petercjl/product-asset-set",
+    "minimumVersion": "0.1.3",
+    "guideFormats": [
+      1,
+      2
+    ],
+    "requiredRoles": [
+      "overall",
+      "scale",
+      "texture"
+    ],
+    "reference": "skills/cloud-hug-style-transfer/references/product-assets.md",
+    "generationRoute": "callee-owned; caller detail defaults do not override",
+    "visualAcceptance": "separate-from-file-validation"
+  }
 }

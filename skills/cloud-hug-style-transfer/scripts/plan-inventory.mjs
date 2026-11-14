@@ -53,7 +53,9 @@ export function planInventory(input) {
     note:'Inventory only; this helper neither reads nor changes project authorization. Use the recorded preflight confirmation and generation scope; do not request another approval when already authorized. A is the default file key, not a pending scheme selection.',
     mode,
     shape_groups:groups.length,
-    product_cards:seenVariants.size,
+    product_cards:seenVariants.size, // Historical alias: now counts asset sets, not generated card images.
+    product_asset_sets:seenVariants.size,
+    minimum_product_asset_images:seenVariants.size * 3,
     all_page_count:pages.length,
     selected_page_count:selected.length,
     selected_photo_slots:selected.reduce((sum, page) => sum + page.slots.length, 0),

@@ -254,7 +254,7 @@ export function newer(a,b){const x=a.split('.').map(Number),y=b.split('.').map(N
 export function compatible(a,b){return /^\d+\.\d+\.\d+$/.test(a)&&newer(a,b)&&a.split('.')[0]===b.split('.')[0]&&(b.split('.')[0]!=='0'||a.split('.')[1]===b.split('.')[1]);}
 export function update(resolution,{candidate,version,yes}={}) {
  if(!yes)throw fail('PERMISSION_REQUIRED','Package updates require --yes.');
- if(version&&!/^\d+\.\d+\.\d+$/.test(version))throw fail('INVALID_VERSION','Use a stable semantic version.');
+ if(version&&!/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-(?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*)(?:\.(?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*))*)?$/.test(version))throw fail('INVALID_VERSION','Use an exact stable or prerelease semantic version.');
  if(candidate&&(!path.isAbsolute(candidate)||!exists(candidate)?.isFile()||!candidate.endsWith('.tgz')))throw fail('INVALID_CANDIDATE','Use an existing absolute tarball path.');
  const unlock=lock(resolution);let op;
  try {
@@ -380,7 +380,7 @@ export function commandContracts(){
  },common={'--json':{type:'boolean'},'--help':{type:'boolean'}},yes={'--yes':{type:'boolean',required:true}};
  for(const action of ['source','status','install','update'])result['skill '+action]={options:{...common,...(action==='source'?{'--name':{type:'string',description:'Exact logical Skill name.'},'--all':{type:'boolean',description:'Enumerate all canonical Skills.'}}:target),...(['install','update'].includes(action)?{'--mode':{type:'string',enum:['copy','link'],description:'Legacy link requests migrate to a physical copy.'},'--legacy-source':{type:'string',description:'Explicit owning package root for verified legacy migration.'},'--force':{type:'boolean',description:'Accepted legacy flag; local edit protection remains enforced.'},'--backup-edits':{type:'boolean',description:'Accepted legacy flag; local edits require separate reconciliation.'}}:{})},sideEffects:['install','update'].includes(action)?'local-write':'none'};
  result['update check']={options:common,sideEffects:'none'};
- result['update install']={options:{...common,...target,...yes,'--candidate':{type:'string',description:'Absolute packed candidate archive for authorized installation.'},'--version':{type:'string',description:'Exact stable registry version.'}},sideEffects:'package-and-skill-update'};
+ result['update install']={options:{...common,...target,...yes,'--candidate':{type:'string',description:'Absolute packed candidate archive for authorized installation.'},'--version':{type:'string',description:'Exact registry version; prereleases require an explicit selection.'}},sideEffects:'package-and-skill-update'};
  result['update operation']={options:{...common,...target,'--operation':{type:'string'}},sideEffects:'none'};
  for(const action of ['resume','rollback'])result['update '+action]={options:{...common,...target,...yes,'--operation':{type:'string'}},sideEffects:'package-and-skill-update'};
  result['update policy']={options:{...common,...target,'--yes':{type:'boolean'},'--mode':{type:'string',enum:['off','notify','auto']}},sideEffects:'local-write',writeCondition:'Only an authorized explicit --mode change writes policy.'};

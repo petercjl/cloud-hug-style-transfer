@@ -27,3 +27,11 @@ Legacy links require a verifiable owning-package integrity manifest; business ed
 ## Machine consumer contract
 
 `skill source --json` and packaged capabilities expose `maintenanceContract` version 1: typed result-field mappings and explicit target option semantics. `--path` and `--target-directory` select the exact Skill directory; the supported legacy `--root` selects its parent and appends the canonical Skill name. Verify the returned target. Status retains boolean `current`/`edited` fields and exposes `up_to_date`, `editedFiles`, integrity verification and recovery actions. A matching current managed receipt can be reused within the same operation; host-native Skill loading completes the separately owned discovery phase. A fully current installation needs no reinstall or duplicate registry/tree checks.
+
+## 预发布测试
+
+发送给当前 Agent：
+
+> 请将 @petercjl/cloud-hug-style-transfer 升级到 0.8.0-next.0，并安装或更新 @petercjl/product-asset-set，检查两者配套 Skill。只更新当前 Agent，完成版本和依赖验证后等待我测试。
+
+预发布使用精确 npm 版本获取包，再通过新包的 `skill update --path <当前 Skill 目录>` 完成物理安装；旧链接迁移时提供已核实的 `--legacy-source`。保留备份和用户修改。稳定版自动检查继续读取 latest。

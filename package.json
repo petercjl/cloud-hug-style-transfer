@@ -1,6 +1,6 @@
 {
   "name": "@petercjl/cloud-hug-style-transfer",
-  "version": "0.7.0",
+  "version": "0.8.0-next.0",
   "description": "Template-based Cloud Hug brand upgrade with single-plan pages, image-based product scale and first-three review followed by stepwise or batch generation.",
   "type": "module",
   "bin": {
@@ -47,5 +47,8 @@
     "env": "CLOUD_HUG",
     "legacyMarker": ".cloud-hug-style-transfer-managed.json",
     "contract": 2
+  },
+  "devDependencies": {
+    "@petercjl/product-asset-set": "0.1.3"
   }
 }

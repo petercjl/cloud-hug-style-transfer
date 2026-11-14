@@ -26,13 +26,13 @@ try {
  const initial=config.skill==='cloud-hug-style-transfer'?['skill','install','--agent','codex','--root',parent,'--json']:config.skill==='nano-product-replacement'?['skill','install','--agent','generic','--target-directory',target,'--mode','link','--json']:['skill','install','--agent','future-agent','--path',target,'--json'];
  await run(oldEntry,initial);assert.deepEqual(fs.readFileSync(path.join(target,'SKILL.md')),oldSkill);
  let route,legacyReceipt;
- if(config.skill==='nano-product-replacement') {
+ if(config.skill==='nano-product-replacement'||pkg.version.includes('-')) {
   // The published parent scans named hosts before handoff. Its safe supported path is explicit bootstrap migration.
   const bootstrap=path.join(dir,'candidate-bootstrap');await run(npm,['install','--prefix',bootstrap,'--ignore-scripts','--no-audit','--no-fund',tarball]);
   const entry=path.join(bootstrap,'node_modules',...pkg.name.split('/'),config.entry);
   legacyReceipt=JSON.parse(await run(entry,['skill','update','--agent','future-agent','--path',target,'--legacy-source',oldRoot,'--mode','link','--json']));
   assert(legacyReceipt.backup);assert.deepEqual(fs.readFileSync(path.join(legacyReceipt.backup,'SKILL.md')),oldSkill);
-  route='explicit migration through new bootstrap; published cross-host updater excluded';
+  route=pkg.version.includes('-')?'explicit prerelease bootstrap migration; stable automatic channel retained':'explicit migration through new bootstrap; published cross-host updater excluded';
  }else{
   let base;
   server=http.createServer(async(req,res)=>{
@@ -61,6 +61,6 @@ try {
  const local=path.join(target,'scripts/run.mjs');assert.equal(fs.lstatSync(target).isSymbolicLink(),false);
  assert.equal(JSON.parse(await run(local,['version'])).version,pkg.version);
  assert.equal(JSON.parse(await run(local,['skill','status','--path',target])).current,true);
- const repeat=JSON.parse(await run(local,['update','install','--yes','--version',pkg.version,'--path',target]));assert.equal(repeat.changed,false);
+ const repeat=JSON.parse(await run(local,pkg.version.includes('-')?['skill','update','--path',target,'--json']:['update','install','--yes','--version',pkg.version,'--path',target]));assert.equal(repeat.changed,false);
  console.log(JSON.stringify({ok:true,package:pkg.name,from:baseline,to:pkg.version,archivedEntryHash:originalEntryHash,archivedUpdaterHashes:oldUpdaterHashes,route,realNpm:true,historicalMode:config.skill==='nano-product-replacement'?'link-to-copy':'copy',sameVersionNoop:true,hostDiscovery:'not-attested',platform:process.platform},null,2));
 }finally{if(server){server.closeAllConnections();await new Promise(r=>server.close(r));}fs.rmSync(dir,{recursive:true,force:true});}

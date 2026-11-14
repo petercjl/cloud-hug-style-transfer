@@ -6,7 +6,7 @@
 
 | 本轮需要 | 原图 | 职责 |
 | --- | --- | --- |
-| 产品设定卡拼版样式 | `assets/products/dog.jpg`、`assets/products/rabbit.jpg` | 横向多视图与细节卡的形式。默认仅是卡片样式，不是当前商品身份 |
+| 历史产品卡示例（非当前制作入口） | `assets/products/dog.jpg`、`assets/products/rabbit.jpg` | 仅供历史格式理解；当前资产制作由 product-asset-set 承接，不定义当前商品身份 |
 | 品牌升级模板 | `assets/approved/detail-final-20261016/03.jpg` 至 `15.jpg` | 按 [页面映射](page-patterns.md) 固定本屏职责、版式、景别和摄影基础；07–10 为可按形态增减的模块 |
 | 当前模特身份与衣着 | `assets/model/character-sheet-approved-20261019.png` | 有人物时实际传入。奶白长袖长裤、素面棉袜，旧模板人物不能覆盖 |
 | 补充品牌摄影与状态 | `assets/brand/main-kv-sleep.webp`、`assets/brand/main-kv-lounge.webp`、`assets/brand/main-kv-dog-rest.webp`、`assets/brand/main-kv-seated-hug.webp` | 与目标模板摄影任务相容时补充光色、空间、受力；不替换本轮固定模板或人物卡 |
