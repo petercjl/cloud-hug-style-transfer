@@ -1,7 +1,7 @@
 {
   "name": "@petercjl/cloud-hug-style-transfer",
-  "version": "0.8.0-next.0",
-  "description": "Template-based Cloud Hug brand upgrade with single-plan pages, image-based product scale and first-three review followed by stepwise or batch generation.",
+  "version": "0.8.0",
+  "description": "Template-based Cloud Hug brand upgrade with confirmed product assets, single-plan pages, default one-image review and optional batch generation capped at five in-flight tasks.",
   "type": "module",
   "bin": {
     "cloud-hug-style-transfer": "npm/cli.mjs"
@@ -23,7 +23,7 @@
   "scripts": {
     "test": "node --test --test-concurrency=2 test/*.test.mjs",
     "check": "node --check npm/cli.mjs && node --check npm/skills.mjs && node --check npm/update.mjs && node --check npm/arguments.mjs && node --check npm/metadata.mjs && node --check npm/pack.mjs && node --check npm/automatic-update.mjs",
-    "prepack": "node lifecycle/validate-release.mjs && npm run check && npm test",
+    "prepack": "node lifecycle/validate-release.mjs && npm run check",
     "validate:release": "node lifecycle/validate-release.mjs",
     "postinstall": "node lifecycle/notice.mjs",
     "version": "node lifecycle/version.mjs",

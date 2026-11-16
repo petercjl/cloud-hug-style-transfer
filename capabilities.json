@@ -1210,7 +1210,8 @@
     "mode": "images-and-manifest",
     "reference": "skills/cloud-hug-style-transfer/references/canvas-comparison.md",
     "taskRecovery": "same output directory; never resubmit uncertain tasks",
-    "legacy_canvas_row": "local geometry helper only; not used by the current workflow"
+    "legacy_canvas_row": "local geometry helper only; not used by the current workflow",
+    "html": "asset-and-detail-review-via-aigc-generation-review"
   },
   "skills": [
     "cloud-hug-style-transfer"
@@ -1300,5 +1301,40 @@
     "reference": "skills/cloud-hug-style-transfer/references/product-assets.md",
     "generationRoute": "callee-owned; caller detail defaults do not override",
     "visualAcceptance": "separate-from-file-validation"
-  }
+  },
+  "dependencies": [
+    {
+      "package": "@petercjl/aigc-generation-review",
+      "minimum_version": "0.1.0",
+      "skill": "aigc-generation-review",
+      "required": true,
+      "contract": "manifest-v1; offline HTML render",
+      "on_missing": "pause-image-review"
+    }
+  ],
+  "generationPacing": {
+    "defaultMode": "stepwise",
+    "modes": {
+      "stepwise": {
+        "maxInFlight": 1,
+        "userConfirmationAfterEach": true
+      },
+      "batch": {
+        "maxInFlight": 5,
+        "selection": "explicit-user",
+        "scope": "all-pending-authorized-pages"
+      }
+    },
+    "unknownSubmission": "pause-dispatch-and-recover-original-task",
+    "planningOnly": "no-generation"
+  },
+  "imageReview": {
+    "skill": "aigc-generation-review",
+    "stepwise": "one HTML per generated or revised image attempt, before user confirmation",
+    "batch": "one consolidated HTML after batch generation",
+    "preservesUserConfirmation": true,
+    "renderFailure": "retain images; recover report without paid regeneration",
+    "englishPromptTranslation": "Chinese translation below exact original, supplied by reviewing Agent"
+  },
+  "generationPromptLanguage": "en"
 }

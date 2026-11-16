@@ -87,9 +87,17 @@
       "required": true,
       "preflight": "node scripts/check-media.mjs [--skill-root EXACT_TOAPIS_SKILL_DIRECTORY]",
       "on_missing": "pause-generation"
+    },
+    {
+      "package": "@petercjl/aigc-generation-review",
+      "minimum_version": "0.1.0",
+      "skill": "aigc-generation-review",
+      "required": true,
+      "contract": "manifest-v1; offline HTML render",
+      "on_missing": "pause-image-review"
     }
   ],
-  "package_version": "0.8.0-next.0",
+  "package_version": "0.8.0",
   "installationLifecycle": {
     "agentNeutral": true,
     "skillRequired": true,
@@ -722,7 +730,7 @@
   "delivery": {
     "mode": "images-and-manifest",
     "online_canvas": false,
-    "html": false,
+    "html": "asset-and-detail-review-via-aigc-generation-review",
     "task_recovery": "original output directory"
   },
   "productAssets": {
@@ -741,5 +749,30 @@
     "reference": "references/product-assets.md",
     "generationRoute": "callee-owned; caller detail defaults do not override",
     "visualAcceptance": "separate-from-file-validation"
-  }
+  },
+  "generationPacing": {
+    "defaultMode": "stepwise",
+    "modes": {
+      "stepwise": {
+        "maxInFlight": 1,
+        "userConfirmationAfterEach": true
+      },
+      "batch": {
+        "maxInFlight": 5,
+        "selection": "explicit-user",
+        "scope": "all-pending-authorized-pages"
+      }
+    },
+    "unknownSubmission": "pause-dispatch-and-recover-original-task",
+    "planningOnly": "no-generation"
+  },
+  "imageReview": {
+    "skill": "aigc-generation-review",
+    "stepwise": "one HTML per generated or revised image attempt, before user confirmation",
+    "batch": "one consolidated HTML after batch generation",
+    "preservesUserConfirmation": true,
+    "renderFailure": "retain images; recover report without paid regeneration",
+    "englishPromptTranslation": "Chinese translation below exact original, supplied by reviewing Agent"
+  },
+  "generationPromptLanguage": "en"
 }
