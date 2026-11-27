@@ -1,0 +1,13 @@
+interface:
+  display_name: "山与场详情页、主图、搜索图与 SKU 调度"
+  short_description: "根据滑雪服旧资料，按母版调度山与场详情页、主图、搜索图和各色 SKU 摄影"
+  default_prompt: "使用 $2026-11-26-shanyuchang-diaodu，把这款滑雪服的旧资料按母版做成山与场详情页、主图、搜索图和 SKU。"
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

@@ -1,0 +1,13 @@
+interface:
+  display_name: "2026-11-24山与场品牌调性"
+  short_description: "山与场滑雪服品牌摄影：晴天侧前方日光、清透低饱和、固定模特、克制自信"
+  default_prompt: "使用 $2026-11-24-shanyuchang-pinpai-diaoxing，把我上传的滑雪服图片生成为山与场品牌调性摄影。"
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

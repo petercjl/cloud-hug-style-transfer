@@ -1,0 +1,446 @@
+{
+  "schema_version": 1,
+  "skill": "2026-11-26-shanyuchang-diaodu",
+  "assets": [
+    {
+      "path": "assets/template/detail/a01.jpg",
+      "source_filename": "852689822911详情页_01.jpg",
+      "role": "A01 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 1240,
+      "bytes": 128298,
+      "sha256": "ac633f7a871f38cc1d97a1f5a990a5bcd2cee1325de8c8508981cd8bc43bab99",
+      "original_sha256": "ebc06addbf1d73718dc439bf0e6070540703815cbfb6d8e7de94f67e78c01254"
+    },
+    {
+      "path": "assets/template/detail/a02.jpg",
+      "source_filename": "852689822911详情页_02.jpg",
+      "role": "A02 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 915,
+      "bytes": 62567,
+      "sha256": "da8499c1edbf563d5e9f274b41d3265257911d6a0dbc254161b07e000596b383",
+      "original_sha256": "b0b2c33a13eea9bce36453c551734a8f69c63b7ac0af2ddf2113cb05a04d0dea"
+    },
+    {
+      "path": "assets/template/detail/a03.jpg",
+      "source_filename": "852689822911详情页_03.jpg",
+      "role": "A03 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 1474,
+      "bytes": 114249,
+      "sha256": "1a19949930ebe99c12367adb83df64dbe29f1f95e0ff58ddff96fea717091efa",
+      "original_sha256": "500c739d2f75b2fdf09daf2dc10731e3a4d503cda1b04a172036317a1d82838a"
+    },
+    {
+      "path": "assets/template/detail/a04.jpg",
+      "source_filename": "852689822911详情页_04.jpg",
+      "role": "A04 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 934,
+      "bytes": 79335,
+      "sha256": "353ee60e304b1353dccb117b84c6c84c2ae18717201117a51153770b0b956d69",
+      "original_sha256": "fd95e19fc62a52b74434c31627534997fa835a11e5cb3e96c53e4d73bb5a1f46"
+    },
+    {
+      "path": "assets/template/detail/a05.jpg",
+      "source_filename": "852689822911详情页_05.jpg",
+      "role": "A05 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 1200,
+      "bytes": 83093,
+      "sha256": "d08a7c625eec6139ac460055f387c7789882e05622082704f86e39f0c4d2bffc",
+      "original_sha256": "9149df47f741ca8652214b52b7c8c645f3a193cf0d3170198c52091efb831c4b"
+    },
+    {
+      "path": "assets/template/detail/a06.jpg",
+      "source_filename": "852689822911详情页_06.jpg",
+      "role": "A06 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 1600,
+      "bytes": 151952,
+      "sha256": "30c3307a497136378833c3cdaa9a7f12d5cebfb87a4c6a3b392620218ecc5c14",
+      "original_sha256": "2c25ab053a6f0c7ebf19d98c3152e6de4102e8a6cabd94fa0a4eeb21017c6691"
+    },
+    {
+      "path": "assets/template/detail/a07.jpg",
+      "source_filename": "852689822911详情页_07.jpg",
+      "role": "A07 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 500,
+      "bytes": 69527,
+      "sha256": "8e0a8685b5678f1fcb0452b144fba9e4c93ff45824d2f432685402ec3a6b170a",
+      "original_sha256": "793248f6984f2dd219a3d1e2f0bfbfe032c2229bb891237c7e3538d39de3028a"
+    },
+    {
+      "path": "assets/template/detail/a08.jpg",
+      "source_filename": "852689822911详情页_08.jpg",
+      "role": "A08 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 527,
+      "bytes": 47304,
+      "sha256": "645f026173f12d0c7e7a683e9684571d72a42ca05c074814a7386204cc522c49",
+      "original_sha256": "a073e831a48cdcdb8986a7d00f3705cbb18ff00b1b2a5badae78206684563b08"
+    },
+    {
+      "path": "assets/template/detail/a09.jpg",
+      "source_filename": "852689822911详情页_09.jpg",
+      "role": "A09 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 500,
+      "bytes": 47758,
+      "sha256": "8b9c1efdad67512f6a477456dda730e12147b3086f300d290a9b02a7cf6b63dc",
+      "original_sha256": "c93ac2b1987e50d2abde62d484bfc1931e86da2c767fb82a3e4412ec3086c45a"
+    },
+    {
+      "path": "assets/template/detail/a10.jpg",
+      "source_filename": "852689822911详情页_10.jpg",
+      "role": "A10 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 2531,
+      "bytes": 316841,
+      "sha256": "d4f6accc7eb464d1d55d722c0ae3153a9ab0c6dd0758de9152321153982d6269",
+      "original_sha256": "074584a28c821cacbb5c38ec473b5f5fc2de9866dcdbcf9462accac95765294a"
+    },
+    {
+      "path": "assets/template/detail/a11.jpg",
+      "source_filename": "852689822911详情页_11.jpg",
+      "role": "A11 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 350,
+      "bytes": 17149,
+      "sha256": "5b6b43e35fc226cf4df36ee518a85089c275d82a4d34672330b008b76bb36de2",
+      "original_sha256": "749b851b90e4893842e904813b1a39d9ddc1043f9a3321c9673f550b6de68e70"
+    },
+    {
+      "path": "assets/template/detail/a12.jpg",
+      "source_filename": "852689822911详情页_12.jpg",
+      "role": "A12 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 1138,
+      "bytes": 158973,
+      "sha256": "3249d33d34a4b1fac6c4f8ee2936adc9d0bfa9b3be6ab92477d306a98f7d6090",
+      "original_sha256": "ebd252fca3adec8d571732a92da9612d3135fa2393e256cea628c668687791e1"
+    },
+    {
+      "path": "assets/template/detail/b01.jpg",
+      "source_filename": "852689822911详情页2_01.jpg",
+      "role": "B01 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 1078,
+      "bytes": 99306,
+      "sha256": "0183d55bbe1a20302c1e7604c2fb2eba38dd07ac37d82b048e7704c49ddf8678",
+      "original_sha256": "6e8f195d99e03c0570c8724ab2c8f55d412922705c039398e70e96f4bd1760c3"
+    },
+    {
+      "path": "assets/template/detail/b02.jpg",
+      "source_filename": "852689822911详情页2_02.jpg",
+      "role": "B02 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 1052,
+      "bytes": 96980,
+      "sha256": "dfec179cf8b08d20439ecd8a482ac9f876f4addf280a3f125c158d351077007e",
+      "original_sha256": "4639753050e3c1844ae6c960cb9fc214314324f8dcd341104d303cfac1e1429b"
+    },
+    {
+      "path": "assets/template/detail/b03.jpg",
+      "source_filename": "852689822911详情页2_03.jpg",
+      "role": "B03 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 1130,
+      "bytes": 86438,
+      "sha256": "19d9dc2cb66ceaa3f4afbe05fba4509bd8bec3d9887ae7b21536e38966dbcb33",
+      "original_sha256": "dd4653193692777f6ef2d4696af11a946cf5ced06f284f96545c17cee4f79d24"
+    },
+    {
+      "path": "assets/template/detail/b04.jpg",
+      "source_filename": "852689822911详情页2_04.jpg",
+      "role": "B04 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 964,
+      "bytes": 114113,
+      "sha256": "ebc44281f3e7d320974a18c25e1c34b743f0c8f27b73426b3f8bcf3668a4ab1d",
+      "original_sha256": "33d20dc2c3d82fad60ed2898e5dd756c39a68f8d6ad0035614148317d32f0810"
+    },
+    {
+      "path": "assets/template/detail/b05.jpg",
+      "source_filename": "852689822911详情页2_05.jpg",
+      "role": "B05 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 941,
+      "bytes": 91463,
+      "sha256": "61c90ad142d88e451f39a35897b2ebd290694209ce95470d454ba1ae52fe3d6f",
+      "original_sha256": "8671ed1b5bb6e8a56c8a87006476debafef444f1e634d490b1a6786d35db3802"
+    },
+    {
+      "path": "assets/template/detail/b06.jpg",
+      "source_filename": "852689822911详情页2_06.jpg",
+      "role": "B06 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 1057,
+      "bytes": 130630,
+      "sha256": "b63fbdbd711bfb9e055c579d3de49680438e7b5cc6313ab5c82ccb6f37b52e7d",
+      "original_sha256": "acd28a838490700f3a09189871a2c9415b13ad317a11e3b5d825749459d0b53e"
+    },
+    {
+      "path": "assets/template/detail/b07.jpg",
+      "source_filename": "852689822911详情页2_07.jpg",
+      "role": "B07 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 940,
+      "bytes": 105760,
+      "sha256": "f65f17684aeb8759ee8c73cd60d377d6aa04bf53a69c3eb60b355fd7d1a96500",
+      "original_sha256": "6b2c1b9188f23e9810b92b69e316a8a1149ddc023ff609b87bda54c3d81623bd"
+    },
+    {
+      "path": "assets/template/detail/b08.jpg",
+      "source_filename": "852689822911详情页2_08.jpg",
+      "role": "B08 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 1052,
+      "bytes": 107690,
+      "sha256": "132da462ac90557cea4471473349bdded5c90cdef45a21e450df121586bae651",
+      "original_sha256": "ca7f7aee568b15a30e4de9853c0f38b96585f8d9efdacab0b88195c91ff16b65"
+    },
+    {
+      "path": "assets/template/detail/b09.jpg",
+      "source_filename": "852689822911详情页2_09.jpg",
+      "role": "B09 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 1145,
+      "bytes": 122840,
+      "sha256": "5a5c7e45200b584aabe6f7040b89f3336b7ed20d2fdfdea01f226aa2823070b1",
+      "original_sha256": "2c20ec6e7e0a9ee9b2eeb2271e58ba456043493897743ac72d070b2732dba1ca"
+    },
+    {
+      "path": "assets/template/detail/b10.jpg",
+      "source_filename": "852689822911详情页2_10.jpg",
+      "role": "B10 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 1054,
+      "bytes": 130135,
+      "sha256": "2daafebccc9bbff7c25585a9a0c6dabde727e52b64f8f087f63f37db838c89d6",
+      "original_sha256": "4d6d0fb5de127eaeed7b52ea29aae8689776122f41ee940110828f1ea8670dcb"
+    },
+    {
+      "path": "assets/template/detail/b11.jpg",
+      "source_filename": "852689822911详情页2_11.jpg",
+      "role": "B11 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 524,
+      "bytes": 46642,
+      "sha256": "c14ea9b96ed6cc7a1bdf290468ae56d87b904b89ad9be8ff9c191f264178bb76",
+      "original_sha256": "24eb91d6acffc72528fd65c8b3101c0db315738a35f8c57a35e6b974f6f7b1ff"
+    },
+    {
+      "path": "assets/template/detail/b12.jpg",
+      "source_filename": "852689822911详情页2_12.jpg",
+      "role": "B12 定稿屏序与角色，仅供调度查看",
+      "width": 750,
+      "height": 1404,
+      "bytes": 87741,
+      "sha256": "c83a283bc968751f2eca7806352082ed1c52b5d5dc5697a920fde965bf2f9bc8",
+      "original_sha256": "73154e0763b1ae374bf0d1c4450009b295cba5f2ec522e49a05c666269567ecb"
+    },
+    {
+      "path": "assets/examples/old-modules/selling-point_03_04.jpg",
+      "source_filename": "03_04.jpg",
+      "role": "A03 卖点图解的旧模块识别示例",
+      "width": 750,
+      "height": 1531,
+      "bytes": 120580,
+      "sha256": "59ac590471ce880f8c3cf349fbc3c6d3d8824773b5245d0f4d85c8e8c13774f6",
+      "original_sha256": "9cd72cd7229f5cf84a2b2e0df03c29b5ed4a6de106ac76ff5e4e2dee5ff0aadf"
+    },
+    {
+      "path": "assets/examples/old-modules/material_13.jpg",
+      "source_filename": "13.jpg",
+      "role": "A05 材质填充的旧模块识别示例",
+      "width": 750,
+      "height": 1285,
+      "bytes": 73924,
+      "sha256": "8dbc0c5bb7e77f06747df9c60469e02cbde3b6190aa844683abd30ddc65a2513",
+      "original_sha256": "b6141040520e625d3fda628d5b61c82fdfcd93b2a04f25f0373f26338481b7df"
+    },
+    {
+      "path": "assets/examples/old-modules/certificate_12.jpg",
+      "source_filename": "12.jpg",
+      "role": "A06 检测报告的旧模块识别示例",
+      "width": 750,
+      "height": 1401,
+      "bytes": 159404,
+      "sha256": "161e6583b07d719e44bea65c6e1f701add1888e729ae0a7091ba798713c63380",
+      "original_sha256": "2f6ab468c4ba747af659b93c9795f9508c7add095cd3f7039108381680fbab7f"
+    },
+    {
+      "path": "assets/examples/old-modules/detail_14.jpg",
+      "source_filename": "14.jpg",
+      "role": "A10 产品细节上段的旧模块识别示例",
+      "width": 750,
+      "height": 1283,
+      "bytes": 233418,
+      "sha256": "122d82be3ac863ae0d6f6d6118a9a9c95681772f5e420895616fd644a0f2a6b5",
+      "original_sha256": "c03696aae6202926ed8e0542e5d275a179d2612a2e58613fccb9e4e23a195092"
+    },
+    {
+      "path": "assets/examples/old-modules/detail_15.jpg",
+      "source_filename": "15.jpg",
+      "role": "A10 产品细节下段的旧模块识别示例",
+      "width": 750,
+      "height": 1520,
+      "bytes": 129709,
+      "sha256": "9e3b294bcc7435fd9f5bfae3983d58e47533bde78b58cafd89949e32355c00f2",
+      "original_sha256": "554988b8c85ba5bd7e6267b085402e701b7ef70bd3e04605a7a929329b50deb8"
+    },
+    {
+      "path": "assets/examples/old-modules/showcase-title_17.jpg",
+      "source_filename": "17.jpg",
+      "role": "A11 实拍展示标题的旧模块识别示例",
+      "width": 750,
+      "height": 453,
+      "bytes": 19856,
+      "sha256": "73d94628e591989b149e6a759b26ffe676c0c77ca9259bbdc130fb11a3b44748",
+      "original_sha256": "0693ca1e34cf9a9098f472a10e799d5c6857f8396219b8e576a55b558ecc8ebb"
+    },
+    {
+      "path": "assets/examples/old-modules/size_03_03.jpg",
+      "source_filename": "03_03.jpg",
+      "role": "B12 尺码的旧模块识别示例",
+      "width": 750,
+      "height": 1399,
+      "bytes": 91989,
+      "sha256": "6afb6cb72bdf20eb2a295cd85742f56e8a4b585692f44fe2364344101f879497",
+      "original_sha256": "2f495f10d22d938dc76df4254b8fb7cd67915eaa5a0cb02b79b87e1f9982c8b3"
+    },
+    {
+      "path": "assets/template/sku/sku_bordeaux.jpg",
+      "source_filename": "波尔多红.jpg",
+      "role": "template_reference_only",
+      "width": 750,
+      "height": 750,
+      "bytes": 71890,
+      "sha256": "62335a7118155801887ce161c28c500b678970a07671909d15e6afd5939a1b7c",
+      "original_sha256": "ece33e3c10739c0d7f2fcd137d6470a083b3062cd86b829aef72d229d880ca6f"
+    },
+    {
+      "path": "assets/template/sku/sku_white.jpg",
+      "source_filename": "雪山白.png",
+      "role": "template_reference_only",
+      "width": 750,
+      "height": 750,
+      "bytes": 68397,
+      "sha256": "c428b3a131e0fcd2cce8d9a4adabfd3ca7ed4634754f31f663d3e3e471a6a5d6",
+      "original_sha256": "78f874b9b6c8515cd049449edf1d96cd24e51d94f771532fcdfeefe863b900da"
+    },
+    {
+      "path": "assets/template/sku/sku_purple.jpg",
+      "source_filename": "暗夜紫.png",
+      "role": "template_reference_only",
+      "width": 750,
+      "height": 750,
+      "bytes": 76706,
+      "sha256": "40e085c22bd42d5b4d76367743a507d356f57ecef88cd1c82a4e38725027bc4d",
+      "original_sha256": "fd2efee4f3dce43c4e9a185780fd2af68468d49f28476c1288b6514d7d03706e"
+    },
+    {
+      "path": "assets/template/main/main_1.jpg",
+      "source_filename": "1.jpg",
+      "role": "template_reference_only",
+      "width": 750,
+      "height": 1000,
+      "bytes": 142723,
+      "sha256": "6229d063c95a5f028dab32dc993a1488bb14ed47efd97dafe12a8d93bda04de7",
+      "original_sha256": "bcd0f378b4ae02f87f399c386bfa1b09df06fe18382abfd8dc358657c893c1d7"
+    },
+    {
+      "path": "assets/template/main/main_2.jpg",
+      "source_filename": "2.jpg",
+      "role": "template_reference_only",
+      "width": 750,
+      "height": 1000,
+      "bytes": 97294,
+      "sha256": "04a59fd868339aa86f7813aa7634f1312880d3dc2f4c744faecb68b4706ca4c7",
+      "original_sha256": "e9d2b9dc20309a658e40f9135d5ff22ccbaa4c7917c24ba2b640d73bb2ee1da5"
+    },
+    {
+      "path": "assets/template/main/main_3.jpg",
+      "source_filename": "3.jpg",
+      "role": "template_reference_only",
+      "width": 750,
+      "height": 1000,
+      "bytes": 141753,
+      "sha256": "d3eee6c8a8a6073fdfe88a30ddcca385ed515f4df1020a6f3282ee0620886b24",
+      "original_sha256": "d7add8acee5235bf827ef7a4bb16f2326e9b3c902a059b9356ae692d6d051724"
+    },
+    {
+      "path": "assets/template/main/main_4.jpg",
+      "source_filename": "4.jpg",
+      "role": "template_reference_only",
+      "width": 750,
+      "height": 1000,
+      "bytes": 96143,
+      "sha256": "b54dbafe442e051a6a8c9c8514f2b158b5ae1a6bd8d9826e894cf127a80d1bf6",
+      "original_sha256": "ce90429fa3774d4e5f515cba54422ade6f0915577a95f5dcbcc2b2d8eceae889"
+    },
+    {
+      "path": "assets/template/main/main_5.jpg",
+      "source_filename": "5.jpg",
+      "role": "template_reference_only",
+      "width": 750,
+      "height": 1000,
+      "bytes": 61861,
+      "sha256": "16a3494e3c9c85a8b03b4cc4dd716f99724a2488645fd89e12d3ddd79846d44b",
+      "original_sha256": "080abec974375ec67f92097a0247e2b8e95485daeed38e41f8ce015c684d2b81"
+    },
+    {
+      "path": "assets/template/search/search_1.jpg",
+      "source_filename": "852689822911搜索图-1.jpg",
+      "role": "template_reference_only",
+      "width": 750,
+      "height": 750,
+      "bytes": 80914,
+      "sha256": "781826d4f6f1b114099f011a386e69af6ed34ef54a8def92a950134850ba918f",
+      "original_sha256": "cd92683f33c6c3f6b922bd077987441d24d5c322fa13645ffce25dff28d2826b"
+    },
+    {
+      "path": "assets/template/search/search_2.jpg",
+      "source_filename": "852689822911搜索图-2.jpg",
+      "role": "template_reference_only",
+      "width": 750,
+      "height": 750,
+      "bytes": 73401,
+      "sha256": "cb6d5664e63289ef3afff710cffafddc7cbcc57184fd67bb734558a486098024",
+      "original_sha256": "756f01031faf98234de3207aa5e3d9ba4ddee1a95b777642df407ce35a439bc6"
+    },
+    {
+      "path": "assets/template/search/search_3.jpg",
+      "source_filename": "852689822911搜索图-3.jpg",
+      "role": "template_reference_only",
+      "width": 750,
+      "height": 750,
+      "bytes": 77417,
+      "sha256": "a60ce9a91b7f946b147341c91385ce0d0abaf39dabf3bdc3f5a6b66fd0844133",
+      "original_sha256": "6b2254ce8783b472c287e0cb43c7861637587436c49c8b5d54ec11e0d050c1d1"
+    },
+    {
+      "path": "assets/template/search/search_4.jpg",
+      "source_filename": "852689822911搜索图-4.jpg",
+      "role": "template_reference_only",
+      "width": 750,
+      "height": 750,
+      "bytes": 61966,
+      "sha256": "f6d5ecd0092077667d22c463c2804c92cbd29ddb86f3b92c73b600a9649993e5",
+      "original_sha256": "52829cd1cae69b499b1860cfd5f68457d537b18de4218e565a527bbec603594c"
+    },
+    {
+      "path": "assets/template/search/search_5.jpg",
+      "source_filename": "852689822911搜索图-5.jpg",
+      "role": "template_reference_only",
+      "width": 750,
+      "height": 750,
+      "bytes": 88714,
+      "sha256": "6f8f7972a4be3fa1ac7bc930a6e5bdc5d22941fe43c906ef53d2c5646bd4a432",
+      "original_sha256": "304990ffbabd93f86e9351db7d7535f666e1ce360f033d4d85b00fa6fa8ccd3c"
+    }
+  ]
+}
