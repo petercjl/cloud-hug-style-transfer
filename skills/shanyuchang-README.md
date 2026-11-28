@@ -18,6 +18,16 @@
   主图搜索图SKU交付清单.md
 ```
 
-## 安装
+## 项目联调
 
-将三个完整的 skill 目录并排复制到 `~/.codex/skills/`，或将三个压缩包解压到该目录。品牌调性副本会覆盖已装的同名旧版。让 Codex 重新加载技能后，调用 `2026-11-28-shanyuchang-zidonghua` 并给出商品项目目录。
+调试时直接从本仓库的 [自动化入口](2026-11-28-shanyuchang-zidonghua/SKILL.md) 开始。分支、源码和制品验证流程见 [项目约定](../AGENTS.md)。
+
+## 正式安装与更新
+
+安装后使用 `shanyuchang-automation`，提供商品项目目录和本次任务范围。配套摄影、版式和运行时由同一个 npm 包交付。正式版本在 npm 发布后，将对应提示词发送给当前 Agent。
+
+> 请安装 npm 包 @lumyne/shanyuchang-automation。
+
+> 请更新 npm 包 @lumyne/shanyuchang-automation。
+
+[安装合同](../packages/shanyuchang-automation/INSTALL.md) · [更新合同](../packages/shanyuchang-automation/UPDATE.md)
