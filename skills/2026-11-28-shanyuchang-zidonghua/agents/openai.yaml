@@ -1,0 +1,13 @@
+interface:
+  display_name: "2026-11-28山与场自动化"
+  short_description: "从本款旧资料一次调度详情页、主图、搜索图与 SKU 的摄影和排版"
+  default_prompt: "使用 $2026-11-28-shanyuchang-zidonghua，把这款旧资料制作成详情页、主图、搜索图与分色 SKU，交付上架图片、预览和清单。"
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

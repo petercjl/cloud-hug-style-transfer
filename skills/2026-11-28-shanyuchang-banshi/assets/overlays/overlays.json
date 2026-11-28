@@ -1,0 +1,216 @@
+{
+  "hero": {
+    "slot": 1,
+    "file": "首页.png",
+    "canvas": [
+      1500,
+      2475
+    ],
+    "box": [
+      306,
+      150,
+      1135,
+      2339
+    ],
+    "candidates": [
+      "original"
+    ],
+    "parts": [
+      {
+        "name": "顶部",
+        "box": [
+          306,
+          150,
+          1135,
+          427
+        ],
+        "h": "left",
+        "v": "top",
+        "margin": [
+          306,
+          150
+        ]
+      },
+      {
+        "name": "底部",
+        "box": [
+          484,
+          2266,
+          1016,
+          2339
+        ],
+        "h": "left",
+        "v": "bottom",
+        "margin": [
+          484,
+          136
+        ]
+      }
+    ]
+  },
+  "sport": {
+    "slot": 4,
+    "file": "运动展示.png",
+    "canvas": [
+      1500,
+      1968
+    ],
+    "box": [
+      71,
+      73,
+      1431,
+      241
+    ],
+    "candidates": [
+      "original",
+      "swap_x",
+      "swap_y",
+      "swap_xy"
+    ],
+    "parts": [
+      {
+        "name": "左文",
+        "box": [
+          71,
+          80,
+          452,
+          183
+        ],
+        "h": "left",
+        "v": "top",
+        "margin": [
+          71,
+          80
+        ]
+      },
+      {
+        "name": "右文",
+        "box": [
+          1181,
+          73,
+          1431,
+          241
+        ],
+        "h": "right",
+        "v": "top",
+        "margin": [
+          69,
+          73
+        ]
+      }
+    ]
+  },
+  "banner": {
+    "slot": 7,
+    "file": "横屏展示.png",
+    "canvas": [
+      1500,
+      1000
+    ],
+    "box": [
+      973,
+      254,
+      1354,
+      357
+    ],
+    "candidates": [
+      "original",
+      "swap_x",
+      "swap_y",
+      "swap_xy"
+    ],
+    "parts": [
+      {
+        "name": "横标",
+        "box": [
+          973,
+          254,
+          1354,
+          357
+        ],
+        "h": "right",
+        "v": "top",
+        "margin": [
+          146,
+          254
+        ]
+      }
+    ]
+  },
+  "brand": {
+    "slot": 10,
+    "file": "每色品牌摄影.png",
+    "canvas": [
+      1500,
+      2067
+    ],
+    "box": [
+      159,
+      55,
+      1344,
+      148
+    ],
+    "candidates": [
+      "original"
+    ],
+    "parts": [
+      {
+        "name": "三标横排",
+        "box": [
+          159,
+          55,
+          1344,
+          148
+        ],
+        "h": "left",
+        "v": "top",
+        "margin": [
+          159,
+          55
+        ]
+      }
+    ],
+    "placement": "fixed_top"
+  },
+  "closing": {
+    "slot": 11,
+    "file": "最后的横屏.png",
+    "canvas": [
+      1500,
+      1009
+    ],
+    "box": [
+      238,
+      611,
+      619,
+      847
+    ],
+    "candidates": [
+      "original",
+      "swap_x",
+      "swap_y",
+      "swap_xy"
+    ],
+    "parts": [
+      {
+        "name": "收尾标",
+        "box": [
+          238,
+          611,
+          619,
+          847
+        ],
+        "h": "left",
+        "v": "bottom",
+        "margin": [
+          238,
+          162
+        ],
+        "placement_margin": [
+          234,
+          161
+        ]
+      }
+    ]
+  }
+}

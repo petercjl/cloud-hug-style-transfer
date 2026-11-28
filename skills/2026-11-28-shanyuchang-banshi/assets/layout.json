@@ -1,0 +1,149 @@
+{
+  "horizontal_count": 3,
+  "per_color_count": 2,
+  "color_order": "same",
+  "frames": {
+    "mode": "first_full",
+    "left": 64,
+    "right": 60,
+    "album_edge": 22
+  },
+  "quality": {
+    "mean_luma_max": 210,
+    "contrast_min": 1.72,
+    "edge_density_max": 0.17
+  },
+  "showcase_title": true,
+  "slots": [
+    {
+      "role": "hero",
+      "name": "首屏",
+      "source": "photo",
+      "count": 1,
+      "aspect": "portrait_clearance"
+    },
+    {
+      "role": "multicolor",
+      "name": "多色选择",
+      "source": "finished",
+      "count": 1,
+      "aspect": "color_grid",
+      "condition": "multiple_colors"
+    },
+    {
+      "role": "selling",
+      "name": "卖点",
+      "source": "old"
+    },
+    {
+      "role": "sport",
+      "name": "运动展示",
+      "source": "photo",
+      "count": 1,
+      "aspect": [
+        "4:5",
+        "3:4",
+        "2:3"
+      ]
+    },
+    {
+      "role": "material",
+      "name": "材质",
+      "source": "old"
+    },
+    {
+      "role": "certificate",
+      "name": "证书",
+      "source": "old"
+    },
+    {
+      "role": "banner",
+      "name": "横屏展示",
+      "source": "photo",
+      "count_key": "horizontal_count",
+      "aspect": [
+        "3:2"
+      ]
+    },
+    {
+      "role": "detail",
+      "name": "细节展示",
+      "source": "old"
+    },
+    {
+      "role": "showcase_title",
+      "name": "实拍展示标题",
+      "source": "optional_old",
+      "switch": "showcase_title"
+    },
+    {
+      "role": "brand",
+      "name": "每色品牌摄影",
+      "source": "photo",
+      "count_key": "per_color_count",
+      "per_color": true,
+      "aspect": [
+        "2:3",
+        "3:4"
+      ]
+    },
+    {
+      "role": "closing",
+      "name": "收尾横屏",
+      "source": "photo",
+      "count": 1,
+      "aspect": [
+        "3:2"
+      ]
+    },
+    {
+      "role": "size",
+      "name": "尺码参考",
+      "source": "old"
+    }
+  ],
+  "hero_clearance": {
+    "top": 480,
+    "bottom": 260
+  },
+  "commercial": {
+    "main": {
+      "template": "主图.png",
+      "size": [
+        1440,
+        1920
+      ],
+      "folder": "04_主图",
+      "prefix": "主图",
+      "count": 5,
+      "finished": [
+        2,
+        3,
+        5
+      ],
+      "skip_single": [
+        2
+      ]
+    },
+    "search": {
+      "template": "搜索图.png",
+      "size": [
+        1440,
+        1440
+      ],
+      "folder": "05_搜索图",
+      "prefix": "搜索图",
+      "count": 5
+    },
+    "sku": {
+      "template": "sku.png",
+      "size": [
+        1440,
+        1440
+      ],
+      "folder": "06_SKU",
+      "prefix": "SKU",
+      "per_color": true
+    }
+  }
+}

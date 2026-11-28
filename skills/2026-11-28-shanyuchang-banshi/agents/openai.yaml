@@ -1,0 +1,4 @@
+interface:
+  display_name: "2026-11-28山与场版式"
+  short_description: "离线装配山与场详情页、主图、搜索图与分色 SKU，输出上架 JPG 和清单"
+  default_prompt: "使用 $2026-11-28-shanyuchang-banshi，把本款摄影、带字整屏和旧模块装配为详情页、主图、搜索图及 SKU，交付预览和清单。"
